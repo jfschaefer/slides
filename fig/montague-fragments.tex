@@ -1,0 +1,43 @@
+\documentclass[tikz]{standalone}
+
+\begin{document}
+\providecommand\fraglevel3
+\newif\ifdrawfirst
+\newif\ifdrawsecond
+\newif\ifdrawthird
+\if\fraglevel1\drawfirsttrue\fi
+\if\fraglevel2\drawfirsttrue\drawsecondtrue\fi
+\if\fraglevel3\drawfirsttrue\drawsecondtrue\drawthirdtrue\fi
+\begin{tikzpicture}
+    \node (nl) at (0, 3.5) {\textbf{Natural Language}};
+    \foreach\i in {0,0.05,...,1} {
+        \fill[opacity=\i,color=black!30] (0,0) ellipse ({2-\i*0.5} and {3-\i*0.5});
+    }
+    \node (log) at (5, 3.5) {\textbf{Logic}};
+    \fill[color=black!30] (5,0) ellipse ({1.75} and {2.75});
+    % first level
+    \ifdrawfirst
+        \draw[color=blue,thick] (-0.4,-0.2) -- (-0.2,0.5) -- (0.6,-0.3) -- cycle;
+        \draw[color=blue,thick] (4.6,-0.3) -- (4.6,0.3) -- (5.4, 0.3) -- (5.4,-0.3) -- cycle;
+        \if\fraglevel1
+            \draw[thick,->] (0.4,0.3) to[bend left=20] (4.3,0.3);
+        \fi
+    \fi
+    % second level
+    \ifdrawsecond
+        \draw[color=purple,thick] (-0.5,-0.3) -- (-0.1,0.8) -- (0.9,-0.1) -- (0.2,-0.6) -- cycle;
+        \draw[color=purple,thick] (4.2,-0.7) -- (4.2,0.4) -- (5.45, 0.5) -- (5.45,-0.5) -- cycle;
+        \if\fraglevel2
+            \draw[thick,->] (0.5,0.4) to[bend left=20] (4.1,0.4);
+        \fi
+    \fi
+    % third level
+    \ifdrawthird
+        \draw[color=orange,thick] (-0.8,0.2) -- (-0.7,0.8) -- (0.2,0) -- cycle;
+        \draw[color=orange,thick] (4.7,-0.2) -- (4.9,0.25) -- (6.2,-0.1) -- cycle;
+        \if\fraglevel3
+            \draw[thick,->] (-0.3,0.6) to[bend left=20] (4.8,0.2);
+        \fi
+    \fi
+\end{tikzpicture}
+\end{document}
