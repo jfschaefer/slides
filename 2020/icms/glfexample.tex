@@ -1,0 +1,21 @@
+\begin{minipage}{0.3\textwidth}\centering\small\str{Every integer is even.}\end{minipage} $\;\mapsto\;$ 
+\resizebox{0.2\textwidth}{!}{
+    \begin{tikzpicture}[baseline=0.0em]
+        \node[line width=0,rounded corners=.2cm,fill=gray!25] (abs) at (0,0) {
+            \begin{tikzpicture}
+                \node (a) at (-1, 0) {every};
+                \node (j) at (-1, -.8) {integer};
+                \node (h) at (1, 0) {even};
+                \node (s) at (0, .8) {simpleStmt};
+                \draw (a) -- (s);
+                \draw (h) -- (s);
+                \draw (a) -- (j);
+            \end{tikzpicture}
+        };
+    \end{tikzpicture}
+} $\;\mapsto\;$
+\begin{minipage}{0.29\textwidth}
+    \centering
+    \footnotesize
+    $\forall x.\text{int}(x) \Rightarrow \text{even}(X)$
+\end{minipage}

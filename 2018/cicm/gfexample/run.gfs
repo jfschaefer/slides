@@ -1,0 +1,6 @@
+i MathEng.gf
+p -cat=Statement "an Abelian group is commutative" | vp -showfun -nocat -leafedgestyle=dotted -leafcolor=green4 -view=shotwell
+
+i MathFre.gf
+p -cat=Statement -lang=Eng "an Abelian group is commutative" | l -lang=Fre
+p -cat=Statement -lang=Fre "un groupe abélien est commutatif" | vp -lang=Fre -showfun -nocat -leafedgestyle=dotted -leafcolor=blue -view=shotwell

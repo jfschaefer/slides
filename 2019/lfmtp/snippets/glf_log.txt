@@ -1,0 +1,7 @@
+Please enter a sentence: John isn't allowed to run
+I got the following interpretations:
+¬⟪d⟫(run' john')
+Please enter a sentence: Mary believes that John doesn't have to run
+I got the following interpretations:
+⟦(e mary')⟧¬⟦d⟧(run' john')
+Please enter a sentence: 

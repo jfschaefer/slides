@@ -1,0 +1,18 @@
+view GossipSem : ?Gossip -> ?FOL =
+    Stmt     = o ❙
+    Action   = ι ⟶ o ❙
+    Actor    = (ι ⟶ o) ⟶ o ❙
+
+    everyone = [φ] ∀ φ ❙
+    someone  = [φ] ∃ φ ❙
+    makeStmt = [a,φ] a φ ❙
+    twoOf    = [a1,a2] [φ] (a1 φ) ∧ (a2 φ) ❙
+❚
+
+view GossipLexSem : ?GossipLex -> ?DomainTheory =
+    include ?GossipSem ❙
+    john     = [φ] φ john' ❙
+    mary     = [φ] φ mary' ❙
+    run      = [x] run' x ❙
+    be_happy = [x] happy' x ❙
+❚

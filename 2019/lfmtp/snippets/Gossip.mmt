@@ -1,0 +1,12 @@
+theory Gossip : ur:?LF =
+
+  Actor  : type ❙
+  Action : type ❙
+  Stmt   : type ❙
+
+  everyone : Actor ❙
+  someone  : Actor ❙
+  makeStmt :
+        Actor ⟶ Action ⟶ Stmt❙
+  twoOf:Actor ⟶ Actor ⟶ Actor❙
+❚

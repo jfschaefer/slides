@@ -1,0 +1,13 @@
+theory FOL : ur:?LF =
+    prop   : type        ❘ # o      ❙
+    and    : o ⟶ o ⟶ o   ❘ # 1 ∧ 2  ❙
+    neg    : o ⟶ o       ❘ # ¬ 1    ❙
+    or     : o ⟶ o ⟶ o   ❘ # 1 ∨ 2 ❘
+        = [x,y] ¬ ( (¬ x) ∧ (¬ y) ) ❙
+
+
+    ind    : type        ❘ # ι      ❙
+    forall : (ι ⟶ o) ⟶ o ❘ # ∀ 1    ❙
+    exists : (ι ⟶ o) ⟶ o ❘ # ∃ 1 ❘
+        = [p] ¬ (∀ [x] (¬ p x))     ❙
+❚

@@ -1,0 +1,47 @@
+%%% listings stuff for MMT and GF (in seperate file, since it breaks syntax highlighting in VIM)
+
+\usepackage{listings}
+
+\def\mmtBasicStyle{\scriptsize\ttfamily}
+\def\mmtstyle#1{{\mmtBasicStyle #1}}
+\def\jOD{|}
+\def\jDD{$\|$}
+\def\jMD{$\talloblong$}
+\def\jraa{$\rightarrow$}
+
+\lstdefinelanguage{MMT}{
+    morekeywords={ theory, view, include },
+    basicstyle=\mmtBasicStyle,
+    captionpos=b,
+    escapechar={(*@}{@*)},
+    literate={❘}{{\jOD}}1 {❙}{{\jDD}}1 {❚}{{\jMD}}1
+             {⟶}{{\jraa}}1
+             {⟪}{{$\llangle$}}1 {⟫}{{$\rrangle$}}1
+             {⟦}{{$\llbracket$}}1 {⟧}{{$\rrbracket$}}1
+             {∧}{{$\land$}}1 {¬}{{$\neg$}}1 {∨}{{$\lor$}}1
+             {φ}{{\textphi}}1 {ψ}{{\textpsi}}1
+             {ι}{{\textiota}}1 {μ}{{\textmu}}1
+             {∪}{{$\cup$}}1 {∩}{{$\cap$}}1
+             {∀}{{$\forall$}}1 {∃}{{$\exists$}}1
+             {⊦}{{$\vdash$}}1
+}
+
+
+\lstdefinelanguage{GF}{
+    morekeywords={ abstract, concrete, resource, interface, instance,
+        incomplete, of, with, open, in,
+        cat, fun, lincat, lin, oper, flags, param,
+        def, lindef, linref, data
+    },
+    escapechar={$},
+    morecomment=[l]{--},
+    morecomment=[s]{\{-}{-\}},
+    morestring=[b]",
+    showstringspaces=false,
+    basicstyle=\scriptsize\ttfamily,
+    captionpos=b
+}
+
+\def\gfinline#1{\lstinline[language=GF, breaklines=true, breakatwhitespace]{#1}}
+
+

@@ -1,0 +1,44 @@
+\RequirePackage{listings}
+\RequirePackage{tikz}
+\RequirePackage{upgreek}
+
+\providecommand\raa{\rightarrow}  % I prefer \raa to be short
+\providecommand\superzero{$^0$}
+\providecommand\superone{$^1$}
+
+\lstdefinelanguage{MMT}{
+    morekeywords={ theory, view, include, role },
+    basicstyle=\color{black!50!blue},
+    commentstyle=\color{blue!40}\itshape,
+    % builtins
+    keywords=[2]{ type },
+    keywordstyle=[2]{\itshape},
+    morecomment=[l]{\ //},
+    alsoletter={\\},
+    keepspaces=true,
+    literate=
+        {\\ra}{$\rightarrow$}1
+        {\\raa}{$\raa$}2  % \ra before \raa
+        {\\\\}{\textbackslash}1
+        {\\OD}{{\catcode`\$=3 \color{black}\tikz{\draw[fill=black!20,draw=none] (0,0) rectangle (0.1em,0.65em);}}}1
+        {\\DD}{{\catcode`\$=3 \color{black}\tikz{\draw[fill=black!20,draw=none] (0,0) rectangle (0.2em,0.65em);}}}1
+        {\\MD}{{\catcode`\$=3 \color{black}\tikz{\draw[fill=black!20,draw=none] (0,0) rectangle (0.4em,0.65em);}}}1
+        {\\bot}{$\bot$}1
+        {\\cap}{$\cap$}1
+        {\\contra}{$\lightning$}1
+        {\\cdot}{$\cdot$}1
+        {\\exists}{$\exists$}1
+        {\\forall}{$\forall$}1
+        {\\iota}{$\upiota$}1
+        {\\neg}{$\neg$}1
+        {\\Rightarrow}{$\Rightarrow$}2
+        {\\phi}{$\upvarphi$}1
+        {\\psi}{$\uppsi$}1
+        {\\super0}{\superzero}1
+        {\\super1}{\superone}1
+        {\\vdash}{$\vdash$}1
+        {\\vee}{$\vee$}1
+        {\\wedge}{$\wedge$}1
+        {prec}{{\color{black!70}\textit{prec}}}4    % gray out precedences
+    ,
+}

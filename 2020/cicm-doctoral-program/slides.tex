@@ -1,0 +1,318 @@
+\documentclass{beamer}
+
+% \usepackage[orientation=landscape,size=custom,width=16,height=9,scale=0.6,debug]{beamerposter}
+
+\usepackage{appendixnumberbeamer}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta}
+\usetikzlibrary{positioning}
+\usetikzlibrary{docicon}
+
+\usetheme{Pittsburgh}
+\setbeamertemplate{footline}[frame number]
+\setbeamertemplate{navigation symbols}{}
+\usecolortheme{beaver}
+\setbeamertemplate{frametitle}[default][left]
+\setbeamersize{text margin left=3em}
+\usepackage{listings}
+\usepackage{courier}
+
+\newcommand{\com}[1]{\strut\hfil\strut\null\nobreak\hfill\hbox{{\itshape \color{black!50}#1}}\par}
+\newcommand\str[1]{{\color{black!50!green}``\textit{#1}''}}
+
+\title{High-Precision Semantics Extraction in STEM}
+
+\author{Jan Frederik Schaefer \\ Supervisor: Michael Kohlhase}
+\institute{FAU Erlangen-N\"urnberg}
+\date{\textbf{CICM 2020 --- Doctoral Program} \\ remotely from Erlangen, Germany}
+
+
+\begin{document}
+
+\begin{frame}
+    \maketitle
+\end{frame}
+
+\begin{frame}
+    \frametitle{My Situation}
+    \begin{itemize}
+        \item Finishing up my master studies
+        \item Did already some research
+            \begin{itemize}
+                \item Symbolic natural language semantics
+                \item Controlled natural languages for mathematics
+            \end{itemize}
+        \item Going to start my PhD soon
+            \begin{itemize}
+                \item Supervisor: Michael Kohlhase \com{kwarc group}
+                \item Tentative topic: \emph{high-precision semantics extraction in STEM}
+                \item Topic still very flexible
+                \item[\boldmath$\rightarrow$] \textbf{Any feedback appreciated!}
+            \end{itemize}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Motivation}
+    \begin{itemize}
+        \item We have large corpora of STEM knowledge \com{e.g. arxiv}
+        \item Computers can make it more accessible:
+            \begin{itemize}
+                \item Unit conversion
+                \item Applicable theorem search
+                \item Screen readers
+                \item \dots
+            \end{itemize}
+        \item Such services require/benefit from semantic information
+        \item Authors often don't provide much \com{semantic \TeX{} macros}
+        \item[\boldmath$\rightarrow$] Semantics extraction
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Approaches to Semantics Extraction}
+    \begin{itemize}
+        \item Machine learning--based
+            \begin{itemize}
+                \item Training data?
+                \item Low precision
+            \end{itemize}
+        \item Symbolic
+            \begin{itemize}
+                \item Low coverage
+            \end{itemize}
+    \end{itemize}
+
+    \vspace{1.5em}
+    \centering
+    \tikzset{every picture/.style={line width=0.7pt}}
+    \begin{tikzpicture}
+        \node at (-0.9,2.5) {\itshape precision};
+        \node at (4.5, -0.4) {\itshape coverage};
+        \node at (0.8, 2.5) {symb.};
+        \node at (4.4, 0.6) {ML};
+        \node at (4.4, 2.5) {\color{black!50} ???};
+        \node at (0.8, 0.6) {\color{black!50} useless};
+        \draw[-{Straight Barb[length=6.3,width=5.0]}] (-0.5,0) -- (5.0,0);
+        \draw[-{Straight Barb[length=6.3,width=5.0]}] (0,-0.5) -- (0,3.0);
+        \only<2->{
+            \draw[->,dashed] (1.5,2.5) -- (2.5,2.5);
+            \draw[->,dashed] (4.4,1.0) -- (4.4,1.8);
+        }
+        \onslide<3->{
+            \draw[ultra thick, color=blue] (1.43,2.5) ellipse (1.3 and 0.7);
+        }
+    \end{tikzpicture}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Plan}
+    \begin{itemize}
+        \item Symbolic approaches offer high precision
+        \item Often, high precision is more important than coverage\\
+            \str{each has the mass $\frac12m$} vs \str{each has the mass $1.64ft$}
+        \item We already have a tool: GLIF
+        \item Use statistical methods to increase coverage
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{GLIF (Grammatical Logical Inference Framework)}
+    {
+        \centering
+        \tikzset{every picture/.style={line width=0.7pt}}
+        \begin{tikzpicture}
+            \node[draw] (str) {\begin{tabular}{c}String\\\color{black!60} $\in \mathcal{FL} \subseteq \mathcal{NL}$\end{tabular}};
+            \node[draw,right=of str,minimum width=3cm,minimum height=2cm,rounded corners=0.5cm,fill=black!20] (glif) {\bfseries GLIF};
+            \node[draw,right=of glif] (logic) {\begin{tabular}{c}Logical\\Expression\end{tabular}};
+            \node[draw,shape=document,above=of glif,color=black!70] (spec) {Specification};
+            \draw[-{Straight Barb[length=6.3,width=5.0]}] (str) -- (glif);
+            \draw[-{Straight Barb[length=6.3,width=5.0]}] (glif) -- (logic);
+            \draw[-{Straight Barb[length=6.3,width=5.0]},color=black!70] (spec) -- (glif);
+        \end{tikzpicture}
+    }
+    
+    \vspace{2em}
+    Use cases:
+    \begin{itemize}
+        \item Designing controlled natural languages
+        \item Prototyping approaches to natural-language semantics
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{GLIF (Grammatical Logical Inference Framework)}
+    \resizebox{\textwidth}{!}{
+        \input{glif}
+    }
+
+    \vspace{1em}
+    \only<1>{
+        Idea: Combine existing frameworks
+        \begin{itemize}
+            \item GF (Grammatical Framework): $\mathcal{NL}$ grammars
+            \item MMT: Logic, knowledge representation
+            \item ELPI ($\supseteq$ $\lambda$Prolog): Inference
+            \item Jupyter: Intuitive UI
+        \end{itemize}
+    }
+    \only<2->{
+        \vspace{3em}
+        \resizebox{\textwidth}{!}{
+            \tikzset{every picture/.style={line width=0.7pt}}
+            \begin{tikzpicture}[yscale=0.5]
+                \node(str) at (-4,0) {\str{\dots has a mass of 2m}};
+                \node(ast1) at (0,1) {AST$_1$};
+                \node(ast2) at (0,-1) {AST$_2$};
+                \node(log1) at (4,1) {$\lambda x.\text{mass}(x, \text{quant}(2, \text{\bfseries meters}))$};
+                \node(log2) at (4,-1) {$\lambda x.\text{mass}(x, \text{mul}(2, \text{\bfseries mVar}))$};
+                \draw[-{Straight Barb[length=6.3,width=5.0]},gray] (str) -- (ast1);
+                \draw[-{Straight Barb[length=6.3,width=5.0]},gray] (str) -- (ast2);
+                \draw[-{Straight Barb[length=6.3,width=5.0]},gray] (ast1) -- (log1);
+                \draw[-{Straight Barb[length=6.3,width=5.0]},gray] (ast2) -- (log2);
+                \only<3>{
+                    \draw[ultra thick,red] (2,0.5) -- (6,1.5);
+                    \draw[ultra thick,red] (2,1.5) -- (6,0.5);
+                }
+            \end{tikzpicture}
+        }
+    }
+\end{frame}
+
+\begin{frame}
+    \frametitle{Lexicon Extension}
+    {
+        \centering\str{Therefore, $A$ is clopen.}\par
+    }
+
+    \vspace{2em}
+    Different options:
+    \begin{enumerate}
+        \item Use a dynamic parser \com{DynGenPar}
+        \item Generate lexicon automatically:\\
+            \small\texttt{clopen\_Adj : Adjective = "clopen"} \\
+            \small\texttt{clopen : $\iota \rightarrow o$}
+        \item Replace lexicon entries with tokens:\\
+            \str{Therefore, $A$ is {\upshape\ttfamily ADJ-1}.}
+    \end{enumerate}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Blanking out Unparsable Parts}
+
+    This may be impossible:
+
+    \str{Let $X$ denote a data set where all entries $x \in X$ are normalized as described above.}
+
+    \vspace{1em}
+    This would still be useful:
+
+    \str{Let $X$ denote a data set where {\upshape\ttfamily SUB-CLAUSE}.}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Semantic Representation?}
+
+    \begin{itemize}
+        \item Open question
+        \item VIP, Naproche use DRT
+        \item DRT not really supported by GLIF/MMT yet
+    \end{itemize}
+    
+    \vspace{2em}
+    \resizebox{\textwidth}{!}{
+        \input{glif}
+    }
+\end{frame}
+
+\begin{frame}
+    \frametitle{Late Disambiguation}
+
+    \begin{enumerate}
+        \item Syntactic disambiguation:\\
+            \vspace{0.3em}
+            \begin{minipage}{0.5\textwidth}
+                \str{2\textbf{m}}
+            \end{minipage}
+            $\,\;\rightarrow$ \textit{unit?}
+        \item Semantic disambiguation:\\
+            \vspace{0.3em}
+            \begin{minipage}{0.5\textwidth}
+                \str{a mass of 2\textbf{m}}
+            \end{minipage}
+            $\,\;\rightarrow$ \textit{not a unit}
+        \item Later semantic disambiguation:\\
+            \vspace{0.3em}
+            \begin{minipage}{0.5\textwidth}
+                \str{it has a length of 2\textbf{m}, where m is the length of a module}
+            \end{minipage}
+            $\,\;\rightarrow$ \textit{not a unit}
+    \end{enumerate}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Data Set}
+    
+    {
+        \centering
+        \tikzset{every picture/.style={line width=0.7pt}}
+        \begin{tikzpicture}
+            \node[draw] (arxiv) at (0,0) {\begin{tabular}{c}\textbf{arXiv}\\ \small \LaTeX\end{tabular}};
+            \node[draw] (arxmliv) at (6,0) {\begin{tabular}{c}\textbf{arXMLiv}\\ \small HTML + MathML\end{tabular}};
+            \draw[-{Straight Barb[length=6.3,width=5.0]}] (arxiv) to node[above] {\textbf{LaTeXML}} (arxmliv);
+        \end{tikzpicture}\par
+    }
+
+    \vspace{2em}
+    \begin{itemize}
+        \item $> 10^6$ documents
+        \item aims to preserve any semantic information from {\LaTeX} sources
+        \item have some experience with processing \textbf{arXMLiv} documents
+    \end{itemize}
+
+    \vspace{2em}\centering\url{https://sigmathling.kwarc.info/}\par
+\end{frame}
+
+\begin{frame}
+    \frametitle{Work Plan}
+
+    \begin{enumerate}
+        \item Prototype GLIF pipeline
+            \begin{itemize}
+                \item Target: variable declarations and uses
+                \item Use generated lexicon
+            \end{itemize}
+        \item Prototype pipeline for corpus work
+            \begin{itemize}
+                \item Load document
+                \item Enter pre-processed sentences into GLIF pipeline
+                \item Export results
+            \end{itemize}
+        \item Introduce blanking out
+        \item Scaling
+            \begin{itemize}
+                \item Larger grammar
+                \item More semantic phenomena
+            \end{itemize}
+        \item Build example semantic services
+        \item Can we replace more with ML?\\Can the results be used as training data?
+    \end{enumerate}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Discussion}
+    \begin{itemize}
+        \item Is it desirable? \com{I think so}
+        \item Could this work?
+        \item Other ideas?
+        \item Anything else?
+    \end{itemize}
+
+    \vspace{2em}
+    \centering
+    \textbf{I haven't started yet \boldmath $\rightarrow$ any feedback is welcome!}
+\end{frame}
+
+\end{document}
