@@ -1,0 +1,31 @@
+% if using beamer, things should be more colorful etc.
+\newif\if@forbeamer
+\DeclareOption{forbeamer}{
+    \@forbeamertrue
+}
+
+\ProcessOptions\relax
+
+
+% EXAMPLE STRINGS
+% color for example strings
+\if@forbeamer
+    \providecommand\strcol{\color{black!60!green}}
+\else
+    \providecommand\strcol{}
+\fi
+% plain formatting for example strings (no color, decoration, ...)
+\providecommand\strplain[1]{{\itshape #1}}
+% formatting for example strings
+\providecommand\str[1]{\strplain{\strcol``#1''}}
+
+
+% COMMENTS
+\providecommand\commentcolor{\color{black!50}}
+\providecommand\commentstyle{\itshape\commentcolor}
+% right-aligned comments in beamer
+\if@forbeamer
+    \newcommand\com[1]{\strut\hfil\strut\null\nobreak\hfill\hbox{\commentstyle #1}\par}
+\fi
+
+

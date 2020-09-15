@@ -1,0 +1,76 @@
+\begin{frame}
+    \frametitle{Method of Fragments}
+    \only<1-2>{
+        \centering
+        \only<1>{\def\fraglevel{0}}
+        \only<2>{\def\fraglevel{1}}
+        \includestandalone{fig/montague-fragments}
+
+        \begin{minipage}[t][2cm]{\textwidth}\vspace{1em}
+            How do we get from messy language to formal logic?\\[0.5em]
+            \emph{Montague}~\cite{Montague:efl70}: Look at a ``nice'' subset
+            and map into logic.
+        \end{minipage}
+    }
+
+    \only<3>{
+        \centering
+        \def\fraglevel{1}
+        \includestandalone{fig/montague-fragments}
+        
+        \begin{minipage}[t][2cm]{0.6\textwidth}\vspace{1em}
+            \str{Ahmed paints and Berta is quiet.}\\[0.5em]
+            \str{Ahmed doesn't paint.}
+        \end{minipage}\hfill
+        \begin{minipage}[t][2cm]{0.39\textwidth}\vspace{1em}
+            $p(a) \wedge q(b)$\\[0.5em]
+            $\neg p(a)$
+        \end{minipage}
+    }
+
+    \only<4>{
+        \centering
+        \def\fraglevel{2}
+        \includestandalone{fig/montague-fragments}
+        
+        \begin{minipage}[t][2cm]{0.6\textwidth}\vspace{1em}
+            \str{Every student paints and is quiet.}\\[0.5em]
+            \str{Nobody paints.}
+        \end{minipage}\hfill
+        \begin{minipage}[t][2cm]{0.39\textwidth}\vspace{1em}
+            $\forall x.s(x) \Rightarrow (p(x) \wedge q(x))$\\[0.5em]
+            $\neg \exists x.p(x)$
+        \end{minipage}
+    }
+
+    \only<5>{
+        \centering
+        \def\fraglevel{3}
+        \includestandalone{fig/montague-fragments}
+
+        \begin{minipage}[t][2cm]{0.6\textwidth}\vspace{1em}
+            \str{Ahmed isn't allowed to paint.}\\[0.5em]
+            \str{Ahmed and Berta must paint.}
+        \end{minipage}\hfill
+        \begin{minipage}[t][2cm]{0.39\textwidth}\vspace{1em}
+            $\neg\lozenge p(a)$\\[0.5em]
+            $(\square p(a)) \wedge \square p(b)$
+        \end{minipage}
+    }
+\end{frame}
+
+\begin{frame}
+    \frametitle{Method of Fragments}
+    If we only hand-wave, we can cheat:
+
+    \hspace{2em}\str{Ahmed paints. He is quiet.}
+    $\quad\stackrel{?}{\leadsto}\quad p(a)\wedge q(a)$
+
+    \vspace{1.5em}
+    Specify:
+    \begin{itemize}
+        \item Grammar\com{fixes NL subset}
+        \item Target logic
+        \item Semantics construction\com{maps parse trees to logic}
+    \end{itemize}
+\end{frame}
