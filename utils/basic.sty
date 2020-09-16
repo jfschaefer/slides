@@ -13,9 +13,14 @@
     \newcommand\colororelse[2]{\color{#2}}
 }
 
+
+% INDICATOR WHETHER TO USE MANY COLORS (maybe separate this from if@forbeamer?)
+\newif\ifcolorful
+\if@forbeamer\colorfultrue\else\colorfulfalse\fi
+
 % EXAMPLE STRINGS
 % color for example strings
-\if@forbeamer
+\ifcolorful
     \providecommand\strcol{\colororelse{nlfont}{black!60!green}}
 \else
     \providecommand\strcol{}
@@ -31,8 +36,15 @@
 \providecommand\commentcolor{\color{black!50}}
 \providecommand\commentstyle{\itshape\commentcolor}
 % right-aligned comments in beamer
-\if@forbeamer
+\ifcolorful
     \newcommand\com[1]{\strut\hfil\strut\null\nobreak\hfill\hbox{\commentstyle #1}\par}
 \fi
 
+
+% ENABLE/DISABLE PARTS
+\newcommand\ifpart[1]{\expandafter\if\csname utils@#1\endcsname1}
+\newcommand\enablepart[1]{\expandafter\def\csname utils@#1\endcsname{1}}
+\newcommand\disablepart[1]{\expandafter\def\csname utils@#1\endcsname{0}}
+\newcommand\provideenablepart[1]{\ifcsname utils@#1\endcsname\relax\else\enablepart{#1}\fi}
+\newcommand\providedisablepart[1]{\ifcsname utils@#1\endcsname\relax\else\disablepart{#1}\fi}
 

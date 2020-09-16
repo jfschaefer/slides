@@ -1,0 +1,35 @@
+\input{slides/montague-fragments-visual.tex}
+
+\begin{frame}
+    \frametitle{Method of Fragments}
+    If we only hand-wave, we gloss over problems:
+
+    \hspace{2em}\str{Ahmed paints. He is quiet.}
+    $\quad\stackrel{?}{\leadsto}\quad p(a)\wedge q(a)$
+
+    \vspace{1.5em}
+    Specify:
+    \begin{itemize}
+        \item Grammar\com{fixes NL subset}
+        \item Target logic
+        \item Semantics construction\com{maps parse trees to logic}
+    \end{itemize}
+
+    \vspace{1.5em}
+    On paper~\cite{Montague:tptoqi73}:\com{difficult to scale}
+
+    \vspace{0.3em}\hspace{2em}\includegraphics[trim=0 0 0 80,clip,width=0.8\textwidth]{fig/montague-tptoqioe.png}
+    % \newcommand\VP{\text{\upshape\tiny VP}}
+    % \hspace{2em}$\llbracket\text{\strplain{$P_{\VP}$ and $Q_{\VP}$}}\rrbracket_{\VP} = \lambda x. \llbracket\text{\strplain{$P_{\VP}$}}\rrbracket(x) \wedge \llbracket\text{\strplain{$Q_{\VP}$}}\rrbracket(x)$
+\end{frame}
+
+\begin{frame}
+    \frametitle{GLIF: Grammatical Logical Inference Framework}
+    \centering
+    \only<1-1>{\disablepart{sempragarrow}}
+    \only<1-2>{\disablepart{gfbox}}
+    \only<1-2>{\disablepart{mmtbox}}
+    \only<1-2>{\disablepart{elpibox}}
+    \only<3>{}
+    \includestandalone[width=\textwidth]{fig/glif-architecture}
+\end{frame}
