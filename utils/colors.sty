@@ -1,0 +1,24 @@
+\NeedsTeXFormat{LaTeX2e}[1994/06/01]
+\ProvidesPackage{utils/colors}[Custom Colors]
+
+% GOAL: ENABLE CONSISTENT COLOR SCHEMES BY DEFINING CUSTOM COLORS
+
+\RequirePackage{xcolor}
+
+
+\providecommand\fgcolfac{50}
+\providecommand\bgcolfac{25}
+\providecommand\fontcolfac{45}
+
+\newcommand\providecolorlet[2]{\@ifundefinedcolor{#1}{\colorlet{#1}{#2}}{}}
+
+\newcommand\providecolorgroup[2]{
+    \providecolorlet{#1base}{#2}
+    \providecolorlet{#1fg}{#1base!\fgcolfac!black}
+    \providecolorlet{#1bg}{#1base!\bgcolfac}
+    \providecolorlet{#1font}{#1base!\fontcolfac!black}
+}
+
+\providecolorgroup{nl}{green}
+\providecolorgroup{logic}{blue}
+

@@ -7,17 +7,24 @@
 \ProcessOptions\relax
 
 
+\@ifpackageloaded{utils/colors}{
+    \newcommand\colororelse[2]{\color{#1}}
+}{
+    \newcommand\colororelse[2]{\color{#2}}
+}
+
 % EXAMPLE STRINGS
 % color for example strings
 \if@forbeamer
-    \providecommand\strcol{\color{black!60!green}}
+    \providecommand\strcol{\colororelse{nlfont}{black!60!green}}
 \else
     \providecommand\strcol{}
 \fi
 % plain formatting for example strings (no color, decoration, ...)
-\providecommand\strplain[1]{{\itshape #1}}
+\providecommand\strplainnocol[1]{{\itshape #1}}
+\newcommand\strplain[1]{\strplainnocol{\strcol#1}}
 % formatting for example strings
-\providecommand\str[1]{\strplain{\strcol``#1''}}
+\providecommand\str[1]{\strplain{``#1''}}
 
 
 % COMMENTS

@@ -1,6 +1,10 @@
 \documentclass{beamer}
 \usepackage{standalone}
 
+\usepackage{stmaryrd}
+
+\usepackage[hyperref=auto,style=alphabetic]{biblatex}
+\addbibresource{kwarc.bib}
 \usepackage{appendixnumberbeamer}
 \usepackage{tikz}
 \usetikzlibrary{arrows.meta}
@@ -12,12 +16,12 @@
 \setbeamertemplate{frametitle}[default][left]
 \setbeamersize{text margin left=3em}
 
+\usepackage{utils/colors}
 \usepackage[forbeamer]{utils/basic}
 
 \title{GLIF: A Declarative Framework for Symbolic Natural Language Understanding}
 
 \author{\underline{Jan Frederik Schaefer} \and Michael Kohlhase}
-% \institute{\inst1Computer Science, FAU Erlangen-N\"urnberg \and \inst2Department of Computer Science and Engineering, Universit\`a di Bologna}
 \institute{FAU Erlangen-N\"urnberg}
 \date{\textbf{FCR 2020} \\ \textit{virtual event due to COVID-19} \\ September 22, 2020 }
 
@@ -26,5 +30,9 @@
 
 \input{slides/montague-fragments}
 
+\begin{frame}[allowframebreaks,t]
+    \frametitle{References}
+    \printbibliography
+\end{frame}
 
 \end{document}

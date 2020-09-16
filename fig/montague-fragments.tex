@@ -12,10 +12,10 @@
     % zero level
     \node (nl) at (0, 2.7) {\textbf{Natural Language}};
     \foreach\i in {0,0.05,...,1} {
-        \fill[opacity=\i,color=green!30] (0,0) ellipse ({2-\i*1.0} and {2.5-\i*1.0});
+        \fill[opacity=\i,color=nlbg] (0,0) ellipse ({2-\i*1.0} and {2.5-\i*1.0});
     }
     \node (log) at (5, 2.7) {\textbf{Logic}};
-    \fill[color=blue!30] (5,0) ellipse ({1.75} and {2.25});
+    \draw[draw=logicfg,fill=logicbg] (5,0) ellipse ({1.75} and {2.25});
     \if\fraglevel0
         \draw[line width=0.1cm,->] (2.05,0.0) -- (2.95,0.0);
     \fi
@@ -25,24 +25,24 @@
         \if\fraglevel1
             \draw[thick,->] (0.4,0.3) to[bend left=20] (4.3,0.3);
         \fi
-        \filldraw[color=blue,thick,fill opacity=\fillop] (-0.4,-0.2) -- (-0.2,0.5) -- (0.6,-0.3) -- cycle;
-        \filldraw[color=blue,thick,fill opacity=\fillop] (4.6,-0.3) -- (4.6,0.3) -- (5.4, 0.3) -- (5.4,-0.3) -- cycle;
+        \filldraw[color=purple,thick,fill opacity=\fillop] (-0.4,-0.2) -- (-0.2,0.5) -- (0.6,-0.3) -- cycle;
+        \filldraw[color=purple,thick,fill opacity=\fillop] (4.6,-0.3) -- (4.6,0.3) -- (5.4, 0.3) -- (5.4,-0.3) -- cycle;
     \fi
     % second level
     \ifdrawsecond
         \if\fraglevel2
             \draw[thick,->] (0.5,0.4) to[bend left=20] (4.1,0.4);
         \fi
-        \filldraw[color=purple,thick,fill opacity=\fillop] (-0.5,-0.3) -- (-0.1,0.8) -- (0.9,-0.1) -- (0.2,-0.6) -- cycle;
-        \filldraw[color=purple,thick,fill opacity=\fillop] (4.2,-0.7) -- (4.2,0.4) -- (5.45, 0.5) -- (5.45,-0.5) -- cycle;
+        \filldraw[color=purple!50!blue,thick,fill opacity=\fillop] (-0.5,-0.3) -- (-0.1,0.8) -- (0.9,-0.1) -- (0.2,-0.6) -- cycle;
+        \filldraw[color=purple!50!blue,thick,fill opacity=\fillop] (4.2,-0.7) -- (4.2,0.4) -- (5.45, 0.5) -- (5.45,-0.5) -- cycle;
     \fi
     % third level
     \ifdrawthird
         \if\fraglevel3
             \draw[thick,->] (-0.3,0.6) to[bend left=20] (4.8,0.2);
         \fi
-        \filldraw[color=orange,thick,fill opacity=\fillop] (-0.8,0.2) -- (-0.7,0.8) -- (0.2,0) -- cycle;
-        \filldraw[color=orange,thick,fill opacity=\fillop] (4.7,-0.2) -- (4.9,0.25) -- (6.2,-0.1) -- cycle;
+        \filldraw[color=orange!80!black,thick,fill opacity=\fillop] (-0.8,0.2) -- (-0.7,0.8) -- (0.2,0) -- cycle;
+        \filldraw[color=orange!80!black,thick,fill opacity=\fillop] (4.7,-0.2) -- (4.9,0.25) -- (6.2,-0.1) -- cycle;
     \fi
 \end{tikzpicture}
 \end{document}

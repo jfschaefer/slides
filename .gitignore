@@ -10,3 +10,5 @@
 *.idx
 *.thm
 *.pdf
+*.bcf
+*.run.xml
