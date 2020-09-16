@@ -1,0 +1,77 @@
+namespace http://mathhub.info/Teaching/LBS ❚
+
+theory PL : ur:?LF =
+	// declare a type for propositions and introduce o as notation ❙
+	prop : type ❘ # o ❙
+	
+	// declare basic logical operations ❙
+	negation : o ⟶ o ❘ # ¬ 1 prec 30 ❙
+	conjunction : o ⟶ o ⟶ o ❘ # 1 ∧ 2 prec 15 ❙
+	
+	// we can define other operations through ¬ and ∧ ❙
+	disjunction : o ⟶ o ⟶ o ❘= [a,b] ¬ (¬ a ∧ ¬ b) ❘ # 1 ∨ 2 prec 10❙
+	implication : o ⟶ o ⟶ o ❘ = [a,b] ¬ a ∨ b ❘ # 1 ⇒ 2 prec 8 ❙
+	equivalence : o ⟶ o ⟶ o ❘= [a,b] (a ⇒ b) ∧ (b ⇒ a) ❘ # 1 ⇔ 2 prec 5 ❙
+❚
+
+theory FOL : ur:?LF =
+	include ?PL ❙
+	// type for individuals ❙
+	ind : type ❘ # ι ❙
+	
+	// add quantifiers ❙
+	forall : ( ι ⟶ o ) ⟶ o ❘ # ∀ 1 prec 50	❙
+	exists : ( ι ⟶ o ) ⟶ o ❘ # ∃ 1 prec 50 ❘ = [p]  ¬ ∀ [x] ¬ (p x) ❙
+❚
+
+
+theory MGF_Types : ur:?LF =
+	include ?FOL ❙
+	
+	MObj : type ❘ = ι ⟶ o ❙
+	MObjProp : type ❘ = ι ⟶ o ❙
+	// … ❙
+❚
+
+theory MObjLexicon : ur:?LF =
+	include ?MGF_Types ❙
+
+	integer_MObj : MObj ❙
+	set_MObj : MObj ❙
+	group_MObj : MObj ❙
+❚
+
+theory MObjPropLexicon : ur:?LF =
+	include ?MGF_Types ❙
+	
+	even_MObjProp : MObjProp ❙
+	finite_MObjProp : MObjProp ❙
+	positive_MObjProp : MObjProp ❙
+❚
+
+theory DGrammar : ur:?LF =
+	include ?MGF_Types ❙
+	
+	restrict_MObj : MObjProp ⟶ MObj ⟶ MObj ❘
+			= [mprop,mobj] [x] mprop(x) ∧ mobj(x) ❙
+❚
+
+//
+EVERYTHING BELOW IS JUST FOR THE PRESENTATION (SCREENSHOTS)
+❚
+
+theory MobjTypesExample : ur:?LF =
+	include ?MGF_Types ❙
+	
+	even_MObjProp : MObjProp ❙
+	positive_MObjProp : MObjProp ❙
+	integer_MObj : MObj ❙
+❚
+	
+theory NaiveTypeDecls : ur:?LF =
+	include ?FOL ❙
+	
+	even_MObjProp : ι ⟶ o ❙
+	positive_MObjProp : ι ⟶ o ❙
+	integer_MObj : ι ⟶ o ❙
+❚

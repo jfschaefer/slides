@@ -1,0 +1,3 @@
+abstract Math = Grammar, Lexicon ** {
+
+}

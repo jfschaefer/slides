@@ -1,0 +1,39 @@
+graph {
+edge[style="solid"]; node[shape="plaintext"]; 
+subgraph {rank=same;
+  n5[label="Identifier"]; 
+}
+ 
+subgraph {rank=same;
+  n1[label="FComplexIdentifier"]; 
+  n2[label="FBinRelation"]; 
+  n4[label="FExpression"]; 
+  edge[style="invis"]; 
+  n1  --  n2  --  n4 ;
+}
+n5 -- n1;
+n5 -- n2;
+n5 -- n4;
+ 
+subgraph {rank=same;
+  n0[label="FIdentifier"]; 
+  n3[label="FNumeral"]; 
+  edge[style="invis"]; 
+  n0  --  n3 ;
+}
+n1 -- n0;
+n4 -- n3;
+ 
+edge[style="dotted"]; edge[color="green4"]; node[fontcolor="green4"]; node[shape="plaintext"]; 
+subgraph {rank=same;
+  n100003[label="                n               "]; 
+  n100006[label="         >         "]; 
+  n100009[label="         2         "]; 
+  edge[style="invis"]; 
+  n100003  --  n100006  --  n100009 ;
+}
+n0 -- n100003;
+n2 -- n100006;
+n3 -- n100009;
+ 
+}
