@@ -8,11 +8,11 @@
 \provideenablepart{mmtbox}
 \provideenablepart{elpibox}
 \provideenablepart{sempragarrow}
-\provideenablepart{dummy}
+\provideenablepart{includejupyter}
 \begin{tikzpicture}[xscale=1.05,yscale=0.9]
     \tikzset{ll/.style={line width=0.7pt}}
     \draw[ll,rounded corners=.2cm] (-4.5,3.3) rectangle (7.0,-1.0);
-    \node at (1.25,-0.5) {\bfseries Jupyter/GLIF};
+    \node at (1.25,-0.5) {\bfseries \ifpart{includejupyter}Jupyter/\fi GLIF};
     \ifpart{gfbox}
         \draw[ll,rounded corners=.2cm,fill=black!20] (-3.4,3.2) rectangle (-0.1,0.0);
         \node at (-1.75,0.5) {\bfseries GF};
