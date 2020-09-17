@@ -26,36 +26,24 @@
 
 \begin{frame}[fragile]
     \frametitle{Components of GLIF: MMT}
+    \lstset{frame=single}
     \begin{itemize}   
         \item Modular logic development and knowledge representation
         \item Foundation-independent\com{we use LF}
+        \item We will use it to:
+        \begin{itemize}
+            \item { \only<2>{\bf\color{hlfont}} represent abstract syntax }
+            \item { \only<3>{\bf\color{hlfont}} specify target logic and domain theory}
+            \item { \only<4>{\bf\color{hlfont}} specify semantics construction}
+        \end{itemize}
     \end{itemize}
-    
     \lstset{basicstyle=\footnotesize\ttfamily}
-    \begin{minipage}[t]{0.4\textwidth}
-        \begin{lstlisting}[language=GF]
-abstract Grammar = {
-  cat
-    NP; VP; S;
-  fun
-    sentence :
-      NP -> VP -> S;
-    ahmed : NP;
-    paint : VP;
-}
-        \end{lstlisting}
-    \end{minipage}
-    \begin{minipage}[t]{0.4\textwidth}
-        \begin{lstlisting}[language=MMT]
-theory Grammar : ur:?LF =
-  NP : type \DD
-  VP : type \DD
-  S : type \DD
-  sentence :
-    NP \raa VP \raa S \DD
-  ahmed : NP \DD
-  paint : VP \DD
-\MD
-        \end{lstlisting}
+    
+    \vspace{1em}
+    \begin{minipage}[t][4cm]{\textwidth}
+        \centering
+        \only<2>{\input{slides/misc/glif-components-langtheo}}
+        \only<3>{\input{slides/misc/glif-components-logic}}
+        \only<4>{\input{slides/misc/glif-components-semconstr}}
     \end{minipage}
 \end{frame}

@@ -1,0 +1,30 @@
+% Used in slides/glif-components.tex
+% Has to be in separate file...
+\begin{minipage}[t]{0.45\textwidth}
+    \parbox[t][1em][t]{\textwidth}{\centering\bf Logic}\par
+    \begin{lstlisting}[language=MMT,linewidth=\textwidth]
+o : type //propositions
+\neg : o \raa o
+\wedge : o \raa o \raa o
+\vee : o \raa o \raa o
+
+\iota : type //individuals
+\forall : (\iota \raa o) \raa o
+\exists : (\iota \raa o) \raa o \end{lstlisting}
+\end{minipage}\hskip2em
+\begin{minipage}[t]{0.3\textwidth}
+    \parbox[t][1em][t]{\textwidth}{\centering\bf Domain Theory}\par
+    \begin{lstlisting}[language=MMT,linewidth=\textwidth]
+paint : \iota \raa o
+quiet : \iota \raa o
+ahmed : \iota
+berta : \iota \end{lstlisting}
+
+    \footnotesize
+    \vspace{1.5em}
+    \hskip-1em
+    idea:
+    $\forall f$
+    or $\forall \lambda x.f(x)$\par
+    \hskip-1em instead of $\forall x.f(x)$
+\end{minipage}

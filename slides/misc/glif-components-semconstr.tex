@@ -1,0 +1,25 @@
+\textbf{Semantics Construction}
+
+\textit{map symbols in abstract syntax to terms in logic/domain theory}
+
+\vspace{0.5em}
+\begin{minipage}[t]{0.4\textwidth}
+\parbox[t][1em][t]{\textwidth}{\centering Simple setting}\par
+\begin{lstlisting}[language=MMT]
+S        \mapsto o
+NP       \mapsto \iota
+VP       \mapsto \iota \raa o
+sentence \mapsto \lambdan.\lambdav.v n
+ahmed    \mapsto ahmed
+\end{lstlisting}
+\end{minipage}
+\hspace{1em}
+\begin{minipage}[t]{0.5\textwidth}
+\parbox[t][1em][t]{\textwidth}{\centering More advanced}\par
+\begin{lstlisting}[language=MMT]
+NP       \mapsto (\iota \raa o) \raa o
+sentence \mapsto \lambdan.\lambdav.n v
+everyone \mapsto \lambdap.\forall\lambdax.p x
+berta    \mapsto \lambdap.p berta
+\end{lstlisting}
+\end{minipage}
