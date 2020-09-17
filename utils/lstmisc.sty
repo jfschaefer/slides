@@ -1,0 +1,35 @@
+\RequirePackage{listings}
+
+\lstdefinelanguage{ELPI}{
+    morekeywords={
+        kind, type, accumulate,
+        prop, int, pi, sigma
+    },
+    keywords=[2]{A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z,X0,X1,X2,X3,X4,X5,X6,X7,X8,X9,N1,C1,C2},
+    keywordstyle=[2]\itshape,
+    morecomment=[l]{\%},
+    morecomment=[s]{/*}{*/},
+    morestring=[b]",
+}
+
+\lstdefinelanguage{GF}{
+    morekeywords={ abstract, concrete, resource, interface, instance,
+        incomplete, of, with, open, in,
+        cat, fun, lincat, lin, oper, flags, param,
+        def, lindef, linref, data
+    },
+    morecomment=[l]{--},
+    morecomment=[s]{\{-}{-\}},
+    morestring=[b]",
+}
+
+\lstdefinelanguage{GLIFcmd}{
+    morekeywords={ 
+        parse, linearize,
+        construct, put_tree,
+        p, pt
+    },
+    morecomment=[l]{--},
+    morestring=[b]",
+    showstringspaces=false,
+}

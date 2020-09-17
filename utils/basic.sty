@@ -33,8 +33,7 @@
 
 
 % COMMENTS
-\providecommand\commentcolor{\color{black!50}}
-\providecommand\commentstyle{\itshape\commentcolor}
+\providecommand\commentstyle{\itshape\colororelse{commentfont}{black!50}}
 % right-aligned comments in beamer
 \ifcolorful
     \newcommand\com[1]{\strut\hfil\strut\null\nobreak\hfill\hbox{\commentstyle #1}\par}
@@ -42,9 +41,9 @@
 
 
 % ENABLE/DISABLE PARTS
-\newcommand\ifpart[1]{\expandafter\if\csname utils@#1\endcsname1}
-\newcommand\enablepart[1]{\expandafter\def\csname utils@#1\endcsname{1}}
-\newcommand\disablepart[1]{\expandafter\def\csname utils@#1\endcsname{0}}
-\newcommand\provideenablepart[1]{\ifcsname utils@#1\endcsname\relax\else\enablepart{#1}\fi}
-\newcommand\providedisablepart[1]{\ifcsname utils@#1\endcsname\relax\else\disablepart{#1}\fi}
+\newcommand\ifpart[3]{\expandafter\if\csname utils@#1\endcsname1#2\else#3\fi}
+\newcommand\enablepart[1]{\ifhmode\unskip\fi\expandafter\def\csname utils@#1\endcsname{1}\ignorespaces}
+\newcommand\disablepart[1]{\ifhmode\unskip\fi\expandafter\def\csname utils@#1\endcsname{0}\ignorespaces}
+\newcommand\provideenablepart[1]{\ifhmode\unskip\fi\ifcsname utils@#1\endcsname\relax\else\enablepart{#1}\fi\ignorespaces}
+\newcommand\providedisablepart[1]{\ifhmode\unskip\fi\ifcsname utils@#1\endcsname\relax\else\disablepart{#1}\fi\ignorespaces}
 

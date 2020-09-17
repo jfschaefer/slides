@@ -1,0 +1,61 @@
+\begin{frame}
+    \frametitle{Components of GLIF: GF}
+    \enablepart{hlgf}
+    \includestandalone[width=\textwidth]{fig/glif-architecture}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{Components of GLIF: Grammatical Framework \cite{GF:on}}
+    \begin{itemize}
+        \item Specialized for developing natural language grammars
+        \item Separates abstract and concrete syntax\par
+            \quad\lstinline[language=GF]|sentence : NP -> VP -> S;               --abstract|\par
+            \quad\lstinline[language=GF]|sentence np vp = np.s ++ vp.s!np.n;   --concrete|
+        \item Abstract syntax based on type theory
+        \item Comes with large library \com{$\ge 36$ languages}
+    \end{itemize}
+
+    FIGURE: german/concrete syntax to AST
+\end{frame}
+
+\begin{frame}
+    \frametitle{Components of GLIF: MMT}
+    \enablepart{hlmmt}
+    \includestandalone[width=\textwidth]{fig/glif-architecture}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{Components of GLIF: MMT}
+    \begin{itemize}   
+        \item Modular logic development and knowledge representation
+        \item Foundation-independent\com{we use LF}
+    \end{itemize}
+    
+    \lstset{basicstyle=\footnotesize\ttfamily}
+    \begin{minipage}[t]{0.4\textwidth}
+        \begin{lstlisting}[language=GF]
+abstract Grammar = {
+  cat
+    NP; VP; S;
+  fun
+    sentence :
+      NP -> VP -> S;
+    ahmed : NP;
+    paint : VP;
+}
+        \end{lstlisting}
+    \end{minipage}
+    \begin{minipage}[t]{0.4\textwidth}
+        \begin{lstlisting}[language=MMT]
+theory Grammar : ur:?LF =
+  NP : type \DD
+  VP : type \DD
+  S : type \DD
+  sentence :
+    NP \raa VP \raa S \DD
+  ahmed : NP \DD
+  paint : VP \DD
+\MD
+        \end{lstlisting}
+    \end{minipage}
+\end{frame}

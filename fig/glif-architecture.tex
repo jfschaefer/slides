@@ -2,6 +2,9 @@
 
 \usepackage{utils/basic}
 \usepackage{utils/colors}
+\colorfultrue
+
+\usetikzlibrary{arrows.meta}
 
 \begin{document}
 \provideenablepart{gfbox}
@@ -9,33 +12,37 @@
 \provideenablepart{elpibox}
 \provideenablepart{sempragarrow}
 \provideenablepart{includejupyter}
+\providedisablepart{hlgf}
+\providedisablepart{hlmmt}
+\providedisablepart{hlelpi}
 \begin{tikzpicture}[xscale=1.05,yscale=0.9]
     \tikzset{ll/.style={line width=0.7pt}}
     \draw[ll,rounded corners=.2cm] (-4.5,3.3) rectangle (7.0,-1.0);
-    \node at (1.25,-0.5) {\bfseries \ifpart{includejupyter}Jupyter/\fi GLIF};
-    \ifpart{gfbox}
-        \draw[ll,rounded corners=.2cm,fill=black!20] (-3.4,3.2) rectangle (-0.1,0.0);
+    \node at (1.25,-0.5) {\bfseries \ifpart{includejupyter}{Jupyter/GLIF}{GLIF}};
+    \ifpart{gfbox}{
+        \draw[ll,rounded corners=.2cm,fill=\ifpart{hlgf}{hlbg}{black!20}] (-3.4,3.2) rectangle (-0.1,0.0);
         \node at (-1.75,0.5) {\bfseries GF};
-    \fi
-    \ifpart{mmtbox}
-        \draw[ll,rounded corners=.2cm,fill=black!20] (0.1,3.2) rectangle (3.4,0.0);
+    }{}
+    \ifpart{mmtbox}{
+        \draw[ll,rounded corners=.2cm,fill=\ifpart{hlmmt}{hlbg}{black!20}] (0.1,3.2) rectangle (3.4,0.0);
         \node at (1.75,0.5) {\bfseries MMT};
-    \fi
-    \ifpart{elpibox}
-        \draw[ll,rounded corners=.2cm,fill=black!20] (3.6,3.2) rectangle (6.9,0.0);
+    }{}
+    \ifpart{elpibox}{
+        \draw[ll,rounded corners=.2cm,fill=\ifpart{hlelpi}{hlbg}{black!20}] (3.6,3.2) rectangle (6.9,0.0);
         \node at (5.25,0.5) {\bfseries ELPI};
-    \fi
+    }{}
     % rectangle and triangles have same area
     \node[ll,fill=\ifcolorful nlbg\else white\fi,draw=\ifcolorful nlfg\else black\fi,minimum width=1.8cm,minimum height=1cm] (utt) at (-3.5,1.8) {String};
     \draw[ll,fill=\ifcolorful nlbg!50!logicbg\else white\fi,draw=\ifcolorful nlfg!50!logicfg\else black\fi] (-1,1) -- (0,3) -- (1,1) -- cycle;
     \node[] (st) at (0,1.5) {AST};
+    % \usetikzlibrary{arrows.meta}
     \draw[ll,-{Straight Barb[length=6.3,width=5.0]}] (-2.5, 1.8) to[bend left=15] node[above] {\small parsing} (-0.8,1.8);
     \draw[thick,fill=\ifcolorful logicbg\else white\fi,draw=\ifcolorful logicfg\else black\fi] (2.5,1) -- (3.5,3) -- (4.5,1) -- cycle;
     \node (qlf) at (3.5,1.5) {\begin{tabular}{c}Logic\\Expression\end{tabular}};
     \draw[thick,-{Straight Barb[length=6.3,width=5.0]}] (0.8,1.8) to[bend left=15] node[above] {\small semantics} node[below]{\small construction} (2.7,1.8);
-    \ifpart{sempragarrow}
+    \ifpart{sempragarrow}{
         \draw[thick,-{Straight Barb[length=6.3,width=5.0]}] (4.4,1.6) .. controls (4.9,1.8) and (4.6,2.4) .. (4.1,2.1);
         \node (inf) at (5.5, 1.9) {\small \begin{tabular}{c}semantic/\\pragmatic\\analysis\end{tabular}};
-    \fi
+    }{}
 \end{tikzpicture}
 \end{document}

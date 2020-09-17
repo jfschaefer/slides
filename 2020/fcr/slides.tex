@@ -2,6 +2,7 @@
 \usepackage{standalone}
 
 \usepackage{stmaryrd}
+\usepackage{listings}
 
 \usepackage[hyperref=auto,style=alphabetic]{biblatex}
 \addbibresource{kwarc.bib}
@@ -19,6 +20,11 @@
 
 \usepackage{utils/colors}
 \usepackage[forbeamer]{utils/basic}
+\usepackage{utils/lstmisc}
+\usepackage{utils/lstmmt}
+
+\lstset{basicstyle=\ttfamily}
+\lstset{commentstyle=\itshape\color{commentfont}}
 
 \title{GLIF: A Declarative Framework for Symbolic Natural Language Understanding}
 
@@ -30,6 +36,8 @@
 \frame\titlepage
 
 \input{slides/fragments-to-glif}
+
+\input{slides/glif-components}
 
 \begin{frame}[allowframebreaks,t]
     \frametitle{References}

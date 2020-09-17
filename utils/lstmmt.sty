@@ -1,0 +1,63 @@
+\RequirePackage{listings}
+\RequirePackage{tikz}
+\RequirePackage{upgreek}
+
+\newif\if@bold
+\DeclareOption{bold}{
+    \@boldtrue
+}
+
+\ProcessOptions\relax
+
+
+\if@bold
+    \let\lstmmtboldmath\boldmath
+\else
+    \def\lstmmtboldmath{}
+\fi
+
+
+\providecommand\raa{\rightarrow}  % I prefer \raa to be short
+\providecommand\superzero{$^0$}
+\providecommand\superone{$^1$}
+
+\lstdefinelanguage{MMT}{
+    morekeywords={ theory, view, include, role },
+    % builtins
+    keywords=[2]{ type },
+    keywordstyle=[2]{\itshape},
+    morecomment=[l]{\ //},
+    alsoletter={\\},
+    keepspaces=true,
+    literate=
+        {\\ra}{\lstmmtboldmath$\rightarrow$}1
+        {\\raa}{\lstmmtboldmath$\raa$}2  % \ra before \raa
+        {\\\\}{\textbackslash}1
+        {\\OD}{{\catcode`\$=3 \color{black}\tikz{\draw[fill=black!20,draw=none] (0,0) rectangle (0.1em,0.65em);}}}1
+        {\\DD}{{\catcode`\$=3 \color{black}\tikz{\draw[fill=black!20,draw=none] (0,0) rectangle (0.2em,0.65em);}}}1
+        {\\MD}{{\catcode`\$=3 \color{black}\tikz{\draw[fill=black!20,draw=none] (0,0) rectangle (0.4em,0.65em);}}}1
+        {\\bot}{\lstmmtboldmath$\bot$}1
+        {\\cap}{\lstmmtboldmath$\cap$}1
+        {\\contra}{\lstmmtboldmath$\lightning$}1
+        {\\cdot}{\lstmmtboldmath$\cdot$}1
+        {\\exists}{\lstmmtboldmath$\exists$}1
+        {\\forall}{\lstmmtboldmath$\forall$}1
+        {\\iota}{\lstmmtboldmath$\upiota$}1
+        {\\leadsto}{\lstmmtboldmath$\leadsto$}1
+        {\\neg}{\lstmmtboldmath$\neg$}1
+        {\\Rightarrow}{\lstmmtboldmath$\Rightarrow$}2
+        {\\phi}{\lstmmtboldmath$\upvarphi$}1
+        {\\psi}{\lstmmtboldmath$\uppsi$}1
+        {\\alpha}{$\upalpha$}1
+        {\\beta}{$\upbeta$}1
+        {\\gamma}{$\upgamma$}1
+        {\\iota}{$\upiota$}1
+        {\\super0}{\superzero}1
+        {\\super1}{\superone}1
+        {\\vdash}{\lstmmtboldmath$\vdash$}1
+        {\\vee}{\lstmmtboldmath$\vee$}1
+        {\\wedge}{\lstmmtboldmath$\wedge$}1
+        {prec}{{\color{black!70}\textit{prec}}}4    % gray out precedences
+    ,
+}
+

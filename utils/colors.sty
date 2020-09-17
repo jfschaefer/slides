@@ -19,6 +19,15 @@
     \providecolorlet{#1font}{#1base!\fontcolfac!black}
 }
 
-\providecolorgroup{nl}{green}
-\providecolorgroup{logic}{blue}
+\newcommand\definecolorgroup[2]{
+    \colorlet{#1base}{#2}
+    \colorlet{#1fg}{#1base!\fgcolfac!black}
+    \colorlet{#1bg}{#1base!\bgcolfac}
+    \colorlet{#1font}{#1base!\fontcolfac!black}
+}
+
+\colorlet{commentfont}{black!50}
+\providecolorgroup{hl}{red}             % highlight
+\providecolorgroup{nl}{green}           % natural language
+\providecolorgroup{logic}{blue}         % logic
 
