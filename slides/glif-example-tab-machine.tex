@@ -1,0 +1,26 @@
+\begin{frame}[fragile]
+    \frametitle{Example: Tableaux Machine}
+    \begin{itemize}
+        \item Can use tableaux for model generation
+        \item Tableau machine: pick ``best'' branch as model and continue there with next sentence
+            \com{like a human?}
+    \end{itemize}
+
+    \vspace{1.5em}
+    \begin{minipage}[t][4.5cm]{\textwidth}
+        \only<1>{\setshowlevel{1}}
+        \only<2>{\setshowlevel{2}}
+        \only<3>{\setshowlevel{3}}
+        \only<4>{\setshowlevel{4}}
+        \includestandalone{fig/tab-machine-simple}
+    \end{minipage}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Example: Tableaux Machine}
+    \only<1>{\setshowlevel{1}}
+    \only<2>{\setshowlevel{2}}
+    \only<3>{\setshowlevel{3}}
+    \only<4>{\setshowlevel{4}}
+    \makebox[\linewidth]{\includestandalone[scale=0.9]{fig/tab-machine-complex}}
+\end{frame}

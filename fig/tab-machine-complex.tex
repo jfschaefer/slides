@@ -1,0 +1,102 @@
+\documentclass{standalone}
+\usepackage{tikz}
+\usetikzlibrary{positioning}
+\begin{document}
+\def\tabdemostr#1{\footnotesize \str{#1}}
+\provideshowlevel{4}
+\begin{tikzpicture}[
+        state/.style={
+        },
+        label/.style={
+            align=left,
+            text width=4.0cm,
+        },
+        edge/.style={
+            ->,
+            line width=0.5pt,
+        },
+        sep/.style={
+            dotted,
+            line width=0.0pt,
+        },
+        yscale=1.1
+    ]
+    \draw[color=white] (-9.5,0.5) -- (3.6,-7.2);  %% HACK TO FIX PICTURE SIZE
+    \node[rectangle,rounded corners=3pt,fill=black!10,draw] (bgknow)
+        at (-1.05, 0) {\begin{tabular}{l}$\forall x.fem(x) \Rightarrow \lnot male(x)$\\$male(j)$\\$fem(m)$\end{tabular}};
+    \node[state] (n1)
+        at (-1.05, -1.5) {$talkto(j, m)$};
+    \node[state] (n2)
+        at (-1.05, -2.5) {$sad(s)$};
+    \showlevel{2}{}{
+        \node[state] (n30)
+            at (-4.5, -4.1) {\begin{tabular}{c}$love(s, s)$\\$male(s)$\\$fem(s)$\\$\bot$\end{tabular}};
+        \node[state] (n31)
+            at (-2.8, -4.1) {\begin{tabular}{c}$love(s, m)$\\$male(s)$\end{tabular}};
+    }
+    \showlevel{3}{}{
+        \node[state] (n41)
+            at (-2.8, -5.7) {\begin{tabular}{c}$fem(s)$\\$\bot$\end{tabular}};
+        \node[state] (n32)
+            at (-1.1, -4.1) {\begin{tabular}{c}$love(s, j)$\\$male(s)$\\$fem(j)$\\$\bot$\end{tabular}};
+        \node[state] (n33)
+            at (0.7, -4.1) {\begin{tabular}{c}$love(j, s)$\\$fem(s)$\end{tabular}};
+        \node[state] (n43)
+            at (0.7, -5.7) {$\cdot$};
+    }
+    \showlevel{4}{}{
+        \node[state] (n34)
+            at (2.4, -4.1) {\begin{tabular}{c}$love(j, m)$\end{tabular}};
+        \node[state] (n44)
+            at (2.4, -5.7) {\begin{tabular}{c}$fem(s)$\end{tabular}};
+        \node[state] (n53)
+            at (0.7, -6.7) {\begin{tabular}{c}$\bot$\end{tabular}};
+        \node[state] (n54)
+            at (2.4, -6.7) {$\cdot$};
+    }
+
+    \node[label] (lbgknow)
+        at (-7.5, 0) {Background Knowledge};
+    \node[label] (l1)
+        at (-7.5, -1.5) {\tabdemostr{John talks to Mary.}\\\color{logicfont} $talkto(j, m)$ };
+    \node[label] (l2)
+        at (-7.5, -2.5) {\tabdemostr{Sasha is sad.}\\\color{logicfont} $sad(s)$ };
+    \showlevel{2}{}{
+        \node[label] (l3)
+            at (-7.5, -4.1) {\tabdemostr{He loves her.}\\\color{logicfont} $\exists X.male(X) \land$\\$\quad\exists Y.fem(Y) \land love(X, Y)$};
+    }
+    \showlevel{3}{}{
+        \node[label] (l4)
+            at (-7.5, -5.7) {\tabdemostr{Sasha is a woman.}\\\color{logicfont} $fem(s)$};
+    }
+    \showlevel{4}{}{
+        \node[label] (l5)
+            at (-7.5, -6.7) {\tabdemostr{John doesn't love Sasha.}\\\color{logicfont} $\lnot love(j, s)$};
+    }
+    
+    \draw[edge] (bgknow) -- (n1);
+    \draw[edge] (n1) -- (n2);
+    \showlevel{2}{}{
+        \draw[edge] (n2) -- (n30.north east);
+        \draw[edge] (n2) -- (n31);
+    }
+    \showlevel{3}{}{
+        \draw[edge] (n2) -- (n32);
+        \draw[edge] (n2) -- (n33);
+        \draw[edge] (n31) -- (n41);
+        \draw[edge] (n33) -- (n43);
+    }
+    \showlevel{4}{}{
+        \draw[edge] (n2) -- (n34);
+        \draw[edge] (n34) -- (n44);
+        \draw[edge] (n43) -- (n53);
+        \draw[edge] (n44) -- (n54);
+    }
+% 
+%     \draw[sep] plot [smooth,tension=0.2] coordinates {(-9.5, -1) (3.25, -1)};
+%     \draw[sep] plot [smooth,tension=0.2] coordinates {(-9.5, -2) (3.25, -2)};
+%     \draw[sep] plot [smooth,tension=0.2] coordinates {(-9.5, -3) (3.25, -3)};
+%     \draw[sep] plot [smooth,tension=0.2] coordinates {(-9.5, -4.9) (-2.3, -4.9) (-1.8, -3.2) (-1,-3.1) (3.25,-3.1)};
+%     \draw[sep] plot [smooth,tension=0.2] coordinates {(-9.5, -6.2) (-1.3, -6.2) (1.2,-6.1) (1.6, -3.3) (3.25,-3.2)};
+\end{tikzpicture}
+\end{document}

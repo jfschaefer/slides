@@ -1,0 +1,36 @@
+\documentclass[tikz]{standalone}
+
+\usepackage{utils/colors}
+\usepackage{utils/basic}
+\usepackage{utils/operators}
+
+\begin{document}
+\provideshowlevel{3}
+\def\levelfade#1{\showlevel{#1}{black!60}{black}}
+% black if in between
+\def\levelfadex#1#2{\showlevel{#1}{black}{\showlevel{#2}{black!60}{black}}}
+\begin{tikzpicture}
+    \node (s1) at (-5, 0) {\str{Ahmed or Berta paints}};
+    \node (f1) at (0,0) {$\tabtrue{p(a) \vee p(b)}$};
+    \node (f2) at (-2,-1) {\color{\levelfadex35}$\tabtrue{p(a)}$};
+    \node (f3) at (2,-1) {\color{\levelfade{3}}$\tabtrue{p(b)}$};
+    \draw[color=\levelfadex35] (f1) -- (f2);
+    \draw[color=\levelfade3] (f1) -- (f3);
+
+    \node (s2) at (-5, -2) {\str{Ahmed doesn't paint}};
+    \showlevel{2}{}{
+        \node (f4) at (-2,-2) {\color{\levelfadex35}$\tabtrue{\neg p(a)}$};
+        \node (f5) at (-2,-3) {\color{\levelfadex35}$\tabfalse{p(a)}$};
+        \node (f6) at (-2,-4) {\color{\levelfadex35}$\tabclosed{}$};
+        \draw[color=\levelfadex35] (f2) -- (f4);
+        \draw[color=\levelfadex35] (f4) -- (f5);
+        \draw[color=\levelfadex35] (f5) -- (f6);
+    }
+    \showlevel{3}{}{
+        \node (f7) at (2,-2) {$\tabtrue{\neg p(a)}$};
+        \node (f8) at (2,-3) {$\tabfalse{p(a)}$};
+        \draw (f3) -- (f7);
+        \draw (f7) -- (f8);
+    }
+\end{tikzpicture}
+\end{document}

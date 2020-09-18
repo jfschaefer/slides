@@ -47,3 +47,7 @@
 \newcommand\provideenablepart[1]{\ifhmode\unskip\fi\ifcsname utils@#1\endcsname\relax\else\enablepart{#1}\fi\ignorespaces}
 \newcommand\providedisablepart[1]{\ifhmode\unskip\fi\ifcsname utils@#1\endcsname\relax\else\disablepart{#1}\fi\ignorespaces}
 
+% SHOW LEVELS (for slides: enabling/disabling parts tedious if there is an expected order of showing things)
+\newcommand\setshowlevel[1]{\def\utils@showlevel{#1}}
+\newcommand\provideshowlevel[1]{\providecommand\utils@showlevel{#1}}
+\newcommand\showlevel[3]{\ifnum\utils@showlevel<#1#2\else#3\fi}
