@@ -23,7 +23,7 @@
 \ifcolorful
     \providecommand\strcol{\colororelse{nlfont}{black!60!green}}
 \else
-    \providecommand\strcol{}
+    \providecommand\strcol{\color{black}}
 \fi
 % plain formatting for example strings (no color, decoration, ...)
 \providecommand\strplainnocol[1]{{\itshape #1}}
@@ -35,7 +35,7 @@
 % COMMENTS
 \providecommand\commentstyle{\itshape\colororelse{commentfont}{black!50}}
 % right-aligned comments in beamer
-\ifcolorful
+\if@forbeamer
     \newcommand\com[1]{\strut\hfil\strut\null\nobreak\hfill\hbox{\commentstyle #1}\par}
 \fi
 

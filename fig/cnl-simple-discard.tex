@@ -1,0 +1,25 @@
+\documentclass[tikz]{standalone}
+\usetikzlibrary{arrows.meta}
+\usepackage{amsmath}
+\usepackage{utils/colors}
+\usepackage{utils/basic}
+
+\begin{document}
+\provideenablepart{crossout}
+\tikzset{every picture/.style={line width=0.7pt}}
+\begin{tikzpicture}[yscale=0.5]
+    \node(str) at (-4,0) {\str{\dots has a mass of 2m}};
+    \node(ast1) at (0,1) {AST$_1$};
+    \node(ast2) at (0,-1) {AST$_2$};
+    \node(log1) at (4,1) {\ifcolorful\color{logicfont}\fi$\lambda x.\text{mass}(x, \text{quant}(2, \text{\bfseries meters}))$};
+    \node(log2) at (4,-1) {\ifcolorful\color{logicfont}\fi$\lambda x.\text{mass}(x, \text{mul}(2, \text{\bfseries mVar}))$};
+    \draw[-{Straight Barb[length=6.3,width=5.0]},gray] (str) -- (ast1);
+    \draw[-{Straight Barb[length=6.3,width=5.0]},gray] (str) -- (ast2);
+    \draw[-{Straight Barb[length=6.3,width=5.0]},gray] (ast1) -- (log1);
+    \draw[-{Straight Barb[length=6.3,width=5.0]},gray] (ast2) -- (log2);
+    \ifpart{crossout}{
+        \draw[ultra thick,red] (2,0.5) -- (6,1.5);
+        \draw[ultra thick,red] (2,1.5) -- (6,0.5);
+    }{}
+\end{tikzpicture}
+\end{document}

@@ -1,0 +1,22 @@
+\begin{frame}
+    \frametitle{Example: Controlled Natural Languages}
+    \begin{itemize}
+        \item Formal languages
+        \item that are a subset of natural language
+        \item and have fixed semantics\com{formal verification, \dots}
+    \end{itemize}
+
+    \vspace{1em}
+    \str{$S$ is a subset of every set iff $S$ is empty}
+
+    $\leadsto$ {\color{logicfont}$(\forall V_{new}. set(V_{new}) \Rightarrow subset(V_S, V_{new})) \Leftrightarrow empty(V_S)$}
+
+    \pause
+    \vspace{1.5em}
+    Use inference for disambiguation:
+
+    \vspace{1em}
+    \only<2>{\disablepart{crossout}}
+    \only<3>{\enablepart{crossout}}
+    \includestandalone[width=\textwidth]{fig/cnl-simple-discard} 
+\end{frame}

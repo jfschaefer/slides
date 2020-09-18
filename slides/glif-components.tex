@@ -47,3 +47,52 @@
         \only<4>{\input{slides/misc/glif-components-semconstr}}
     \end{minipage}
 \end{frame}
+
+\begin{frame}
+    \frametitle{Components of GLIF: ELPI}
+    \enablepart{hlelpi}
+    \includestandalone[width=\textwidth]{fig/glif-architecture}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{Components of GLIF: ELPI}
+    \begin{itemize}
+        \item Implementation and extension of $\lambda$Prolog\com{$\approx$ Prolog + HOAS}
+        \item MMT can generate logic signatures
+        \item First experiments with prover generation
+        \item Generic inference/reasoning step after semantics construction
+    \end{itemize}
+    \lstset{basicstyle=\footnotesize\ttfamily}
+
+    \vspace{1em}
+    \begin{minipage}[t]{\textwidth}
+        \centering
+        \begin{minipage}[t]{0.5\textwidth}
+            \begin{lstlisting}[language=ELPI,frame=single]
+kind o type.
+type not o -> o.
+type and o -> o -> o.
+
+kind i type.
+type forall (i -> o) -> o.
+            \end{lstlisting}
+        \end{minipage}
+    \end{minipage}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Components of GLIF: Jupyter}
+    \enablepart{hljupyter}
+    \includestandalone[width=\textwidth]{fig/glif-architecture}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Components of GLIF: Jupyter}
+    \begin{itemize}
+        \item Unified, notebook-based interface
+        \item Supports implementation and testing
+        \item Useful for prototype, demos, teaching, \dots
+    \end{itemize}
+
+    \centering TODO: Screenshot
+\end{frame}
