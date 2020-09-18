@@ -15,7 +15,19 @@
         \item Comes with large library \com{$\ge 36$ languages}
     \end{itemize}
 
-    FIGURE: german/concrete syntax to AST
+    \vspace{2em}
+    \hspace{2.5em}\begin{tikzpicture}
+        \node(eng) at (-2,0.7) {\str{Ahmed paints}};
+        \node(ger) at (-2,-0.7) {\str{Ahmed zeichnet}};
+        \node(ast) at (4,0) {
+                    \color{logicfont!50!nlfont}
+                    \resizebox{2.cm}{!}{\tikzset{edge from parent/.append style={very thick}}
+                        \Tree [ .\texttt{sentence} \texttt{ahmed} \texttt{paint} ]
+                    }
+                };
+        \draw[<->, thick] (eng) to node[above,rotate=-9]{Eng. concr. syn.} (ast);
+        \draw[<->, thick] (ger) to node[below,rotate=9]{Ger. concr. syn.} (ast);
+    \end{tikzpicture}
 \end{frame}
 
 \begin{frame}
@@ -94,5 +106,7 @@ type forall (i -> o) -> o.
         \item Useful for prototype, demos, teaching, \dots
     \end{itemize}
 
-    \centering TODO: Screenshot
+    \centering
+    \vspace{1.5em}
+    \fbox{\includegraphics[trim={0 0 20cm 5.7cm},clip,width=0.7\textwidth]{img/screenshot-glif-1.png}}
 \end{frame}
