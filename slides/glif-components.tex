@@ -41,8 +41,8 @@
     \lstset{frame=single}
     \begin{itemize}   
         \item Modular logic development and knowledge representation
-        \item Foundation-independent\com{we use LF}
-        \item We will use it to:
+        \item Not specialized in one logical framework \com{we use LF}
+        \item We will use MMT to:
         \begin{itemize}
             \item { \only<2>{\bf\color{hlfont}} represent abstract syntax }
             \item { \only<3>{\bf\color{hlfont}} specify target logic and domain theory}
@@ -58,6 +58,17 @@
         \only<3>{\input{slides/misc/glif-components-logic}}
         \only<4>{\input{slides/misc/glif-components-semconstr}}
     \end{minipage}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{Example: Parsing + Semantics Construction}
+    {\centering\str{Ahmed and Berta paint}\par}\vspace{1em}
+    \hspace{0.49\textwidth}$\downarrow_{\text{parsing}}$\par\vspace{1em}
+    {\centering\color{logicfont!50!nlfont} sentence (andNP ahmed berta) paint\par}\vspace{1em}
+    \hspace{0.49\textwidth}$\downarrow_{\text{semantics construction}}$\par\vspace{1em}
+    {\color{logicfont}\footnotesize\lstinline[language=MMT]|(\lambdan.\lambdav.n v) ((\lambdaa.\lambdab.\lambdap.a p \wedge b p) (\lambdap.p ahmed) (\lambdap.p berta)) paint|}\par\vspace{1em}
+    \hspace{0.49\textwidth}$\downarrow_{\text{$\beta$-reduction}}$\par\vspace{1em}
+    \hspace{7.5em}{\color{logicfont}\small\lstinline[language=MMT]|paint ahmed \wedge paint berta|}
 \end{frame}
 
 \begin{frame}
