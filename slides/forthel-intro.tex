@@ -1,0 +1,28 @@
+\begin{frame}[fragile]
+    \frametitle{ForTheL -- Formal Theory Language}
+    Controlled natural language for \emph{System of Automated Deduction}
+    \begin{itemize}
+        \item[$\rightarrow$] Formal language
+        \item[$\rightarrow$] Subset of natural language
+    \end{itemize}
+
+    \vspace{0.5em}
+    \lstincreaseemptylineheight{-0.6}
+    \color{nlfg}
+    \begin{lstlisting}[language=ftl]
+Signature SetSort.  A set is a notion.
+Let S,T denote sets.
+
+Signature ElmSort.  An element of S is a notion.
+Let x belongs to X stand for x is an element of X.
+
+Definition DefEmpty.    S is empty iff S has no elements.
+
+Axiom ExEmpty.  There exists an empty set.
+    \end{lstlisting}
+    \color{black}
+
+    \pause
+    \vspace{0.5em}
+    Semantics in first-order logic: \color{logicfg}$\exists x.set(x) \wedge empty(x)$.
+\end{frame}

@@ -1,0 +1,40 @@
+\begin{frame}[fragile]
+    \frametitle{GF in More Detail: Abstract Syntax}
+    \centering
+    \disablepart{showlogic}
+    \includestandalone[width=0.5\textwidth]{fig/gf-overview-math-2}
+
+    \begin{lstlisting}[language=GF]
+abstract Grammar = {
+  cat            -- "types of nodes"
+    Stmt; Term; Notion; Prop;
+  fun            -- production rules
+    state      : Term -> Prop -> Stmt;
+    every      : Notion -> Term;
+    derivative : Term -> Term;
+    integer    : Notion;
+    even       : Prop;
+}
+    \end{lstlisting}
+\end{frame}
+
+
+\begin{frame}[fragile]
+    \frametitle{GF in More Detail: Concrete Syntax}
+    \centering
+    \disablepart{showlogic}
+    \includestandalone[width=0.5\textwidth]{fig/gf-overview-math-2}
+
+    \begin{lstlisting}[language=GF]
+concrete GrammarEng of Grammar = {
+  lincat
+    Stmt = Str; Term = Str; Notion = Str; Prop = Str;
+  lin
+    state term prop = term ++ "is" ++ prop;
+    every notion    = ("every"|"any") ++  notion;
+    derivative term = "the derivative of" ++ term;
+    integer         = "integer";
+    even            = "even";
+}
+    \end{lstlisting}
+\end{frame}

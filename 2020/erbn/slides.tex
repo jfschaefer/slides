@@ -1,0 +1,102 @@
+\documentclass[aspectratio=149]{beamer}
+\usepackage{standalone}
+
+\usepackage{stmaryrd}
+\usepackage{listings}
+\usepackage{courier}
+
+\usepackage[hyperref=auto,style=alphabetic]{biblatex}
+\addbibresource{kwarc.bib}
+\usepackage{appendixnumberbeamer}
+\usepackage{tikz}
+\usepackage{tikz-qtree}
+\usetikzlibrary{arrows.meta}
+
+\usetheme{Pittsburgh}
+\setbeamertemplate{footline}[frame number]
+\setbeamertemplate{navigation symbols}{}
+\usecolortheme{beaver}
+\setbeamertemplate{frametitle}[default][left]
+\setbeamersize{text margin left=3em}
+
+\usepackage{utils/colors}
+\usepackage[forbeamer]{utils/basic}
+\usepackage{utils/operators}
+\usepackage{utils/lstmisc}
+\usepackage{utils/lstmmt}
+
+\usepackage{fontspec}
+\setmonofont[Scale=MatchLowercase]{Consolas}
+
+\lstset{basicstyle=\small\ttfamily}
+\lstset{commentstyle=\itshape\color{commentfont}}
+
+\title{ForTheL and GF}
+
+\author{Jan Frederik Schaefer}
+\institute{FAU Erlangen-N\"urnberg}
+\date{ERBN \\ December 1, 2020 }
+
+\begin{document}
+\frame\titlepage
+
+\input{slides/forthel-intro}
+
+\input{slides/gf-for-math-intro}
+
+\begin{frame}
+    \frametitle{My Master's Project}
+    Use GLF = (GF + MMT) to parse ForTheL and create logical expressions
+
+    \vspace{2em}
+
+    \includestandalone[scale=0.8]{fig/gf-overview-math-2}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Conclusion (everything else is optional)}
+    Good things:
+    \begin{itemize}
+        \item GF is great for parsing
+        \item Can avoid much over-generation
+        \item Relatively extensible
+        \item Allows for quick prototyping
+    \end{itemize}
+
+    Bad things:
+    \begin{itemize}
+        \item Problems with using Resource Grammar Library
+        \item No dynamic lexicon extension
+        \item Challenges in the semantics construction
+    \end{itemize}
+
+    Interesting questions:
+    \begin{itemize}
+        \item Syntactic vs semantic disambiguation
+    \end{itemize}
+\end{frame}
+
+\input{slides/gf-for-math-intro-2}
+
+\input{slides/gf-for-forthel}
+
+
+
+
+% \input{slides/glif-components}
+
+
+
+
+\appendix
+
+\begin{frame}[allowframebreaks,t]
+    \frametitle{References}
+    \printbibliography
+\end{frame}
+
+
+
+
+\end{document}

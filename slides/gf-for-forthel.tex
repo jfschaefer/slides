@@ -1,0 +1,47 @@
+\begin{frame}[fragile]
+    \frametitle{GF for ForTheL}
+    {
+        \centering
+        \str{Let a, b be sets that aren't empty}\par
+    }
+    \vspace{1em}
+
+    \begin{lstlisting}[language=GF]
+letAssume : Names -> ClassNoun -> Assume;
+
+-- ClassNoun = {pref : Plurality=>Str; suf : Plurality=>Str};
+--   pref: set/sets
+--   suf: that isn't empty/that aren't empty
+
+letAssume names cn =
+    "let" ++ names.s ++ ("be"|"denote"|"stand for") ++
+    indefArt!names.p ++ cn.pref!names.p ++ cn.suf!names.p;
+    \end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]
+    \def\logexpr#1{{\color{logicfg}#1}}
+    \frametitle{A Closer Look at Notions}
+    Example notions: \str{set}, \str{subgroup of $D_8$}, \str{set that isn't empty}
+
+    \vspace{0.5em}
+    On the logic side: \logexpr{$set(\cdot)$}, \logexpr{$subgroup(\cdot, D_8)$}, \logexpr{$set(\cdot)\wedge\neg empty(\cdot)$}
+
+    \vspace{0.5em}
+    Should \str{subgroup $H$ of $D_8$} be a notion?
+    \begin{itemize}
+        \item Yes\com{ForTheL does this}
+            \begin{itemize}
+                \item[\boldmath$+$] Notions are continuous strings
+                \item[\boldmath$-$] Semantically tricky
+                \item[\boldmath$-$] \str{$G$ is a subgroup $H$ of $D_8$}\com{feels wrong...}
+            \end{itemize}
+        \item No\com{I did this}
+            \begin{itemize}
+                \item[\boldmath$+$] Semantically easy
+                \item[\boldmath$+$] Definitely isn't only plural/singular yet
+                \item[\boldmath$-$] Can't use Resource Grammar Library easily
+            \end{itemize}
+    \end{itemize}
+\end{frame}
+

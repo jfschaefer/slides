@@ -1,0 +1,24 @@
+\documentclass[tikz]{standalone}
+\usepackage{utils/colors}
+\usepackage{utils/basic}
+\usepackage{tikz-qtree}
+\begin{document}
+% \begin{tikzpicture}
+\provideenablepart{showlogic}
+\begin{tikzpicture}[module/.style={rounded corners=2pt,thick,draw,fill=nlbg}]
+    \node[module,fill=nlbg!50!logicbg] (abstr) at (6, 0) {
+        \Tree [ .{state : Stmt}
+            [ .{every : Term} [ .{integer : Term}  ] ]
+            [ .{even : Prop} ]
+        ]
+    };
+    \node[module,minimum width=5cm,minimum height=1.0cm] (engl) at (3, -3) {\str{Every integer is even.}};
+    \node[module,minimum width=5cm,minimum height=1.0cm] (ger) at (9, -3) {\str{Jede ganze Zahl ist gerade.}};
+    \draw[thick, shorten <=1pt, shorten >=1pt, <->] (ger) -- (abstr);
+    \draw[thick, shorten <=1pt, shorten >=1pt, <->] (engl) -- (abstr);
+    \ifpart{showlogic}{
+        \node[module,fill=logicbg,minimum width=5cm,minimum height=1.0cm] (log) at (13,0) {$\forall x.int(x) \Rightarrow even(x)$};
+        \draw[thick, shorten <=1pt, shorten >=1pt, ->] (abstr) -- (log);
+    }{}
+\end{tikzpicture}
+\end{document}

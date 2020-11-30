@@ -1,5 +1,13 @@
 \RequirePackage{listings}
 
+
+\newtoks\lstincreaseemptylineheighttoks
+\lstincreaseemptylineheighttoks={0}
+\makeatletter
+\lst@AddToHook{OnEmptyLine}{\vspace{\the\lstincreaseemptylineheighttoks\baselineskip}}
+\makeatother
+\newcommand\lstincreaseemptylineheight[1]{\lstincreaseemptylineheighttoks={#1}}
+
 \lstdefinelanguage{ELPI}{
     morekeywords={
         kind, type, accumulate,
@@ -32,4 +40,12 @@
     morecomment=[l]{--},
     morestring=[b]",
     showstringspaces=false,
+}
+
+\lstdefinelanguage{ftl}{
+    morecomment=[l]{\#},
+    keywordstyle=\bfseries,
+    morekeywords={Signature, Definition, Axiom, Proposition, Proof, qed},
+    alsoletter={\\},
+    columns=flexible,
 }

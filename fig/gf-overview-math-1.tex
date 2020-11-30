@@ -1,0 +1,19 @@
+\documentclass[tikz]{standalone}
+\usepackage{utils/colors}
+\begin{document}
+\provideenablepart{showlogic}
+{
+    \def\twoline#1#2{\begin{tabular}{c}#1\\#2\end{tabular}}
+    \begin{tikzpicture}[module/.style={rounded corners=2pt,thick,draw,fill=nlbg,minimum width=2cm,minimum height=1cm}]
+        \node[module,fill=nlbg!50!logicbg] (abstr) at (0, 0) {\twoline{Abstract}{Syntax}};
+        \node[module] (engl) at (-2, -2) {\twoline{Concr. Syn.}{English}};
+        \node[module] (ger) at (2, -2) {\twoline{Concr. Syn.}{German}};
+        \draw[thick, shorten <=1pt, shorten >=1pt, <->] (ger) -- (abstr);
+        \draw[thick, shorten <=1pt, shorten >=1pt, <->] (engl) -- (abstr);
+        \ifpart{showlogic}{
+            \node[module,fill=logicbg] (log) at (4,0) {Logic};
+            \draw[thick, shorten <=1pt, shorten >=1pt, ->] (abstr) -- (log);
+        }{}
+    \end{tikzpicture}
+}
+\end{document}
