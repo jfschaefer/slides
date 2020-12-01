@@ -4,6 +4,7 @@
 \usepackage{stmaryrd}
 \usepackage{listings}
 \usepackage{courier}
+\usepackage{adjustbox}
 
 \usepackage[hyperref=auto,style=alphabetic]{biblatex}
 \addbibresource{kwarc.bib}
@@ -56,6 +57,19 @@
 
 \begin{frame}
     \frametitle{Conclusion (everything else is optional)}
+    \begin{itemize}
+        \item ForTheL is a CNL for mathematics.
+        \item It is a great case study for GLF (= GF + MMT).
+        \item With GF multiple languages and translation can be easily added.
+    \end{itemize}
+\end{frame}
+
+\input{slides/gf-for-math-intro-2}
+
+\input{slides/gf-for-forthel}
+
+\begin{frame}
+    \frametitle{Another Conclusion (everything else is optional)}
     Good things:
     \begin{itemize}
         \item GF is great for parsing
@@ -68,33 +82,53 @@
     \begin{itemize}
         \item Problems with using Resource Grammar Library
         \item No dynamic lexicon extension
-        \item Challenges in the semantics construction
-    \end{itemize}
-
-    Interesting questions:
-    \begin{itemize}
-        \item Syntactic vs semantic disambiguation
     \end{itemize}
 \end{frame}
 
-\input{slides/gf-for-math-intro-2}
+\begin{frame}
+    \frametitle{Result of my Master's Thesis: GLIF}
+    \disablepart{includejupyter}
+    \only<2>{\enablepart{hlmmt}}
+    \includestandalone[width=\textwidth]{fig/glif-architecture}
+\end{frame}
 
-\input{slides/gf-for-forthel}
+\input{slides/mmt-for-forthel}
+
+\begin{frame}
+    \frametitle{Another Conclusion (everything else is optional)}
+    Good things:
+    \begin{itemize}
+        \item GF is great for parsing
+        \item Can avoid much over-generation
+        \item Relatively extensible
+        \item Allows for quick prototyping
+        \item MMT is a dedicated logic development framework
+    \end{itemize}
+
+    Bad things:
+    \begin{itemize}
+        \item Problems with using GF's Resource Grammar Library
+        \item No dynamic lexicon extension
+        \item Semantics construction can be tricky
+    \end{itemize}
+\end{frame}
 
 
-
+\input{slides/fragments-to-glif}
 
 % \input{slides/glif-components}
 
+\input{slides/glif-example-tab-machine}
+\input{slides/glif-example-epistemic-qa}
 
 
 
-\appendix
-
-\begin{frame}[allowframebreaks,t]
-    \frametitle{References}
-    \printbibliography
-\end{frame}
+% \appendix
+% 
+% \begin{frame}[allowframebreaks,t]
+%     \frametitle{References}
+%     \printbibliography
+% \end{frame}
 
 
 

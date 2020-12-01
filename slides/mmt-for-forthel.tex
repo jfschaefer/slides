@@ -1,0 +1,90 @@
+\input{slides/mmt-for-glif}
+
+\begin{frame}
+    \frametitle{Logic in MMT}
+    \begin{minipage}[t]{0.49\textwidth}
+        \begin{align*}
+            o    &:type\\
+            \iota&:type\\
+            \neg&:o\raa o\\
+            \wedge&:o\raa o\raa o\\
+            \vee&:o\raa o \raa o\\
+            \forall&:(\iota\raa o) \raa o\\
+            \exists&:(\iota\raa o) \raa o\\
+        \end{align*}
+    \end{minipage}
+    \begin{minipage}[t]{0.49\textwidth}
+        \begin{align*}
+            set&:\iota\raa o\\
+            int&:\iota\raa o\\
+            even&:\iota\raa o\\
+            empty&:\iota\raa o\\
+            subgroup&:\iota\raa\iota\raa o\\
+            derivative&:\iota\raa\iota\\
+        \end{align*}
+    \end{minipage}
+\end{frame}
+
+
+\begin{frame}[fragile]
+    \frametitle{Semantics Construction in MMT}
+
+    \centering
+    \vspace{1em}
+    {
+        \tikzset{frontier/.style={distance from root=90pt}}
+        \def\leaf#1{{\itshape\color{nlfg}#1}}
+        \color{logicfg!50!nlfg}
+        \Tree [ .{hasProp}
+            [ .{andId} [ .{a} \leaf{a} ] \leaf{and} [ .{b} \leaf{b} ] ]
+            \leaf{are}
+            [ .{orProp} [ .{even} \leaf{even} ] \leaf{or} [ .{prime} \leaf{prime} ] ]
+        ]
+
+        \centering
+        \vspace{1.5em}
+        \hfill
+        \adjustbox{}{
+            \lstinline|hasProp (andId a b) (orProp even prime)|
+        }
+        \hfill
+    }
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{Semantics Construction in MMT}
+    Substitute every node in AST with lambda functions\com{$\lambda x.M$ as $x \mapsto M$}
+
+    \centering
+    \vspace{1.5em}
+    \color{logicfg!50!nlfg}
+    \adjustbox{}{
+        \lstinline|hasProp (andId a b) (orProp even prime)|
+    }
+
+
+    \vspace{1.5em}
+    \color{logicfg}
+    \lstset{commentstyle=\itshape\color{logicfg!50!nlfg!60}}
+    \only<1>{
+        \input{slides/misc/mmt-for-forthel-semconstr}
+    }
+    \only<2>{
+        \input{slides/misc/mmt-for-forthel-semconstr-2}
+    }
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{ForTheL can be illustrated with Textual Transformations}
+
+    \hspace{1.2em}\str{a and b are even or prime}
+
+    \vspace{0.5em}
+    $\leadsto$\str{a is even or prime and b is even or prime}
+
+    \vspace{0.5em}
+    $\leadsto$\str{a is even or a is prime and b is even or b is prime}
+
+    \vspace{0.5em}
+    $\leadsto$\color{logicfg}$(even(a) \vee prime(a)) \wedge (even(b) \vee prime(b))$
+\end{frame}

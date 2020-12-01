@@ -31,7 +31,7 @@ concrete GrammarEng of Grammar = {
     Stmt = Str; Term = Str; Notion = Str; Prop = Str;
   lin
     state term prop = term ++ "is" ++ prop;
-    every notion    = ("every"|"any") ++  notion;
+    every notion    = ("every"|"any") ++ notion;
     derivative term = "the derivative of" ++ term;
     integer         = "integer";
     even            = "even";
