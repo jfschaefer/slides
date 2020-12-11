@@ -1,0 +1,77 @@
+\documentclass[aspectratio=169]{beamer}
+\usepackage{standalone}
+
+\usepackage{stmaryrd}
+\usepackage{listings}
+
+\usepackage[hyperref=auto,style=alphabetic,backend=bibtex]{biblatex}
+\addbibresource{kwarc.bib}
+\usepackage{appendixnumberbeamer}
+\usepackage{tikz}
+\usepackage{tikz-qtree}
+\usetikzlibrary{arrows.meta}
+
+\usetheme{Pittsburgh}
+\setbeamertemplate{footline}[frame number]
+\setbeamertemplate{navigation symbols}{}
+\usecolortheme{beaver}
+\setbeamertemplate{frametitle}[default][left]
+\setbeamersize{text margin left=3em}
+
+\usepackage[forbeamer]{utils/basic}
+\usepackage{utils/colors}
+\usepackage{utils/operators}
+\usepackage{utils/lstmisc}
+\usepackage{utils/lstmmt}
+
+\lstset{basicstyle=\ttfamily}
+\lstset{commentstyle=\itshape\color{commentfont}}
+
+\title{{\footnotesize\itshape --- Master's Thesis Presentation ---}\\[1pt] Prototyping NLU Pipelines\\[3pt] \normalsize A Type-Theoretical Framework}
+
+\author{Jan Frederik Schaefer}
+\institute{FAU Erlangen-N\"urnberg}
+\date{\textbf{Seminar Wissensrepr\"asentation und -verarbeitung} \\ \textit{presented virtually due to COVID-19} \\ December 16, 2020 }
+
+\begin{document}
+\frame\titlepage
+
+% \begin{frame}
+%     \frametitle{Motivation}
+%     TODO: Tease with example applications (without any details)\\
+%     then: let's take a step back - how do 
+% \end{frame}
+
+\input{slides/deep-nlu}
+
+\input{slides/fragments-to-glif-2}
+
+\input{slides/glif-components}
+
+\input{slides/glif-example-epistemic-qa}
+
+\input{slides/glif-example-CNL}
+
+\input{slides/glif-example-translation}
+
+\input{slides/glif-example-tab-machine}
+
+\begin{frame}
+    \frametitle{Conclusion}
+    \begin{itemize}
+        \item GLIF is a tool for prototyping natural language understanding pipelines
+        \item Combines existing, declarative frameworks
+    \end{itemize}
+
+    \vspace{2em}
+    \includestandalone[width=\textwidth]{fig/glif-architecture}
+\end{frame}
+
+\appendix
+
+\begin{frame}[allowframebreaks,t]
+    \frametitle{References}
+    \printbibliography
+\end{frame}
+
+\end{document}
