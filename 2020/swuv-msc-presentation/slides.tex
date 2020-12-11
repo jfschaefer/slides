@@ -5,7 +5,9 @@
 \usepackage{listings}
 
 \usepackage[hyperref=auto,style=alphabetic,backend=bibtex]{biblatex}
-\addbibresource{kwarc.bib}
+\addbibresource{kwarcpubs.bib}
+\addbibresource{extpubs.bib}
+\addbibresource{extcrossrefs.bib}
 \usepackage{appendixnumberbeamer}
 \usepackage{tikz}
 \usepackage{tikz-qtree}
@@ -16,7 +18,7 @@
 \setbeamertemplate{navigation symbols}{}
 \usecolortheme{beaver}
 \setbeamertemplate{frametitle}[default][left]
-\setbeamersize{text margin left=3em}
+% \setbeamersize{text margin left=3em}
 
 \usepackage[forbeamer]{utils/basic}
 \usepackage{utils/colors}
@@ -46,26 +48,26 @@
 
 \input{slides/fragments-to-glif-2}
 
-\input{slides/glif-components}
-
-\input{slides/glif-example-epistemic-qa}
-
-\input{slides/glif-example-CNL}
-
-\input{slides/glif-example-translation}
+{
+    \disablepart{showjupyter}
+    \enablepart{showepistemicexample}
+    \input{slides/glif-components}
+}
 
 \input{slides/glif-example-tab-machine}
 
-\begin{frame}
-    \frametitle{Conclusion}
-    \begin{itemize}
-        \item GLIF is a tool for prototyping natural language understanding pipelines
-        \item Combines existing, declarative frameworks
-    \end{itemize}
+\input{slides/glif-example-translation}
 
-    \vspace{2em}
-    \includestandalone[width=\textwidth]{fig/glif-architecture}
-\end{frame}
+% \begin{frame}
+%     \frametitle{Conclusion}
+%     \begin{itemize}
+%         \item GLIF is a tool for prototyping natural language understanding pipelines
+%         \item Combines existing, declarative frameworks
+%     \end{itemize}
+% 
+%     \vspace{2em}
+%     \includestandalone[width=\textwidth]{fig/glif-architecture}
+% \end{frame}
 
 \appendix
 

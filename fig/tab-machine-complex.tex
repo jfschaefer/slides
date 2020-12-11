@@ -23,22 +23,22 @@
     ]
     \draw[color=white] (-9.5,0.5) -- (3.6,-7.2);  %% HACK TO FIX PICTURE SIZE
     \node[rectangle,rounded corners=3pt,fill=black!10,draw] (bgknow)
-        at (-1.05, 0) {\begin{tabular}{l}$\forall x.fem(x) \Rightarrow \lnot male(x)$\\$male(j)$\\$fem(m)$\end{tabular}};
+        at (-1.05, 0) {\begin{tabular}{l}$\forall x.fem(x) \Rightarrow \lnot masc(x)$\\$masc(j)$\\$fem(m)$\end{tabular}};
     \node[state] (n1)
         at (-1.05, -1.5) {$talkto(j, m)$};
     \node[state] (n2)
         at (-1.05, -2.5) {$sad(s)$};
     \showlevel{2}{}{
         \node[state] (n30)
-            at (-4.5, -4.1) {\begin{tabular}{c}$love(s, s)$\\$male(s)$\\$fem(s)$\\$\bot$\end{tabular}};
+            at (-4.5, -4.1) {\begin{tabular}{c}$love(s, s)$\\$masc(s)$\\$fem(s)$\\$\bot$\end{tabular}};
         \node[state] (n31)
-            at (-2.8, -4.1) {\begin{tabular}{c}$love(s, m)$\\$male(s)$\end{tabular}};
+            at (-2.8, -4.1) {\begin{tabular}{c}$love(s, m)$\\$masc(s)$\end{tabular}};
     }
     \showlevel{3}{}{
         \node[state] (n41)
             at (-2.8, -5.7) {\begin{tabular}{c}$fem(s)$\\$\bot$\end{tabular}};
         \node[state] (n32)
-            at (-1.1, -4.1) {\begin{tabular}{c}$love(s, j)$\\$male(s)$\\$fem(j)$\\$\bot$\end{tabular}};
+            at (-1.1, -4.1) {\begin{tabular}{c}$love(s, j)$\\$masc(s)$\\$fem(j)$\\$\bot$\end{tabular}};
         \node[state] (n33)
             at (0.7, -4.1) {\begin{tabular}{c}$love(j, s)$\\$fem(s)$\end{tabular}};
         \node[state] (n43)
@@ -63,7 +63,7 @@
         at (-7.5, -2.5) {\tabdemostr{Sasha is sad.}\\\color{logicfont} $sad(s)$ };
     \showlevel{2}{}{
         \node[label] (l3)
-            at (-7.5, -4.1) {\tabdemostr{He loves her.}\\\color{logicfont} $\exists X.male(X) \land$\\$\quad\exists Y.fem(Y) \land love(X, Y)$};
+            at (-7.5, -4.1) {\tabdemostr{He loves her.}\\\color{logicfont} $\exists X.masc(X) \land$\\$\quad\exists Y.fem(Y) \land love(X, Y)$};
     }
     \showlevel{3}{}{
         \node[label] (l4)

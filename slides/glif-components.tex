@@ -1,3 +1,7 @@
+\provideenablepart{showspa}
+\providedisablepart{showepistemicexample}
+\provideenablepart{showjupyter}
+
 \begin{frame}
     \frametitle{Components of GLIF: GF}
     \enablepart{hlgf}
@@ -66,9 +70,9 @@
     \hspace{0.49\textwidth}$\downarrow_{\text{parsing}}$\par\vspace{1em}
     {\centering\color{logicfont!50!nlfont} sentence (andNP ahmed berta) paint\par}\vspace{1em}
     \hspace{0.49\textwidth}$\downarrow_{\text{semantics construction}}$\par\vspace{1em}
-    {\color{logicfont}\footnotesize\lstinline[language=MMT]|(\lambdan.\lambdav.n v) ((\lambdaa.\lambdab.\lambdap.a p \wedge b p) (\lambdap.p ahmed) (\lambdap.p berta)) paint|}\par\vspace{1em}
+    {\centering\begin{adjustbox}{}\color{logicfont}\footnotesize\lstinline[language=MMT]|(\lambdan.\lambdav.n v) ((\lambdaa.\lambdab.\lambdap.a p \wedge b p) (\lambdap.p ahmed) (\lambdap.p berta)) paint|\end{adjustbox}\par}\vspace{1em}
     \hspace{0.49\textwidth}$\downarrow_{\text{$\beta$-reduction}}$\par\vspace{1em}
-    \hspace{7.5em}{\color{logicfont}\small\lstinline[language=MMT]|paint ahmed \wedge paint berta|}
+    {\centering\color{logicfont}\small\begin{adjustbox}{}\lstinline[language=MMT]|paint ahmed \wedge paint berta|\end{adjustbox}\par}
 \end{frame}
 
 \begin{frame}
@@ -103,6 +107,34 @@ type forall (i -> o) -> o.
     \end{minipage}
 \end{frame}
 
+\ifpart{showepistemicexample}{
+    \input{slides/glif-example-epistemic-qa}
+}{}
+
+\ifpart{showspa}{
+    \begin{frame}
+        \frametitle{Semantic/Pragmatic Analysis}
+        {
+            \centering
+            \str{The trophy doesn't fit in the brown suitcase because it's too big.}~\cite{levesque2012winograd}\par
+            \pause
+            \str{The trophy doesn't fit in the brown suitcase because it's too small.}~\cite{levesque2012winograd}\par
+            \pause
+            \vspace{1.5em}
+            \str{The ball has a radius of $2m$.}\par
+            \str{The ball has a mass of $2m$.}\par
+            \vspace{1.5em}
+            \str{We saw her duck.}\par
+        }
+        \vspace{2em}
+        $\leadsto$ semantics creates preliminary semantic representation
+        that gets refined by the semantic/pragmatic analysis through ambiguity resolution etc.
+
+    \end{frame}
+}{}
+
+
+\ifpart{showjupyter}{
 \begin{frame}
     \frametitle{Components of GLIF: Jupyter}
     \enablepart{hljupyter}
@@ -121,3 +153,4 @@ type forall (i -> o) -> o.
     \vspace{1.5em}
     \fbox{\includegraphics[trim={0 0 20cm 5.7cm},clip,width=0.7\textwidth]{img/screenshot-glif-1.png}}
 \end{frame}
+}{}
