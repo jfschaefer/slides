@@ -1,0 +1,26 @@
+% Used in slides/glif-components.tex
+% Has to be in separate file...
+\begin{minipage}[t]{0.35\textwidth}
+    \parbox[t][1em][t]{\textwidth}{\centering\bf MMT}\par
+    \begin{lstlisting}[language=MMT,linewidth=\textwidth]
+o : type //propositions
+\neg : o \raa o
+\wedge : o \raa o \raa o
+\vee : o \raa o \raa o
+
+\iota : type //individuals
+\forall : (\iota \raa o) \raa o
+\exists : (\iota \raa o) \raa o \end{lstlisting}
+\end{minipage}\hskip2em
+\begin{minipage}[t]{0.35\textwidth}
+    \parbox[t][1em][t]{\textwidth}{\centering\bf ELPI}\par
+    \begin{lstlisting}[language=ELPI,linewidth=\textwidth]
+kind o type.
+not : o -> o.
+and : o -> o -> o.
+or  : o -> o -> o.
+
+kind i type.
+type forall (i -> o) -> o.
+type exists (i -> o) -> o.  \end{lstlisting}
+\end{minipage}

@@ -1,0 +1,199 @@
+\bgroup
+
+% \providecolorgroup{inf}{blue!50!red}
+\providecolorgroup{inf}{black}
+
+% used for highlighting parts of the code.
+% probably better solutions exist...
+\lstset{literate={*1}{\color{hlfont}}{1} {*2}{\color{inffont}}{1} {*3}{\color{inffont!50}}{1}}
+
+\def\proofvdots#1{
+    \let\tmpvskip=\extraVskip
+    \def\extraVskip{-2pt}
+    \noLine
+    \UnaryInfC{{$\raisebox{6pt}\vdots$}}
+    \noLine
+    #1
+    \let\extraVskip=\tmpvskip
+}
+\newcommand\tabdivider{\;\bigl|\;}
+
+\begin{frame}[fragile]
+    \frametitle{Natural Deduction in MMT/LF}
+    \begin{minipage}{0.9\textwidth}
+        \centering
+        \begin{minipage}{0.49\textwidth}
+            \begin{prooftree}
+                \AxiomC{$A \wedge B$}
+                \RightLabel{$\wedge El$}
+                \UnaryInfC{$A$}
+            \end{prooftree}
+        \end{minipage}
+        \begin{minipage}{0.49\textwidth}
+            \begin{prooftree}
+                \def\defaultHypSeparation{\hskip 0pt}
+                \AxiomC{$A \vee B$}
+                \AxiomC{$\,\,[A]^1$}
+                \proofvdots{\UnaryInfC{$C$}}
+                \AxiomC{$\,\,[B]^1$}
+                \proofvdots{\UnaryInfC{$C$}}
+                \RightLabel{$\vee E^1$}
+                \TrinaryInfC{$C$}
+            \end{prooftree}
+        \end{minipage}
+    \end{minipage}
+
+    \vspace{1.5em}
+    \begin{lstlisting}[language=MMT]
+    // \vdashX is type of proofs for X (judgments as types)
+    \vdash : o \raa type
+
+    \wedgeEl : \PiAo\PiBo \vdashA\wedgeB \raa \vdashA
+    \veeE  : \PiAo\PiBo\PiCo \vdashA\veeB \raa (\vdashA \raa \vdashC) \raa (\vdashB \raa \vdashC) \raa \vdashC
+    \end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{Generating Provers in ELPI}
+%     \begin{itemize}
+%         \item ELPI is an extension of $\lambda$Prolog \com{$\approx$ Prolog + HOAS}\note{ELPI was developed by Claudio and others}
+%         \item Optimized for fast execution of logical algorithms \com{type inference, unification, proof search, \dots}
+%     \end{itemize}
+    \makebox[2.5cm][l]{\textbf{LF rule}} \lstinline[language=MMT]|\wedgeEl : \PiAo\PiBo \vdashA\wedgeB \raa \vdashA|
+
+    \vspace{1.0em}
+    \textbf{ELPI equivalent}
+
+    \vspace{0.5em}
+    \makebox[2.5cm][r]{direct:$\;\;$} \lstinline[language=ELPI]|pi A \ pi B \ ded (and A B) => ded A.|
+
+    \vspace{0.5em}
+    \makebox[2.5cm][r]{syn. sugar:$\;\;$} \lstinline[language=ELPI]|ded A :- ded (and A B).|
+
+% \end{frame}
+% 
+% \begin{frame}[fragile]
+%     \frametitle{From LF to ELPI}
+    % \textbf{Or-elimination}
+    \vspace{1.5em}
+    \pause
+
+    \begin{block}{{\bfseries Example:} Or-Elimination}
+    \makebox[1.2cm][l]{LF:}\begin{minipage}{0.85\textwidth}
+        \lstinline[keepspaces=true,language=MMT]|\veeE : \PiAo\PiBo\PiCo \vdashA\veeB \raa (\vdashA \raa \vdashC) \raa (\vdashB \raa \vdashC) \raa \vdashC|
+    \end{minipage}
+
+    \vspace{0.5em}
+    \makebox[1.2cm][l]{ELPI:}\lstinline[language=ELPI,keepspaces=true]|ded C :- ded (or A B), ded A => ded C, ded B => ded C.|
+    \end{block}
+
+    \vspace{0.5em}
+
+    \begin{block}{{\bfseries Example:} Forall-Introduction}
+    % \textbf{Forall-introduction}
+    \makebox[1.2cm][l]{LF:}\begin{minipage}{0.85\textwidth}
+        \lstinline[keepspaces=true,language=MMT]|\forallI : \PiPio (\Pixi \vdashP x) \raa \vdash\forallP|
+    \end{minipage}
+
+    \vspace{0.5em}
+    \makebox[1.2cm][l]{ELPI:}\lstinline[language=ELPI,keepspaces=true]|ded (forall P) :- pi x \ ded (P x).|
+    \vspace{0.5em}
+    \end{block}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{Controlling the Proof Search}
+    \begin{itemize}
+        \item Problem: Search diverges \com{searching harder than checking}
+        \item Solution: Control search with helper predicates:
+            \com{inspired by ProofCert project by Miller et al.}\note{ProofCert assumes a focused logic, we don't}
+            % \\{ \itshape\color{black!50}\makebox[10cm][r]{(inspired by ProofCert project by Miller et al.)}}
+            \begin{itemize}
+                \item Intuition: Decide whether to apply rule
+                \item Do not affect correctness
+                \item Extra argument tracks aspects of proof state
+            \end{itemize}
+    \end{itemize}
+
+    \vspace{1.5em}
+    \makebox[1.2cm][l]{Before:}{{
+    \lstinline[language=ELPI,keepspaces=true]|ded*1 *2A :-*1                      *2ded *1   *2(and A B).|
+    }}
+
+    \vspace{0.5em}
+    \makebox[1.2cm][l]{Now:}{{
+    \lstinline[language=ELPI,keepspaces=true]|ded*1X*2A :- *1help/andEl X A B X1, *2ded *1X1 *2(and A B).|
+    }}
+
+%     \vspace{2.0em}
+%     Example helper for depth-limit:
+% 
+%     \vspace{0.5em}
+%     \lstinline[language=ELPI,keepspaces=true]|    help/andEl (idcert N) _ _ (idcert N1) :- N > 0, N1 is N - 1.|
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{Helper Predicates}
+        \renewcommand{\arraystretch}{1.5}
+    \begin{tabular}{l p{4cm} p{4.5cm}}
+        \textbf{Name} & \textbf{Predicate} & \textbf{Argument} \\
+        Iter. deepening & checks depth & remaining depth \\
+        Proof term & generates term & proof term \\
+        Product & calls other predicates & arguments for other predicates \\
+        Backchaining &
+            \footnotesize Prolog's backchaining ($\approx$ forward reasoning from axioms via $\Rightarrow$/$\forall$ elimination rules) &
+            \footnotesize pattern of formula to be proven (e.g. a conjunction) \\
+        % Backchaining & \multicolumn2{p{7cm}}{\footnotesize Restricts new formulae in e.g. elimination rules to those that could be proven by forward reasoning} \\
+    \end{tabular}
+
+    \vspace{1.5em}
+    \begin{block}{\textbf{Example helper:} Iterative deepening}
+        \lstinline[language=ELPI,keepspaces=true]|help/andEl (idcert N) _ _ (idcert N1) :- N > 0, N1 is N - 1.|
+    \end{block}
+
+%     Example call:
+%     \begin{lstlisting}[language=ELPI]
+%     ?- ded (prodcert (idcert 2) (ptcert Proof)) (impl a (or a b)).
+% 
+%     Proof = implI a (or a b) (orIl a b (i a)).
+%     \end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{Tableau Provers}
+    \note{We can scale in terms of logics supported or (orthogonally) in terms of prover strategies.
+    We went for the latter.}
+    \begin{minipage}[b][2cm][b]{0.4\textwidth}
+        \begin{prooftree}
+            \AxiomC{$\;\tabfalse{A \wedge B}$}
+            \RightLabel{$\tabfalse\wedge$}
+            \UnaryInfC{$\tabfalse{A} \tabdivider \tabfalse{B}$}
+        \end{prooftree}
+    \end{minipage}
+    \begin{minipage}[b][2cm][b]{0.4\textwidth}
+        \def\defaultHypSeparation{\hskip 0pt}
+        \begin{prooftree}
+            \AxiomC{$\tabfalse{A \wedge B}$}
+            \AxiomC{$\;[\tabfalse{A}]$}
+            \proofvdots{\UnaryInfC{$\bot$}}
+            \AxiomC{$\;[\tabfalse{B}]$}
+            \proofvdots{\UnaryInfC{$\bot$}}
+            \RightLabel{$\tabfalse\wedge$}
+            \TrinaryInfC{$\bot$}
+        \end{prooftree}
+    \end{minipage}
+
+    \vspace{2em}
+    \makebox[1.0cm][l]{LF:} \lstinline[language=MMT]|\wedge\tabfalse : \PiAo\PiBo A\wedgeB\tabfalse \raa (A\tabfalse \raa \bot) \raa (B\tabfalse \raa \bot) \raa \bot|
+
+    \vspace{0.5em}
+    \makebox[1.0cm][l]{ELPI:} \lstinline[language=ELPI]|closed *3X *2:- *3help/andF X A B X1 X2 X3, *2f *3X1 *2(and A B),|
+    \lstinline[language=ELPI,keepspaces=true]|                         f*3/hyp *2A => closed *3X2*2, f*3/hyp*2 B => closed *3X3*2.|
+
+    \vspace{2em}
+    With iterative deepening we get a working prover!
+
+    $\rightarrow$ Other helpers result in more efficient provers
+\end{frame}
+
+\egroup

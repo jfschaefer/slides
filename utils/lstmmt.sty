@@ -3,9 +3,10 @@
 \RequirePackage{upgreek}
 
 \newif\if@bold
-\DeclareOption{bold}{
-    \@boldtrue
-}
+\@boldtrue
+% \DeclareOption{bold}{
+%     \@boldtrue
+% }
 
 \ProcessOptions\relax
 
@@ -56,9 +57,16 @@
         {\\lambda}{$\uplambda$}1
         {\\super0}{\superzero}1
         {\\super1}{\superone}1
+        {\\tabfalse}{\lstmmtboldmath$\tabfalse{}$}1
+        {\\tabtrue}{\lstmmtboldmath$\tabtrue{}$}1
         {\\vdash}{\lstmmtboldmath$\vdash$}1
         {\\vee}{\lstmmtboldmath$\vee$}1
         {\\wedge}{\lstmmtboldmath$\wedge$}1
+        {\\PiAo}{{\lstmmtboldmath$\Pi_{\text{A:o}}$}}3
+        {\\PiBo}{{\lstmmtboldmath$\Pi_{\text{B:o}}$}}3
+        {\\PiCo}{{\lstmmtboldmath$\Pi_{\text{C:o}}$}}3
+        {\\PiPio}{{\lstmmtboldmath$\Pi_{\text{P:$\upiota\raa \text{o}$}}$}}3
+        {\\Pixi}{{\lstmmtboldmath$\Pi_{\text{x:$\upiota$}}$}}3
         {prec}{{\color{black!70}\textit{prec}}}4    % gray out precedences
     ,
 }

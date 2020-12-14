@@ -3,6 +3,7 @@
 
 \usepackage{stmaryrd}
 \usepackage{listings}
+\usepackage{bussproofs}
 
 \usepackage[hyperref=auto,style=alphabetic,backend=bibtex]{biblatex}
 \addbibresource{kwarcpubs.bib}
@@ -57,6 +58,28 @@
 \input{slides/glif-example-tab-machine}
 
 \input{slides/glif-example-translation}
+
+\begin{frame}
+    \frametitle{Supporting the Semantic/Pragmatic Analysis}
+    \begin{itemize}
+        \item Parsing and semantics construction are based on specialized frameworks
+        \item ELPI is a more general programming language
+    \end{itemize}
+    
+    \vspace{1em}
+    Can we do something more specialized?
+    \begin{itemize}
+        \item Not really -- there is no ``standard recipe'' for
+            semantic/pragmatic analysis
+        \item But: It usually involves inferential reasoning
+    \end{itemize}
+
+    \vspace{2em}
+    \centering
+    \bfseries Let's generate provers!\par
+\end{frame}
+
+\input{slides/elpi-gen}
 
 % \begin{frame}
 %     \frametitle{Conclusion}
