@@ -13,6 +13,8 @@
 \usepackage{tikz}
 \usepackage{tikz-qtree}
 \usetikzlibrary{arrows.meta}
+\usetikzlibrary{mmt}
+\usetikzlibrary{docicon}
 
 \usetheme{Pittsburgh}
 \setbeamertemplate{footline}[frame number]
@@ -21,8 +23,8 @@
 \setbeamertemplate{frametitle}[default][left]
 % \setbeamersize{text margin left=3em}
 
-\usepackage[forbeamer]{utils/basic}
 \usepackage{utils/colors}
+\usepackage[forbeamer]{utils/basic}
 \usepackage{utils/operators}
 \usepackage{utils/lstmisc}
 \usepackage{utils/lstmmt}
@@ -39,6 +41,14 @@
 \begin{document}
 \frame\titlepage
 
+\begin{frame}
+    \centering
+    \textbf{Disclaimer}
+
+    \vspace{1em}
+    Some of slides have been adapted from previous presentations by me.
+\end{frame}
+
 % \begin{frame}
 %     \frametitle{Motivation}
 %     TODO: Tease with example applications (without any details)\\
@@ -52,6 +62,7 @@
 {
     \disablepart{showjupyter}
     \enablepart{showepistemicexample}
+    \disablepart{mentionprovergen}
     \input{slides/glif-components}
 }
 
@@ -59,8 +70,15 @@
 
 \input{slides/glif-example-translation}
 
+
+\begin{frame}
+    \frametitle{GLIF Summary}
+    \includestandalone[width=\textwidth]{fig/glif-architecture}
+\end{frame}
+
 \begin{frame}
     \frametitle{Supporting the Semantic/Pragmatic Analysis}
+    Observation:
     \begin{itemize}
         \item Parsing and semantics construction are based on specialized frameworks
         \item ELPI is a more general programming language
@@ -81,16 +99,10 @@
 
 \input{slides/elpi-gen}
 
-% \begin{frame}
-%     \frametitle{Conclusion}
-%     \begin{itemize}
-%         \item GLIF is a tool for prototyping natural language understanding pipelines
-%         \item Combines existing, declarative frameworks
-%     \end{itemize}
-% 
-%     \vspace{2em}
-%     \includestandalone[width=\textwidth]{fig/glif-architecture}
-% \end{frame}
+\begin{frame}
+    \frametitle{Conclusion}
+    \includestandalone[width=\textwidth]{fig/glif-spec}
+\end{frame}
 
 \appendix
 

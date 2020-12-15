@@ -81,13 +81,17 @@
     \includestandalone[width=\textwidth]{fig/glif-architecture}
 \end{frame}
 
+\provideenablepart{mentionprovergen}
 \begin{frame}[fragile]
     \frametitle{Components of GLIF: ELPI}
     \begin{itemize}
         \item Implementation and extension of $\lambda$Prolog\com{$\approx$ Prolog + HOAS}
         \item MMT can generate logic signatures
-        \item First experiments with prover generation
+        \ifpart{mentionprovergen}{
+            \item First experiments with prover generation
+        }{}
         \item Generic inference/reasoning step after semantics construction
+        \item Goal: Use it for semantic/pragmatic analysis
     \end{itemize}
     \lstset{basicstyle=\footnotesize\ttfamily}
 
@@ -130,8 +134,8 @@
             \str{We saw her duck.}\par
         }
         \vspace{2em}
-        $\leadsto$ semantics creates preliminary semantic representation
-        that gets refined by the semantic/pragmatic analysis through ambiguity resolution etc.
+        $\leadsto$ semantics construction creates preliminary semantic representation(s)
+        that gets refined by the semantic/pragmatic analysis
 
     \end{frame}
 }{}

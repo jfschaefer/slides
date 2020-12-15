@@ -1,0 +1,58 @@
+\documentclass[tikz]{standalone}
+
+\usepackage{utils/basic}
+\usepackage{utils/colors}
+\usetikzlibrary{mmt}
+\usetikzlibrary{docicon}
+
+\colorfultrue
+
+\begin{document}
+\def\twoline#1#2{\begin{tabular}{c}#1\\#2\end{tabular}}
+\tikzset{
+    gen/.style={draw,->,dotted,very thick,black!70},
+    generated/.style={black!70,dotted,fill=black!5},
+    doc/.style={draw,line width=0.25mm,shape=document,fill=white},
+    sys/.style={draw,line width=0.25mm,rounded corners=5pt,fill=black!10}
+}
+\begin{tikzpicture}[xscale=0.9]
+    \draw[sys,fill=white] (-8.8,-1.9) rectangle (9.6, 4.8);
+    \draw[sys] (-8.7,-0.3) rectangle (-4, 4.7);
+    \draw[sys] (-3.9,-0.3) rectangle (3.6,4.7);
+    \draw[sys] (3.7, -0.3)  rectangle (9.5,4.7);
+    \node[doc]           (concr) at (-7.5,2) {\small\twoline{Concr.}{syntax}};
+    \node[doc]           (abstr) at (-5.2,2) {\small\twoline{Abstr.}{syntax}};
+    \node[doc,generated] (lang)  at (-2.5,2) {\small\twoline{Lang.}{theory}};
+    \node[doc]           (ddt)   at (2.5,2)  {\small DDT\,};
+    \node[doc]           (log)   at (2.5,3)  {\small Logic};
+    \node[doc]           (calc)  at (2.5,4)  {\small Calculus};
+    \node[doc]           (sem)   at (0, 2.5) {\small Sem. constr.};
+    \node[doc,generated] (prov)  at ( 5, 4)  {\small Prover};
+    \node[doc,generated] (sig)   at ( 5, 2)  {\small\twoline{World}{knowl.}};
+    \node[doc]           (spa)   at (7.9, 2) {\small\twoline{Sem./prag.}{Analysis}};
+    \draw[view] (lang) -- (ddt);
+    \draw[include] (log) -- (calc);
+    \draw[meta] (log) -- (ddt);
+    \draw[includeleft] (prov) -- (spa);
+    \draw[include] (sig) -- (spa);
+    \draw[gen] (abstr) -- (lang);
+    \draw[gen] (ddt)   -- (sig);
+    \draw[gen] (calc)  -- (prov);
+    
+    \node (gf)   at (-6.35,0.5) {\twoline{Parsing}{\textbf{GF}}};
+    \node (mmt)  at (-0.15,0.5) {\twoline{Semantics Construction}{\textbf{MMT}}};
+    \node (elpi) at (6.6,  0.5) {\twoline{Sem./Prag. Anal.}{\textbf{ELPI}}};
+    \node (glif) at (0.4,-1.15) {\twoline{Natural Language Understanding}{\textbf{GLIF}}};
+    \draw[thick,->,dotted] (-9.8,0.5) -- (-8.75,0.5);
+    \draw[thick,->] (-8.75,0.5) -- (-7.7,0.5);
+    \draw[thick,->] (-5.0,0.5) -- (-2.9,0.5);
+    \draw[thick,->] (2.6, 0.5) -- (4.7, 0.5);
+    \draw[thick,->] (8.5,0.5) -- (9.55,0.5);
+    \draw[thick,->,dotted] (9.55,0.5) -- (10.6,0.5);
+    \node[fill=nlbg,draw,line width=0.25mm] (ast) at (-8.75,0.5) {STR};
+    \node[fill=nlbg!50!logicbg,draw,line width=0.25mm] (ast) at (-3.95,0.5) {AST};
+    \node[fill=logicbg,draw,line width=0.25mm] (exp) at (3.65, 0.5) {PLE};
+    \node[fill=logicbg,draw,line width=0.25mm] (ast) at (9.55,0.5)  {SEM};
+\end{tikzpicture}
+\end{document}
+
