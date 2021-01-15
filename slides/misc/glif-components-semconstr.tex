@@ -5,21 +5,18 @@
 \vspace{0.5em}
 \begin{minipage}[t]{0.4\textwidth}
 \parbox[t][1em][t]{\textwidth}{\centering Simple setting}\par
-\begin{lstlisting}[language=MMT]
-S        \mapsto o
-NP       \mapsto \iota
-VP       \mapsto \iota \raa o
-sentence \mapsto \lambdan.\lambdav.v n
-ahmed    \mapsto ahmed
-\end{lstlisting}
+\ifpart{switchtomathexample}{
+    \lstinputlisting[language=MMT]{slides/misc/snippets/s000.txt}
+}{
+    \lstinputlisting[language=MMT]{slides/misc/snippets/s001.txt}
+}
 \end{minipage}
 \hspace{1em}
 \begin{minipage}[t]{0.5\textwidth}
 \parbox[t][1em][t]{\textwidth}{\centering More advanced}\par
-\begin{lstlisting}[language=MMT]
-NP       \mapsto (\iota \raa o) \raa o
-sentence \mapsto \lambdan.\lambdav.n v
-everyone \mapsto \lambdap.\forall\lambdax.p x
-berta    \mapsto \lambdap.p berta
-\end{lstlisting}
+\ifpart{switchtomathexample}{
+    \lstinputlisting[language=MMT]{slides/misc/snippets/s002.txt}
+}{
+    \lstinputlisting[language=MMT]{slides/misc/snippets/s003.txt}
+}
 \end{minipage}

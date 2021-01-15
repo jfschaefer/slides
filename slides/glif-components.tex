@@ -1,6 +1,8 @@
 \provideenablepart{showspa}
 \providedisablepart{showepistemicexample}
 \provideenablepart{showjupyter}
+\provideenablepart{mentionprovergen}
+\providedisablepart{switchtomathexample}
 
 \begin{frame}
     \frametitle{Components of GLIF: GF}
@@ -21,14 +23,25 @@
 
     \vspace{2em}
     \hspace{2.5em}\begin{tikzpicture}
-        \node(eng) at (-2,0.7) {\str{Ahmed paints}};
-        \node(ger) at (-2,-0.7) {\str{Ahmed zeichnet}};
-        \node(ast) at (4,0) {
-                    \color{logicfont!50!nlfont}
-                    \resizebox{2.cm}{!}{\tikzset{edge from parent/.append style={very thick}}
-                        \Tree [ .\texttt{sentence} \texttt{ahmed} \texttt{paint} ]
-                    }
-                };
+        \ifpart{switchtomathexample}{
+            \node(eng) at (-3,0.7) {\str{Every integer is even}};
+            \node(ger) at (-3,-0.7) {\str{Jede ganze Zahl ist gerade}};
+            \node(ast) at (4,0) {
+                        \color{logicfont!50!nlfont}
+                        \resizebox{2.cm}{!}{\tikzset{edge from parent/.append style={very thick}}
+                            \Tree [ .\texttt{sentence} [ .\texttt{everyNP} \texttt{int} ] [ .\texttt{beVP} \texttt{even} ] ]
+                        }
+                    };
+        }{
+            \node(eng) at (-2,0.7) {\str{Ahmed paints}};
+            \node(ger) at (-2,-0.7) {\str{Ahmed zeichnet}};
+            \node(ast) at (4,0) {
+                        \color{logicfont!50!nlfont}
+                        \resizebox{2.cm}{!}{\tikzset{edge from parent/.append style={very thick}}
+                            \Tree [ .\texttt{sentence} \texttt{ahmed} \texttt{paint} ]
+                        }
+                    };
+        }
         \draw[<->, thick] (eng) to node[above,rotate=-9]{Eng. concr. syn.} (ast);
         \draw[<->, thick] (ger) to node[below,rotate=9]{Ger. concr. syn.} (ast);
     \end{tikzpicture}
@@ -66,13 +79,18 @@
 
 \begin{frame}[fragile]
     \frametitle{Example: Parsing + Semantics Construction}
-    {\centering\str{Ahmed and Berta paint}\par}\vspace{1em}
+    \ifpart{switchtomathexample}{\def\switchtomathexample{1}}{}  % hack (ifpart doesn't work well with lstinline)
+    {\centering\str{\ifpart{switchtomathexample}{Every integer is even}{Ahmed and Berta paint}}\par}\vspace{1em}
     \hspace{0.49\textwidth}$\downarrow_{\text{parsing}}$\par\vspace{1em}
-    {\centering\color{logicfont!50!nlfont} sentence (andNP ahmed berta) paint\par}\vspace{1em}
+    {\centering\color{logicfont!50!nlfont} \ifpart{switchtomathexample}{sentence (everyNP int) (beVP even)}{sentence (andNP ahmed berta) paint}\par}\vspace{1em}
     \hspace{0.49\textwidth}$\downarrow_{\text{semantics construction}}$\par\vspace{1em}
-    {\centering\begin{adjustbox}{}\color{logicfont}\footnotesize\lstinline[language=MMT]|(\lambdan.\lambdav.n v) ((\lambdaa.\lambdab.\lambdap.a p \wedge b p) (\lambdap.p ahmed) (\lambdap.p berta)) paint|\end{adjustbox}\par}\vspace{1em}
+    {\centering\begin{adjustbox}{}\color{logicfont}\footnotesize\ifx\switchtomathexample\undefined
+        \lstinline[language=MMT]|(\lambdan.\lambdav.n v) ((\lambdaa.\lambdab.\lambdap.a p \wedge b p) (\lambdap.p ahmed) (\lambdap.p berta)) paint|\else
+                    \lstinline[language=MMT]|(\lambdan.\lambdav.n v) ((\lambdan.\lambdap.\forall\lambdax.n x \Rightarrow p x) int) ((\lambdaa.a) even)|
+                \fi
+    \end{adjustbox}\par}\vspace{1em}
     \hspace{0.49\textwidth}$\downarrow_{\text{$\beta$-reduction}}$\par\vspace{1em}
-    {\centering\color{logicfont}\small\begin{adjustbox}{}\lstinline[language=MMT]|paint ahmed \wedge paint berta|\end{adjustbox}\par}
+{\centering\color{logicfont}\small\begin{adjustbox}{}\ifx\switchtomathexample\undefined\lstinline[language=MMT]|paint ahmed \wedge paint berta|\else\lstinline[language=MMT]|\forall\lambdax.int x \Rightarrow even x|\fi\end{adjustbox}\par}
 \end{frame}
 
 \begin{frame}
@@ -81,7 +99,6 @@
     \includestandalone[width=\textwidth]{fig/glif-architecture}
 \end{frame}
 
-\provideenablepart{mentionprovergen}
 \begin{frame}[fragile]
     \frametitle{Components of GLIF: ELPI}
     \begin{itemize}

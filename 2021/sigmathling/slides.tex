@@ -1,0 +1,103 @@
+\documentclass[aspectratio=169]{beamer}
+\usepackage{standalone}
+
+\usepackage{stmaryrd}
+\usepackage{listings}
+\usepackage{bussproofs}
+
+\usepackage[hyperref=auto,style=alphabetic,backend=bibtex]{biblatex}
+\addbibresource{kwarcpubs.bib}
+\addbibresource{extpubs.bib}
+\addbibresource{extcrossrefs.bib}
+\usepackage{appendixnumberbeamer}
+\usepackage{tikz}
+\usepackage{tikz-qtree}
+\usetikzlibrary{arrows.meta}
+\usetikzlibrary{mmt}
+\usetikzlibrary{docicon}
+
+\usetheme{Pittsburgh}
+\setbeamertemplate{footline}[frame number]
+\setbeamertemplate{navigation symbols}{}
+\usecolortheme{beaver}
+\setbeamertemplate{frametitle}[default][left]
+% \setbeamersize{text margin left=3em}
+
+\usepackage{utils/colors}
+\usepackage[forbeamer]{utils/basic}
+\usepackage{utils/operators}
+\usepackage{utils/lstmisc}
+\usepackage{utils/lstmmt}
+
+\lstset{basicstyle=\ttfamily}
+\lstset{commentstyle=\itshape\color{commentfont}}
+
+\title{Mathematical Language Understanding --- Symbolically}
+
+\author{Jan Frederik Schaefer}
+\institute{FAU Erlangen-N\"urnberg}
+\date{\textbf{SIGMathLing Seminar} \\ \textit{virtual event} \\ January 18, 2021 }
+
+\begin{document}
+\frame\titlepage
+
+\begin{frame}
+    \frametitle{A Case for Symbolic Approaches}
+    {
+        \centering
+        \str{Every integer is even.} $\quad\leadsto\quad$ {\color{logicfg}$\forall x.int(x) \Rightarrow even(x)$}\par
+    }
+
+    \vspace{1.5em}
+    \begin{itemize}
+        \item[\textbf{+}] No need for training data
+        \item[\textbf{+}] No need for resource-heavy training
+        \item[\textbf{+}] Verifiable, predictable, accurate
+        \item[\textbf{+}] Easier to implement?
+        \item[\textbf{--\hspace{0.15em}}] Coverage very limited
+    \end{itemize}
+
+    \vspace{1.5em}
+    Sometimes the pros outweigh the cons:
+    \begin{itemize}
+        \item Prototyping
+        \item Need for high reliability\com{CNLs}
+            \begin{itemize}
+                \item Proof verification
+                \item Fabstracts
+                \item ...
+            \end{itemize}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{GLIF: Prototyping Symbolic NLU}
+    \begin{itemize}
+        \item Claim: Prototyping NLU is important but requires much work
+        \item GLIF as a dedicated, declarative framework for NLU prototyping
+        \item Montague's approach:
+            \begin{enumerate}
+                \item Parsing
+                \item Compositional semantics construction\com{lots of $\lambda$s}
+            \end{enumerate}
+        \item We also need
+            \begin{enumerate}
+                \setcounter{enumi}{2}
+                \item Semantic/pragmatic analysis\com{disambiguation, \textellipsis}
+            \end{enumerate}
+    \end{itemize}
+\end{frame}
+
+\enablepart{switchtomathexample}
+\disablepart{showspa}
+\disablepart{showjupyter}
+\input{slides/glif-components.tex}
+
+\appendix
+
+\begin{frame}[allowframebreaks,t]
+    \frametitle{References}
+    \printbibliography
+\end{frame}
+
+\end{document}

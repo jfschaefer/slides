@@ -1,0 +1,4 @@
+NP       \mapsto (\iota \raa o) \raa o
+sentence \mapsto \lambdan.\lambdav.n v
+everyone \mapsto \lambdap.\forall\lambdax.p x
+berta    \mapsto \lambdap.p berta

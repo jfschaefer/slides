@@ -1,0 +1,5 @@
+S        \mapsto o
+NP       \mapsto \iota
+VP       \mapsto \iota \raa o
+sentence \mapsto \lambdan.\lambdav.v n
+even     \mapsto even

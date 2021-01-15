@@ -1,0 +1,4 @@
+NP       \mapsto (\iota \raa o) \raa o
+sentence \mapsto \lambdan.\lambdav.n v
+everyNP  \mapsto \lambdan.\lambdap.\forall\lambdax.n x \Rightarrow p x
+someNP   \mapsto \lambdan.\lambdap.\exists\lambdax.n x \wedge p x
