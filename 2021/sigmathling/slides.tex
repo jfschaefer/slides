@@ -32,7 +32,7 @@
 \lstset{basicstyle=\ttfamily}
 \lstset{commentstyle=\itshape\color{commentfont}}
 
-\title{Mathematical Language Understanding --- Symbolically}
+\title{A Symbolic Framework for Mathematical Language Understanding}
 
 \author{Jan Frederik Schaefer}
 \institute{FAU Erlangen-N\"urnberg}
@@ -52,22 +52,42 @@
     \begin{itemize}
         \item[\textbf{+}] No need for training data
         \item[\textbf{+}] No need for resource-heavy training
-        \item[\textbf{+}] Verifiable, predictable, accurate
         \item[\textbf{+}] Easier to implement?
+        \item[\textbf{+}] Verifiable, predictable, accurate
         \item[\textbf{--\hspace{0.15em}}] Coverage very limited
     \end{itemize}
 
     \vspace{1.5em}
     Sometimes the pros outweigh the cons:
     \begin{itemize}
-        \item Prototyping
         \item Need for high reliability\com{CNLs}
             \begin{itemize}
                 \item Proof verification
                 \item Fabstracts
                 \item ...
             \end{itemize}
+        \item Prototyping
     \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{Teaser: Input Language for SageMath}
+    \lstset{basicstyle=\small\ttfamily,columns=fullflexible,commentstyle={\sffamily\color{nlfg}},morecomment=[l]{Let},morecomment=[l]{What}}
+    \begin{lstlisting}
+Enter command: Let G be the dihedral group of order 8.
+gVar = DihedralGroup(int(8)//2)
+
+
+Enter command: Let A_N be a notation for the alternating group on N symbols.
+def aVar(nVar): return AlternatingGroup(nVar)
+
+
+Enter command: What are the cardinalities of G and A_5?
+print(gVar.cardinality())
+print(aVar(int(5)).cardinality())
+sage: 8
+sage: 60
+    \end{lstlisting}
 \end{frame}
 
 \begin{frame}
@@ -89,11 +109,35 @@
 \end{frame}
 
 \enablepart{switchtomathexample}
+\input{slides/glif-components-highlevel.tex}
+
 \disablepart{showspa}
 \disablepart{showjupyter}
 \input{slides/glif-components.tex}
 
+\input{slides/glif-example-CNL}
+
+\input{slides/glif-example-sage}
+
+\begin{frame}
+    \frametitle{Conclusion}
+    \begin{itemize}
+        \item GLIF: Declarative framework for prototyping NLU
+        \item Used in a 1-semester course on logic-based NL semantics
+        \item First experiments with mathematical language
+    \end{itemize}
+
+    \centering
+    \vspace{1.5em}
+    \includestandalone[width=0.7\textwidth]{fig/glif-architecture}\par
+\end{frame}
+
 \appendix
+
+\begin{frame}
+    \frametitle{Specification of a GLIF Prototype}
+    \includestandalone[width=\textwidth]{fig/glif-spec}
+\end{frame}
 
 \begin{frame}[allowframebreaks,t]
     \frametitle{References}

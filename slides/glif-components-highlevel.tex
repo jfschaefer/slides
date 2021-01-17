@@ -1,0 +1,52 @@
+\providedisablepart{switchtomathexample}
+\providedisablepart{delayspa}
+
+
+\begin{frame}
+    \frametitle{GLIF: Grammatical Logical Inference Framework}
+    \centering
+
+    \vspace{1.5em}
+    \ifpart{delayspa}{\only<1-1>{\disablepart{sempragarrow}}}{}
+    \only<1-\ifpart{delayspa}21>{\disablepart{includejupyter}}
+    \only<1-\ifpart{delayspa}21>{\disablepart{gfbox}\disablepart{mmtbox}\disablepart{elpibox}}
+    \includestandalone[width=\textwidth]{fig/glif-architecture}
+
+    \vspace{1em}
+    \begin{minipage}[t][2cm]{\textwidth}
+        \only<1-\ifpart{delayspa}21>{
+            \begin{tikzpicture}
+                \ifpart{switchtomathexample}{
+                    \node(str) at (-4,0) {\str{Every integer is even}};
+                    % REQUIRES \usepackage{tikz-qtree}
+                    \node(ast) at (0,0) {\color{nlfont!50!logicfont}
+                        \resizebox{1.5cm}{!}{\tikzset{edge from parent/.append style={very thick}}
+                            \Tree [ .\textbf{sentence} [ .\textbf{everyNP} \textbf{int} ] [ .\textbf{beVP} \textbf{even} ] ]
+                        }};
+                    \node(log) at (4.0,0) {\color{logicfont}$\forall x.int(x) \Rightarrow even(x)$};
+                }{
+                    \node(str) at (-4,0) {\str{Ahmed and Berta paint.}};
+                    % REQUIRES \usepackage{tikz-qtree}
+                    \node(ast) at (0,0) {\color{nlfont!50!logicfont}
+                        \resizebox{1.5cm}{!}{\tikzset{edge from parent/.append style={very thick}}
+                        \Tree [ .\textbf{mkS} [ .\textbf{andNP} [ \textbf{Ahmed} \textbf{Berta} ] ] \textbf{paint} ]
+                        }};
+                    \node(log) at (2.8,0) {\color{logicfont}$p(a) \wedge p(b)$};
+                }
+                \draw[-{Straight Barb[length=6.3,width=5.0]},gray] (str) -- (ast);
+                \draw[-{Straight Barb[length=6.3,width=5.0]},gray] (ast) -- (log);
+            \end{tikzpicture}
+        }
+        \only<\ifpart{delayspa}32>{
+            \setlength{\arrayrulewidth}{1.0pt}
+            \begin{tabular}{r@{\hskip3pt} l l}
+                \vspace{0.1em} &\textbf{GF}   &{(= \textbf{grammar} framework)}\\
+                \vspace{0.1em}+&\textbf{MMT}  &{(= \textbf{logic} framework)}\\
+                \vspace{0.1em}+&\textbf{ELPI} &{(= \textbf{inference} framework)}\\
+                \hline
+                \\[-1em]
+                =&\textbf{GLIF} &{(= \textbf{natural language understanding} framework)}\\
+                \end{tabular}
+        }
+    \end{minipage}
+\end{frame}
