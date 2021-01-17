@@ -1,0 +1,4 @@
+paint : \iota \raa o
+quiet : \iota \raa o
+ahmed : \iota
+berta : \iota

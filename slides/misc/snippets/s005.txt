@@ -1,0 +1,4 @@
+even : \iota \raa o
+int  : \iota \raa o
+sqrt : \iota \raa \iota 
+// etc.

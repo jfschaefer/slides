@@ -14,11 +14,12 @@ o : type //propositions
 \end{minipage}\hskip2em
 \begin{minipage}[t]{0.35\textwidth}
     \parbox[t][1em][t]{\textwidth}{\centering\bf Discourse Domain Theory}\par
-    \begin{lstlisting}[language=MMT,linewidth=\textwidth]
-paint : \iota \raa o
-quiet : \iota \raa o
-ahmed : \iota
-berta : \iota \end{lstlisting}
+    \lstset{language=MMT,linewidth=\textwidth,morecomment=[l]{//}}
+\ifpart{switchtomathexample}{
+    \lstinputlisting{slides/misc/snippets/s005.txt}
+}{
+    \lstinputlisting{slides/misc/snippets/s004.txt}
+}
 
     \footnotesize
     \vspace{1.5em}
