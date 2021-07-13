@@ -1,0 +1,10 @@
+abstract Semantics = Grammar, Logic ** {
+  fun
+    t_S : S -> Prop;
+    t_Agent : Agent -> Term;
+    t_V : Verb -> (Term -> Prop);
+  def
+    t_Agent ahmed = a;
+    t_S (and_S s1 s2) = and (t_S s1) (t_S s2);
+    t_V (and_V v1 v2) =
+        \x -> and (t_V v1 x) (t_V v2 x);

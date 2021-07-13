@@ -1,0 +1,10 @@
+abstract Logic = {
+  cat
+    Prop; Term;
+  fun
+    and : Prop -> Prop -> Prop;
+    a : Term;
+    b : Term;
+    p : Term -> Prop;
+    q : Term -> Prop;
+}

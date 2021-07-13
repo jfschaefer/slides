@@ -1,0 +1,122 @@
+\begin{frame}[fragile]
+    \frametitle{Option 1: Concrete Syntax for Logic}
+    
+    {\centering
+    \begin{tikzpicture}[xscale=1.2]
+        \tikzset{ll/.style={line width=0.7pt}}
+        \draw[ll,fill=nlbg] (-5.0,-0.5) rectangle (-3.0,0.5);
+        \draw[ll,fill=nlbg!50!logicbg] (-1.0,-0.5) rectangle (1.0,0.5);
+        \draw[ll,fill=logicbg] (3.0,-0.5) rectangle (5.0,0.5);
+        \node[] at (-4.0, 0.0) {$\text{String}_\text{Eng}$};
+        \node[] at (0.0, 0.0) {$\text{AST}$};
+        \node[] at (4.0, 0.0) {$\text{String}_\text{Logic}$};
+        \draw[ll, ->] (-3,0) to node[above]{\footnotesize \ttfamily parse} (-1,0);
+        \draw[ll, ->] (1,0) to node[above]{\footnotesize \ttfamily linearize} (3,0);
+    \end{tikzpicture}\par}
+
+    \vspace{0.5em}
+    \only<1-2>{
+        \lstinline[language=GLIFcmd,stringstyle=\color{nlfg},keepspaces=true]!parse -lang=Eng "Ahmed paints and Berta is quiet" | linearize -lang=Logic!\\
+        {\color{logicfg}\ttfamily p ( a ) \lstmmtboldmath$\wedge$ q ( b )}
+    }
+    \only<3-4>{
+        \lstinline[language=GLIFcmd,stringstyle=\color{nlfg},keepspaces=true]!parse -lang=Eng "Ahmed is quiet and paints" | linearize -lang=Logic!\\
+        \only<3>{\color{hlfg}\ttfamily q ( a ) \lstmmtboldmath$\wedge$ p ( a ) ???}
+        \only<4>{\color{logicfg}\ttfamily (λx. q (x) \lstmmtboldmath$\wedge$ p (x)) ( a )\com{$\leadsto_\beta q(a)\wedge p(a)$}}
+    }
+
+    \onslide<2-4>{
+    \begin{columns}[t]
+        \begin{column}{0.38\textwidth}
+            \begin{mdframed}[backgroundcolor=logicbg!50!nlbg, innerleftmargin=2.5, innerrightmargin=0.2, innertopmargin=0.2,innerbottommargin=0.2, outerlinewidth=0.7]
+                \only<1-3>{\onslide<2-3>{
+                    \footnotesize\lstinputlisting[linewidth=6.0cm,language=GF]{slides/misc/snippets/s006.txt}
+                }}
+                \only<4>{
+                    \footnotesize\lstinputlisting[linewidth=6.0cm,language=GF]{slides/misc/snippets/s008.txt}
+                }
+            \end{mdframed}
+        \end{column}
+        \begin{column}{0.54\textwidth}
+            \begin{mdframed}[backgroundcolor=logicbg, innerleftmargin=2.5, innerrightmargin=0.2, innertopmargin=0.2,innerbottommargin=0.2, outerlinewidth=0.7]
+                \only<1-3>{\onslide<2-3>{
+                    \footnotesize\lstinputlisting[linewidth=6.0cm,language=GF,alsoletter={\\},literate={\\wedge}{\lstmmtboldmath$\wedge$}1,stringstyle=\color{logicfg}]{slides/misc/snippets/s007.txt}
+                }}
+                \only<4>{
+                    \footnotesize\lstinputlisting[linewidth=6.0cm,language=GF,alsoletter={\\},literate={\\wedge}{\lstmmtboldmath$\wedge$}1{\\lambda}{$\uplambda$}1,stringstyle=\color{logicfg}]{slides/misc/snippets/s009.txt}
+                }
+            \end{mdframed}
+        \end{column}
+    \end{columns}
+    }
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{Option 2: Abstract Syntax for Logic}
+    {\centering
+    \begin{tikzpicture}[xscale=1.2]
+        \tikzset{ll/.style={line width=0.7pt}}
+        \draw[ll,fill=nlbg] (-5.0,-0.5) rectangle (-3.0,0.5);
+        \draw[ll,fill=nlbg!50!logicbg] (-1.0,-0.5) rectangle (1.0,0.5);
+        \draw[ll,fill=logicbg] (3.0,-0.5) rectangle (5.0,0.5);
+        \node[] at (-4.0, 0.0) {$\text{String}_\text{Eng}$};
+        \node[] at (0.0, 0.0) {$\text{AST}_\text{NL}$};
+        \node[] at (4.0, 0.0) {$\text{AST}_\text{Logic}$};
+        \draw[ll, ->] (-3,0) to node[above]{\footnotesize \ttfamily parse} (-1,0);
+        \draw[ll, ->] (1,0) to node[above]{\footnotesize \ttfamily pt -compute} (3,0);
+    \end{tikzpicture}\par}
+
+
+    \begin{columns}[t]
+        \begin{column}{0.42\textwidth}
+            \begin{mdframed}[backgroundcolor=logicbg, innerleftmargin=2.5, innerrightmargin=0.2, innertopmargin=0.2,innerbottommargin=0.2, outerlinewidth=0.7]
+                \footnotesize\lstinputlisting[linewidth=3.5cm,language=GF]{slides/misc/snippets/s010.txt}
+            \end{mdframed}
+        \end{column}
+        \begin{column}{0.58\textwidth}
+            \onslide<2-3>{
+                \begin{mdframed}[backgroundcolor=white, innerleftmargin=2.5, innerrightmargin=0.2, innertopmargin=0.2,innerbottommargin=0.2, outerlinewidth=0.7]
+                    \footnotesize\lstinputlisting[linewidth=6.0cm,language=GF]{slides/misc/snippets/s011.txt}
+                \end{mdframed}
+            }
+        \end{column}
+    \end{columns}
+
+    \vspace{1.0em}
+    \onslide<3>{
+        \lstinline[language=GLIFcmd,stringstyle=\color{nlfg},keepspaces=true]!parse -lang=Eng -cat=Prop "Ahmed is quiet and paints" | put_tree -compute!\\
+        {\color{logicfg}\ttfamily and (q a) (p a)}
+    }
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{Option 3: Use Haskell}
+    {\centering
+    \begin{tikzpicture}[xscale=1.2]
+        \tikzset{ll/.style={line width=0.7pt}}
+        \draw[ll,fill=nlbg] (-5.0,-0.5) rectangle (-3.0,0.5);
+        \draw[ll,fill=nlbg!50!logicbg] (-1.0,-0.5) rectangle (1.0,0.5);
+        \draw[ll,fill=logicbg] (3.0,-0.5) rectangle (5.0,0.5);
+        \node[] at (-4.0, 0.0) {$\text{String}_\text{Eng}$};
+        \node[] at (0.0, 0.0) {$\text{AST}$};
+        \node[] at (4.0, 0.0) {$\text{Haskell}$};
+        \draw[ll, ->] (-3,0) to node[above]{\footnotesize \ttfamily parse} (-1,0);
+        \draw[ll, ->] (1,0) to node[above]{\footnotesize process with} (3,0);
+    \end{tikzpicture}\par}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{Option 4: Use Logic Development System}
+    {\centering
+    \begin{tikzpicture}[xscale=1.2]
+        \tikzset{ll/.style={line width=0.7pt}}
+        \draw[ll,fill=nlbg] (-5.0,-0.5) rectangle (-3.0,0.5);
+        \draw[ll,fill=nlbg!50!logicbg] (-1.0,-0.5) rectangle (1.0,0.5);
+        \draw[ll,fill=logicbg] (3.0,-0.5) rectangle (5.0,0.5);
+        \node[] at (-4.0, 0.0) {$\text{String}_\text{Eng}$};
+        \node[] at (0.0, 0.0) {$\text{AST}$};
+        \node[] at (4.0, 0.0) {$\text{MMT}$};
+        \draw[ll, ->] (-3,0) to node[above]{\footnotesize \ttfamily parse} (-1,0);
+        \draw[ll, ->] (1,0) to node[above]{\footnotesize process with} (3,0);
+    \end{tikzpicture}\par}
+\end{frame}

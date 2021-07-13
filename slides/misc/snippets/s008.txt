@@ -1,0 +1,9 @@
+abstract Grammar = {
+  -- ...
+  fun
+    and_S : S -> S -> S;
+    act : Agent -> Verb -> S;
+    ahmed : Agent;
+    paint : Verb;
+    and_V : Verb->Verb->Verb;
+}
