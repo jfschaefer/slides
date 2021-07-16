@@ -1,0 +1,9 @@
+view Semantics : Grammar -> Logic =
+    S = o
+    NP = \iota
+    VP = \iota \raa o
+    and_S = \lambdax,y.x\wedgey
+    makeS = \lambdan,v.v n
+    ahmed = a
+    paint = p
+    // ...

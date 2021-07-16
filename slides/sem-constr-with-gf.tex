@@ -1,18 +1,43 @@
-\begin{frame}[fragile]
-    \frametitle{Option 1: Concrete Syntax for Logic}
-    
+\def\gfsemconstrpicAST{$\text{AST}$}
+\def\gfsemconstrpicLOG{$\text{String}_\text{Logic}$}
+\def\gfsemconstrpicArrow{\ttfamily linearize}
+\def\gfsemconstrpic{
     {\centering
-    \begin{tikzpicture}[xscale=1.2]
-        \tikzset{ll/.style={line width=0.7pt}}
-        \draw[ll,fill=nlbg] (-5.0,-0.5) rectangle (-3.0,0.5);
-        \draw[ll,fill=nlbg!50!logicbg] (-1.0,-0.5) rectangle (1.0,0.5);
-        \draw[ll,fill=logicbg] (3.0,-0.5) rectangle (5.0,0.5);
-        \node[] at (-4.0, 0.0) {$\text{String}_\text{Eng}$};
-        \node[] at (0.0, 0.0) {$\text{AST}$};
-        \node[] at (4.0, 0.0) {$\text{String}_\text{Logic}$};
-        \draw[ll, ->] (-3,0) to node[above]{\footnotesize \ttfamily parse} (-1,0);
-        \draw[ll, ->] (1,0) to node[above]{\footnotesize \ttfamily linearize} (3,0);
-    \end{tikzpicture}\par}
+        \begin{tikzpicture}[xscale=1.2]
+            \tikzset{ll/.style={line width=0.7pt}}
+            \draw[ll,fill=nlbg] (-5.0,-0.5) rectangle (-3.0,0.5);
+            \draw[ll,fill=nlbg!50!logicbg] (-1.0,-0.5) rectangle (1.0,0.5);
+            \draw[ll,fill=logicbg] (3.0,-0.5) rectangle (5.0,0.5);
+            \node[] at (-4.0, 0.0) {$\text{String}_\text{Eng}$};
+            \node[] at (0.0, 0.0) {\gfsemconstrpicAST};
+            \node[] at (4.0, 0.0) {\gfsemconstrpicLOG};
+            \draw[ll, ->] (-3,0) to node[above]{\footnotesize \ttfamily parse} (-1,0);
+            \draw[ll, ->] (1,0) to node[above]{\footnotesize \gfsemconstrpicArrow} (3,0);
+        \end{tikzpicture}\par}
+}
+
+\begin{frame}
+    \frametitle{Method of Fragments}
+    \textbf{How can we implement such fragments (with the help of GF)?}
+
+    \vspace{0.5em}
+    \begin{itemize}
+        \item Use GF for parsing
+        \item 4 ideas how to continue
+    \end{itemize}
+
+    \vspace{1.5em}
+
+    \def\gfsemconstrpicAST{$\text{AST}$}
+    \def\gfsemconstrpicArrow{???}
+    \def\gfsemconstrpicLOG{???}
+    \gfsemconstrpic{}
+\end{frame}
+
+
+\begin{frame}[fragile]
+    \frametitle{Idea 1: Concrete Syntax for Logic}
+    \gfsemconstrpic{}
 
     \vspace{0.5em}
     \only<1-2>{
@@ -52,20 +77,11 @@
 \end{frame}
 
 \begin{frame}[fragile]
-    \frametitle{Option 2: Abstract Syntax for Logic}
-    {\centering
-    \begin{tikzpicture}[xscale=1.2]
-        \tikzset{ll/.style={line width=0.7pt}}
-        \draw[ll,fill=nlbg] (-5.0,-0.5) rectangle (-3.0,0.5);
-        \draw[ll,fill=nlbg!50!logicbg] (-1.0,-0.5) rectangle (1.0,0.5);
-        \draw[ll,fill=logicbg] (3.0,-0.5) rectangle (5.0,0.5);
-        \node[] at (-4.0, 0.0) {$\text{String}_\text{Eng}$};
-        \node[] at (0.0, 0.0) {$\text{AST}_\text{NL}$};
-        \node[] at (4.0, 0.0) {$\text{AST}_\text{Logic}$};
-        \draw[ll, ->] (-3,0) to node[above]{\footnotesize \ttfamily parse} (-1,0);
-        \draw[ll, ->] (1,0) to node[above]{\footnotesize \ttfamily pt -compute} (3,0);
-    \end{tikzpicture}\par}
-
+    \frametitle{Idea 2: Abstract Syntax for Logic}
+    \def\gfsemconstrpicAST{$\text{AST}_\text{NL}$}
+    \def\gfsemconstrpicArrow{\ttfamily pt -compute}
+    \def\gfsemconstrpicLOG{$\text{AST}_\text{Logic}$}
+    \gfsemconstrpic{}
 
     \begin{columns}[t]
         \begin{column}{0.42\textwidth}
@@ -89,34 +105,83 @@
     }
 \end{frame}
 
-\begin{frame}[fragile]
-    \frametitle{Option 3: Use Haskell}
-    {\centering
-    \begin{tikzpicture}[xscale=1.2]
-        \tikzset{ll/.style={line width=0.7pt}}
-        \draw[ll,fill=nlbg] (-5.0,-0.5) rectangle (-3.0,0.5);
-        \draw[ll,fill=nlbg!50!logicbg] (-1.0,-0.5) rectangle (1.0,0.5);
-        \draw[ll,fill=logicbg] (3.0,-0.5) rectangle (5.0,0.5);
-        \node[] at (-4.0, 0.0) {$\text{String}_\text{Eng}$};
-        \node[] at (0.0, 0.0) {$\text{AST}$};
-        \node[] at (4.0, 0.0) {$\text{Haskell}$};
-        \draw[ll, ->] (-3,0) to node[above]{\footnotesize \ttfamily parse} (-1,0);
-        \draw[ll, ->] (1,0) to node[above]{\footnotesize process with} (3,0);
-    \end{tikzpicture}\par}
+\begin{frame}
+    \frametitle{All 4 Ideas}
+    \begin{enumerate}
+        \item \textbf{Use another concrete syntax:}\par
+            \gfsemconstrpic{}
+        \item \textbf{Use another abstract syntax:}\par
+            \def\gfsemconstrpicAST{$\text{AST}_\text{NL}$}
+            \def\gfsemconstrpicArrow{\ttfamily pt -compute}
+            \def\gfsemconstrpicLOG{$\text{AST}_\text{Logic}$}
+            \gfsemconstrpic{}
+        \pause
+        \item \textbf{Use a general-purpose programming language:}\par
+            \def\gfsemconstrpicAST{$\text{AST}$}
+            \def\gfsemconstrpicArrow{process with}
+            \def\gfsemconstrpicLOG{Haskell}
+            \gfsemconstrpic{}
+        \pause
+        \item \textbf{Use a logic development framework:}\par
+            \def\gfsemconstrpicAST{$\text{AST}$}
+            \def\gfsemconstrpicArrow{process with}
+            \def\gfsemconstrpicLOG{MMT}
+            \gfsemconstrpic{}
+    \end{enumerate}
 \end{frame}
 
-\begin{frame}[fragile]
-    \frametitle{Option 4: Use Logic Development System}
-    {\centering
-    \begin{tikzpicture}[xscale=1.2]
-        \tikzset{ll/.style={line width=0.7pt}}
-        \draw[ll,fill=nlbg] (-5.0,-0.5) rectangle (-3.0,0.5);
-        \draw[ll,fill=nlbg!50!logicbg] (-1.0,-0.5) rectangle (1.0,0.5);
-        \draw[ll,fill=logicbg] (3.0,-0.5) rectangle (5.0,0.5);
-        \node[] at (-4.0, 0.0) {$\text{String}_\text{Eng}$};
-        \node[] at (0.0, 0.0) {$\text{AST}$};
-        \node[] at (4.0, 0.0) {$\text{MMT}$};
-        \draw[ll, ->] (-3,0) to node[above]{\footnotesize \ttfamily parse} (-1,0);
-        \draw[ll, ->] (1,0) to node[above]{\footnotesize process with} (3,0);
-    \end{tikzpicture}\par}
+
+\begin{frame}
+    \frametitle{MMT}
+    \begin{itemize}
+        \item Tool for logic development and knowledge representation
+        \item ``Bring your own logic''
+        \item Implement syntax, semantics, calculi
+        \item Lots of logics already implemented\com{LATIN2 project}
+        \item Supports type theory underlying GF
+        \item Developed by KWARC group\com{we are biased towards MMT}
+        \item Three steps:
+            \begin{enumerate}
+                \item Represent abstract syntax in MMT\com{is automated}
+                \item Declare target logic
+                \item Declare mapping from 1.\ to 2.
+            \end{enumerate}
+    \end{itemize}
 \end{frame}
+
+\begin{frame}
+    \frametitle{MMT}
+    \begin{enumerate}
+        \item {\only<1>{\color{hlfg}\bfseries} Represent abstract syntax in MMT}\com{is automated}
+        \item {\only<2-3>{\color{hlfg}\bfseries} Declare target logic}
+        \item {\only<4>{\color{hlfg}\bfseries} Declare mapping from 1.\ to 2.}
+    \end{enumerate}
+
+    \begin{columns}[t]
+        \only<1>{
+            \begin{column}{0.48\textwidth}
+                \footnotesize\lstinputlisting[linewidth=6.0cm,language=GF]{slides/misc/snippets/s012.txt}
+            \end{column}
+            \begin{column}{0.48\textwidth}
+                \footnotesize\lstinputlisting[linewidth=6.0cm,language=MMT]{slides/misc/snippets/s013.txt}
+            \end{column}
+        }
+        \only<2-3>{
+            \begin{column}{0.43\textwidth}
+                \footnotesize\lstinputlisting[linewidth=6.0cm,language=MMT]{slides/misc/snippets/s014.txt}
+            \end{column}
+            \begin{column}{0.53\textwidth}
+                \only<3>{
+                    \footnotesize\lstinputlisting[linewidth=6.0cm,language=MMT]{slides/misc/snippets/s015.txt}
+                }
+            \end{column}
+        }
+        \only<4>{
+            \begin{column}{0.5\textwidth}
+                \footnotesize\lstinputlisting[linewidth=6.0cm,language=MMT]{slides/misc/snippets/s016.txt}
+            \end{column}
+        }
+    \end{columns}
+    \vspace{10cm}\par
+\end{frame}
+

@@ -50,4 +50,27 @@
 
 \input{slides/sem-constr-with-gf.tex}
 
+\begin{frame}
+    \frametitle{GLIF: The Grammatical Logical Inference Framework}
+    \centering
+    \only<1>{
+        \disablepart{elpibox}
+        \disablepart{sempragarrow}
+    }
+    \includestandalone[width=0.9\textwidth]{fig/glif-architecture}
+
+    \vspace{1.5em}
+    \onslide<2>{
+        \setlength{\arrayrulewidth}{1.0pt}
+        \begin{tabular}{r@{\hskip3pt} l l}
+            \vspace{0.1em} &\textbf{GF}   &{(= \textbf{grammar} framework)}\\
+            \vspace{0.1em}+&\textbf{MMT}  &{(= \textbf{logic} framework)}\\
+            \vspace{0.1em}+&\textbf{ELPI} &{(= \textbf{inference} framework)}\\
+            \hline
+            \\[-1em]
+            =&\textbf{GLIF} &{(= \textbf{natural language understanding} framework)}\\
+        \end{tabular}
+    }
+\end{frame}
+
 \end{document}

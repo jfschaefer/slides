@@ -1,9 +1,14 @@
 abstract Grammar = {
-  -- ...
+  cat
+    S;
+    VP;
+    NP;
   fun
-    and_S : S -> S -> S;
     makeS : NP -> VP -> S;
+}
+
+abstract More = Grammar ** {
+  fun
     ahmed : NP;
     paint : VP;
-   -- ...
 }

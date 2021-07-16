@@ -1,0 +1,14 @@
+theory Grammar =
+
+    S  : type
+    VP : type
+    NP : type
+
+    makeS : NP \raa VP \raa S
+
+
+theory More =
+    include Grammar
+    ahmed : NP
+    paint : VP
+

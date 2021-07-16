@@ -2,8 +2,8 @@ concrete GrammarLogic of Grammar = {
   -- ...
   lin
     and_S s1 s2 = s1 ++ "\wedge" ++ s2;
-    act a v = v ++ "(" ++ a ++ ")";
+    makeS np vp = vp ++ "(" ++ np ++ ")";
     ahmed = "a";
     paint = "p";
-    and_V p q = "(\lambdax."++p++"(x)"++
+    and_VP p q = "(\lambdax."++p++"(x)"++
                      "\wedge"++q++"(x))"; }

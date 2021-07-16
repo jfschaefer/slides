@@ -1,0 +1,10 @@
+theory Logic =
+    o : type    // propositions
+    \neg : o \raa o
+    \wedge : o \raa o \raa o
+    \vee : o \raa o \raa o
+      = \lambdaa,b.\neg (\neg a \wedge \neg b)
+
+    \iota : type    // terms
+    a : \iota
+    p : \iota \raa o

@@ -1,0 +1,11 @@
+theory Logic : ur:?LF =
+    o   : type \DD      // propositions \DD
+    not : o \raa o      \OD # \neg 1 prec 100 \DD
+    and : o \raa o \raa o \OD # 1 \wedge 2 prec 80 \DD
+    or  : o \raa o \raa o \OD # 1 \vee 2 prec 60 \OD
+        = [a,b] \neg (\neg a \wedge \neg b) \DD
+
+    \iota : type \DD       // terms \DD
+    a : \iota \DD
+    p : \iota \raa o \DD
+\MD

@@ -1,9 +1,9 @@
 abstract Grammar = {
   -- ...
   fun
-    and_S : S -> S -> S;
-    act : Agent -> Verb -> S;
-    ahmed : Agent;
-    paint : Verb;
-    and_V : Verb->Verb->Verb;
+    and_S  : S -> S -> S;
+    makeS  : NP -> VP -> S;
+    ahmed  : NP;
+    paint  : VP;
+    and_VP : VP -> VP -> VP;
 }
