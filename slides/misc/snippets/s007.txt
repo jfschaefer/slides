@@ -2,7 +2,7 @@ concrete GrammarLogic of Grammar = {
   -- ...
   lin
     and_S s1 s2 = s1 ++ "\wedge" ++ s2;
-    makeS a v = v ++ "(" ++ a ++ ")";
+    makeS n v = v ++ "(" ++ n ++ ")";
     ahmed = "a";
     paint = "p";
   -- ...

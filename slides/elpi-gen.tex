@@ -44,12 +44,12 @@
     \end{minipage}
 
     \vspace{1.5em}
-    \begin{lstlisting}[language=MMT]
+    \begin{lstlisting}[language=MMT,keepspaces=true]
     // \vdashX is type of proofs for X (judgments as types)
     \vdash : o \raa type
 
-    \wedgeEl : \PiAo\PiBo \vdashA\wedgeB \raa \vdashA
-    \veeE  : \PiAo\PiBo\PiCo \vdashA\veeB \raa (\vdashA \raa \vdashC) \raa (\vdashB \raa \vdashC) \raa \vdashC
+    \wedgeEl : \PiAo \PiBo  \vdashA\wedgeB \raa \vdashA
+    \veeE  : \PiAo \PiBo \PiCo  \vdashA\veeB \raa (\vdashA \raa \vdashC) \raa (\vdashB \raa \vdashC) \raa \vdashC
     \end{lstlisting}
 \end{frame}
 
@@ -80,8 +80,8 @@
 
     \begin{block}{{\bfseries Example:} Or-Elimination}
     \makebox[1.2cm][l]{LF:}\begin{minipage}{0.85\textwidth}
-        \lstinline[keepspaces=true,language=MMT]|\veeE : \PiAo\PiBo\PiCo \vdashA\veeB \raa (\vdashA \raa \vdashC) \raa (\vdashB \raa \vdashC) \raa \vdashC|
-    \end{minipage}
+    \lstinline[keepspaces=true,language=MMT]|\veeE : \PiAo\PiBo\PiCo \vdashA\veeB \raa (\vdashA \raa \vdashC) \raa (\vdashB \raa \vdashC) \raa \vdashC|
+\end{minipage}
 
     \vspace{0.5em}
     \makebox[1.2cm][l]{ELPI:}\lstinline[language=ELPI,keepspaces=true]|ded C :- ded (or A B), ded A => ded C, ded B => ded C.|
