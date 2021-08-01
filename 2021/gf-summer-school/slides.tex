@@ -111,20 +111,66 @@
 % \input{slides/glif-example-CNL}
 \input{slides/glif-elpi-short}
 
+\begin{frame}
+    \frametitle{Example: ``pairwise disjoint''}
+    \newcommand\ds{\text{disjoint}}
+    \str{$A$, $B$ and $C$ are pairwise disjoint}\\
+    {\color{logicfont} $\ds(A,B) \wedge \ds(A,C) \wedge \ds(B,C)$}
+    \vspace{1em}
+
+    \begin{itemize}
+        \item \textbf{Approach 1}\\Semantics construction with lots of $\lambda$s:\com{difficult!}
+            {\hspace{2em}\color{logicfont} $\ds(A,B) \wedge \ds(A,C) \wedge \top \wedge \ds(B,C) \wedge \top \wedge \top\wedge\top$}\\
+                Simplify with ELPI:\\
+            {\hspace{2em}\color{logicfont} $\ds(A,B) \wedge \ds(A,C) \wedge \ds(B,C)$}
+        \pause
+        \item \textbf{Approach 2}\\Semantics construction creates preliminary expression:\\
+            {\hspace{2em}\color{logicfont}\ttfamily relNT disjoint (cons A (cons B (cons C nil))) }\\
+                Convert with ELPI:\com{easier}
+            {\hspace{2em}\color{logicfont} $\ds(A,B) \wedge \ds(A,C) \wedge \ds(B,C)$}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{The ``Normal'' GLIF Pipeline}
+    \includestandalone[width=\textwidth]{fig/glif-architecture}
+\end{frame}
+
 \input{slides/glif-example-epistemic-qa.tex}
 
 \input{slides/glif-example-translation.tex}
 
-% indicate elpi gen for example
+\input{slides/glif-elpi-gen-family-sketch.tex}
 
-% show last slide of 2021/sigmathling
+\input{slides/glif-example-sage-short}
 
-% talk about mathematical language
-% very briefly: GLForTheL
-% then SageMath
+\begin{frame}
+    \frametitle{The ``Normal'' GLIF Pipeline}
+    \includestandalone[width=\textwidth]{fig/glif-architecture}
+\end{frame}
 
-% Tableau machine?
+\input{slides/glif-example-tab-machine}
 
+\begin{frame}
+    \frametitle{Summary: A GLIF Specification}
+    \includestandalone[width=\textwidth]{fig/glif-spec}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Conclusion}
+    \vspace{1em}
+    \begin{itemize}
+        \item GLIF = GF + MMT + ELPI
+        \item Prototyping natural language understanding
+        \item Access via Jupyter notebooks
+        \item We use it for teaching
+    \end{itemize}
+
+    \vspace{2em}
+    \centering
+    \includestandalone[width=0.7\textwidth]{fig/glif-spec}\par
+\end{frame}
 
 \appendix
 
