@@ -88,14 +88,21 @@
 \begin{frame}
     \frametitle{GLIF: The Grammatical Logical Inference Framework}
     \centering
-    \only<1>{
+    \only<1-3>{
         \disablepart{elpibox}
         \disablepart{sempragarrow}
     }
     \includestandalone[width=0.9\textwidth]{fig/glif-architecture}
 
+    \only<2>{
+        \begin{tikzpicture}[overlay,remember picture]
+            \fill[gray!80,opacity=0.8] (current page.north west) rectangle (current page.south east);
+            \node at (current page.center) { \includegraphics[width=0.85\textwidth]{img/screenshot-glif-2.png} };
+        \end{tikzpicture}
+    }
+
     \vspace{1.5em}
-    \onslide<2>{
+    \onslide<4>{
         \setlength{\arrayrulewidth}{1.0pt}
         \begin{tabular}{r@{\hskip3pt} l l}
             \vspace{0.1em} &\textbf{GF}   &{(= \textbf{grammar} framework)}\\
@@ -136,6 +143,7 @@
     \includestandalone[width=\textwidth]{fig/glif-architecture}
 \end{frame}
 
+\enablepart{showscreenshot}
 \input{slides/glif-example-epistemic-qa.tex}
 
 \input{slides/glif-example-translation.tex}

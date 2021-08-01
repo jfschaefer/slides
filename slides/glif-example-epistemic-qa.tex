@@ -1,3 +1,4 @@
+\providedisablepart{showscreenshot}
 \begin{frame}[fragile]
     \def\mybox#1{\square_{#1}}
     \def\mydia#1{\lozenge_{#1}}
@@ -23,4 +24,10 @@
             else &$\leadsto$\quad maybe
         \end{tabular}
     \end{table}
+    \ifpart{showscreenshot}{\only<2>{
+        \begin{tikzpicture}[overlay,remember picture]
+            \fill[gray!80,opacity=0.8] (current page.north west) rectangle (current page.south east);
+            \node at (current page.center) { \includegraphics[width=0.9\textwidth]{img/screenshot-glif-4.png} };
+        \end{tikzpicture}
+    }}{}
 \end{frame}

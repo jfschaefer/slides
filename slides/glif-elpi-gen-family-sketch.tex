@@ -1,3 +1,4 @@
+\providedisablepart{showscreenshot}
 \begin{frame}
     \frametitle{Prover Generation}
     \begin{itemize}
@@ -16,4 +17,10 @@ contradiction() :- provable(male(X)), provable(fem(X)).\\
         }
         \item Extra predicates to guide proof search\com{iterative deepening, ...}
     \end{itemize}
+    \ifpart{showscreenshot}{\only<3>{
+        \begin{tikzpicture}[overlay,remember picture]
+            \fill[gray!80,opacity=0.8] (current page.north west) rectangle (current page.south east);
+            \node at (current page.center) { \includegraphics[width=0.95\textwidth]{img/screenshot-glif-6.png} };
+        \end{tikzpicture}
+    }}{}
 \end{frame}
