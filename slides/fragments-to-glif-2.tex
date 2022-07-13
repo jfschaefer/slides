@@ -2,8 +2,14 @@
 
 \input{slides/fragments-need-prototyping.tex}
 
-\begin{frame}
+\begin{frame}[fragile]
     \frametitle{NLU Prototyping}
+    \begin{lstlisting}[mathescape,keywords=translate,keywordstyle=\bf,
+                       morestring={[d]"}, stringstyle=\it,showstringspaces=false]
+> translate "Every student paints and is quiet."
+$\forall$x.s(x)$\Rightarrow$(p(x)$\wedge$q(x))
+    \end{lstlisting}
+    \vspace{1em}
     \begin{itemize}
         \item Traditionally done in Prolog/Haskell
         \begin{itemize}
@@ -13,7 +19,7 @@
         \begin{itemize}
             \item[$\raa$] only partial solutions exist
         \end{itemize}
-        \item Can we combine existing partial solutions?\com{Research Question}
+        \item Can we combine existing partial solutions? % \com{Research Question}
         \begin{itemize}
             \item[$\leadsto$] GLIF
         \end{itemize}

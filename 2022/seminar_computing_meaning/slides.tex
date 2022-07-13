@@ -1,0 +1,112 @@
+\documentclass[aspectratio=169]{beamer}
+\usepackage{standalone}
+
+\usepackage{stmaryrd}
+\usepackage{listings}
+\usepackage{bussproofs}
+
+\usepackage[hyperref=auto,style=alphabetic,backend=bibtex]{biblatex}
+\addbibresource{kwarcpubs.bib}
+\addbibresource{extpubs.bib}
+\addbibresource{extcrossrefs.bib}
+\usepackage{appendixnumberbeamer}
+\usepackage{tikz}
+\usepackage{tikz-qtree}
+\usetikzlibrary{arrows.meta}
+\usetikzlibrary{mmt}
+\usetikzlibrary{docicon}
+
+\usetheme{Pittsburgh}
+\setbeamertemplate{footline}[frame number]
+\setbeamertemplate{navigation symbols}{}
+\usecolortheme{beaver}
+\setbeamertemplate{frametitle}[default][left]
+% \setbeamersize{text margin left=3em}
+
+\usepackage{utils/colors}
+\usepackage[forbeamer]{utils/basic}
+\usepackage{utils/operators}
+\usepackage{utils/mylstmisc}
+\usepackage{utils/lstmmt}
+
+\lstset{basicstyle=\ttfamily}
+\lstset{commentstyle=\itshape\color{commentfont}}
+
+\title{GLIF: A declarative framework for Montague-style natural language semantics}
+
+\author{Jan Frederik Schaefer}
+\institute{FAU Erlangen-N\"urnberg/KWARC}
+\date{\textbf{Seminar: Computing Meaning}\\Hildesheim\\July 21, 2022}
+
+\begin{document}
+\frame\titlepage
+
+
+\begin{frame}
+    \frametitle{whoami}
+    \begin{itemize}
+        \item PhD student in the KWARC group (Erlangen)
+            \com{Knowledge representation}
+        \item We teach a lecture in \emph{logic-based natural language semantics}
+        \item Wanted more hands-on experience
+        \item $\leadsto$ new framework: GLIF\com{Grammar, Logic, Inference}
+    \end{itemize}
+\end{frame}
+
+% \input{slides/deep-nlu}
+
+\input{slides/fragments-to-glif-2}
+
+{
+    \enablepart{showjupyter}
+    \disablepart{showepistemicexample}
+    \disablepart{mentionprovergen}
+    \input{slides/glif-components}
+}
+
+% \input{slides/glif-example-tab-machine}
+% 
+% \input{slides/glif-example-translation}
+% 
+% 
+% \begin{frame}
+%     \frametitle{GLIF Summary}
+%     \includestandalone[width=\textwidth]{fig/glif-architecture}
+% \end{frame}
+% 
+% \begin{frame}
+%     \frametitle{Supporting the Semantic/Pragmatic Analysis}
+%     Observation:
+%     \begin{itemize}
+%         \item Parsing and semantics construction are based on specialized frameworks
+%         \item ELPI is a more general programming language
+%     \end{itemize}
+%     
+%     \vspace{1em}
+%     Can we do something more specialized?
+%     \begin{itemize}
+%         \item Not really -- there is no ``standard recipe'' for
+%             semantic/pragmatic analysis
+%         \item But: It usually involves inferential reasoning
+%     \end{itemize}
+% 
+%     \vspace{2em}
+%     \centering
+%     \bfseries Let's generate provers!\par
+% \end{frame}
+% 
+% \input{slides/elpi-gen}
+% 
+% \begin{frame}
+%     \frametitle{Conclusion: Prototyping NLU Pipelines}
+%     \includestandalone[width=\textwidth]{fig/glif-spec}
+% \end{frame}
+
+\appendix
+
+\begin{frame}[allowframebreaks,t]
+    \frametitle{References}
+    \printbibliography
+\end{frame}
+
+\end{document}
