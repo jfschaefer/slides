@@ -32,30 +32,69 @@
 \lstset{basicstyle=\ttfamily}
 \lstset{commentstyle=\itshape\color{commentfont}}
 
-\title{GLIF: A declarative framework for Montague-style natural language semantics}
+\title{\textit{What does it mean?}\\A framework for prototyping Montague-style semantics}
 
 \author{Jan Frederik Schaefer}
 \institute{FAU Erlangen-N\"urnberg/KWARC}
 \date{\textbf{Seminar: Computing Meaning}\\Hildesheim\\July 21, 2022}
 
 \begin{document}
-\frame\titlepage
+\begin{frame}[fragile, noframenumbering]
+    \textbf{What does it mean? A framework for prototyping Montague-style semantics}
+    \small
 
+    \begin{block}{}
+        \parbox{\linewidth}{
+            One approach to study the meaning of natural language is to translate
+            utterances to logical expressions, which have well-defined semantics and allow
+            for rigorous inference.  Richard Montague, a well-known pioneer of this
+            approach, described the translation of a particular subset of English into
+            logic in great detail.  Over the years, there have been many similar
+            publications that propose a novel way to translate sentences into a logic
+            (often first-order logic, but more obscure logics are also common).  Sometimes,
+            the approach was extended with pragmatic analysis based on logical inference.
+
+            We claim that research (and education) in this direction could benefit from
+            more prototyping to test and demonstrate new ideas.
+
+            In this talk, I will present GLIF, a declarative framework for prototyping the
+            translation of natural language to logics.  GLIF combines existing, specialized
+            frameworks that solve part of the problem: the Grammatical Framework
+            (development of natural language grammars), MMT (logic development) and ELPI
+            (inference).  These frameworks can be connected seamlessly because of their
+            compatible underlying logical frameworks.  We successfully use GLIF in a
+            lecture on symbolic natural language semantics.
+        }
+    \end{block}
+\end{frame}
+
+\frame\titlepage
 
 \begin{frame}
     \frametitle{whoami}
     \begin{itemize}
         \item PhD student in the KWARC group (Erlangen)
             \com{Knowledge representation}
-        \item We teach a lecture in \emph{logic-based natural language semantics}
-        \item Wanted more hands-on experience
-        \item $\leadsto$ new framework: GLIF\com{Grammar, Logic, Inference}
+        \item Supervisor: Michael Kohlhase
+        \item My interest: Mathematical language, precise semantics extraction
+        \item Background for this talk:
+            \begin{itemize}
+                \item We teach a lecture in \emph{logic-based natural language semantics}
+                \item Wanted more hands-on experience
+                \item $\leadsto$ new framework: GLIF\com{Grammar, Logic, Inference}
+            \end{itemize}
     \end{itemize}
 \end{frame}
 
 % \input{slides/deep-nlu}
 
+
 \input{slides/fragments-to-glif-2}
+
+\setlength\pdfpagewidth{10cm}%
+\setlength\pdfpageheight{9cm}%
+\setlength\textwidth{8cm}
+% \newgeometry{left=0.1cm,bottom=0.1cm}
 
 {
     \enablepart{showjupyter}

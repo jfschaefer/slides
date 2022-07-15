@@ -4,12 +4,17 @@
 
 \begin{frame}[fragile]
     \frametitle{NLU Prototyping}
-    \begin{lstlisting}[mathescape,keywords=translate,keywordstyle=\bf,
-                       morestring={[d]"}, stringstyle=\it,showstringspaces=false]
-> translate "Every student paints and is quiet."
-$\forall$x.s(x)$\Rightarrow$(p(x)$\wedge$q(x))
-    \end{lstlisting}
-    \vspace{1em}
+%     \begin{lstlisting}[mathescape,keywords=translate,keywordstyle=\bf,
+%                        morestring={[d]"}, stringstyle=\it,showstringspaces=false]
+    \begin{center}
+\fbox{\parbox{0.7\textwidth}{{\ttfamily
+> \textbf{translate} {\color{nlfont}"Every student paints and is quiet."}\\
+\color{logicfont}$\forall x.s(x)\Rightarrow(p(x)\wedge q(x))$
+}}}
+    \end{center}
+
+%     \end{lstlisting}
+    \vspace{1.5em}
     \begin{itemize}
         \item Traditionally done in Prolog/Haskell
         \begin{itemize}

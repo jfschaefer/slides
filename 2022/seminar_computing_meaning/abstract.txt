@@ -1,0 +1,23 @@
+What does it mean? A framework for prototyping Montague-style semantics
+
+
+One approach to study the meaning of natural language is to translate
+utterances to logical expressions, which have well-defined semantics and allow
+for rigorous inference.  Richard Montague, a well-known pioneer of this
+approach, described the translation of a particular subset of English into
+logic in great detail.  Over the years, there have been many similar
+publications that propose a novel way to translate sentences into a logic
+(often first-order logic, but more obscure logics are also common).  Sometimes,
+the approach was extended with pragmatic analysis based on logical inference.
+
+We claim that research (and education) in this direction could benefit from
+more prototyping to test and demonstrate new ideas.
+
+In this talk, I will present GLIF, a declarative framework for prototyping the
+translation of natural language to logics.  GLIF combines existing, specialized
+frameworks that solve part of the problem: the Grammatical Framework
+(development of natural language grammars), MMT (logic development) and ELPI
+(inference).  These frameworks can be connected seamlessly because of their
+compatible underlying logical frameworks.  We successfully use GLIF in a
+lecture on symbolic natural language semantics.
+
