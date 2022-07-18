@@ -1,0 +1,35 @@
+\begin{frame}
+    \frametitle{Making it a Science}
+    \centering
+    \begin{tikzpicture}[yscale=0.9]
+        \draw[line width=1.5pt,rounded corners=.3cm,fill=black!10] (-1.9,-1) rectangle (1.5,3);
+
+        \node[fill=nlbg] (nl) at (0,0) {$\mathcal{NL}$};
+        \node[fill=logicbg] (L) at (0,2) {$\mathcal{FL}$};
+        \node (M) at (0,4) {$\langle \mathcal{FL}, \mathcal{K}, \models\rangle$};
+        \node (Inf) at (6,0) {$\models_{\mathcal{T}}$};
+        \node (C) at (6,2) {$\vdash_\mathcal{C}$};
+        \node (folg) at (6,4) {$\models$};
+        \draw[->] (nl) -- node[left] {\begin{tabular}{c}Sem.\\Constr.\end{tabular}} (L);
+
+        \draw[->] (L) -- (M);
+        \draw[dotted,->] (nl) -- node[above] {induces} (Inf);
+        \draw[dotted,->] (M) -- node[above] {induces} (folg);
+        \draw[->] (L) -- node[above] {calculus} (C);
+        \draw[<->] (folg) -- node[left]{$\models \; \equiv \; \vdash_\mathcal{C}$?} (C);
+        \draw[<->] (C) -- node[left] {$\models_{\mathcal{T}} \; \equiv \; \vdash_\mathcal{C}$?} (Inf);
+    \end{tikzpicture}
+
+    \vspace{1em}
+    \begin{enumerate}
+        \item Test: Does \str{Ahmed and Berta paint.} $\models_\mathcal{T}$ \str{Berta paints.}?
+        \item Model prediction: Yes, because {\color{logicfont}$p(a) \wedge p(b)$} $\vdash_\mathcal{C}$ {\color{logicfont}p(b)}.
+        \item Correct result: Ask people.
+    \end{enumerate}
+%     \vspace{1.2em}
+%     \begin{tabular}{r r c l}
+%         & \str{Ahmed and Berta paint.} & $\stackrel?{\models_\mathcal{T}}$ & \str{Berta paints.}\\[6pt]
+%         & {\color{logicfont}$p(a) \wedge p(b)$} & $\vdash_\mathcal{C}$ & {\color{logicfont}p(b)}
+%     \end{tabular}
+\end{frame}
+

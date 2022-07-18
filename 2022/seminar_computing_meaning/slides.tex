@@ -17,7 +17,8 @@
 \usetikzlibrary{docicon}
 
 \usetheme{Pittsburgh}
-\setbeamertemplate{footline}[frame number]
+% \setbeamertemplate{footline}[frame number]
+\setbeamertemplate{footline}{\hfill\insertframenumber\,/\,\inserttotalframenumber\quad\strut}
 \setbeamertemplate{navigation symbols}{}
 \usecolortheme{beaver}
 \setbeamertemplate{frametitle}[default][left]
@@ -86,25 +87,55 @@
     \end{itemize}
 \end{frame}
 
-% \input{slides/deep-nlu}
+\begin{frame}
+    \frametitle{Natural Language Semantics (Symbolic)}
+    \textbf{For this talk:}\\
+    \hspace{1.5em}Translating natural language into a formal semantic representation (logic).
 
+    \vspace{0.5em}
+    \textbf{Example:}\\
+    \hspace{1.5em}\str{Every student paints and is quiet.} $\;\;\leadsto\;\;$ {\color{logicfont}$\forall x.s(x)\Rightarrow(p(x)\wedge q(x))$}
+    
+    \vspace{0.5em}
+    \textbf{Rule-based (no ML):}\\
+    \hspace{1.5em}Parsing $\;\;\leadsto\;\;$ semantics construction $\;\;\leadsto\;\;$ inference.
+
+    \vspace{1.0em}
+    \centering
+    \begin{tikzpicture}
+        \node (nbnd) at (1.2,0.7) {useless};
+        \node (bnd) at (3.5,0.7) {\begin{tabular}{c}also\\interesting\end{tabular}};
+        \node (bd) at (3.5,2.0) {AI-complete?};
+        \node (nbd) at (1.2,2.0) {\begin{tabular}{c}this\\work\end{tabular}};
+        \draw[->,very thick] (-0.3,0) -- (5,0);
+        \draw[->,very thick] (0,-0.3) -- (0,2.7);
+        \node at (4.0, -0.3) {\itshape breadth};
+        \node[rotate=90] at (-0.3,1.8) {\itshape depth};
+    \end{tikzpicture}
+\end{frame}
 
 \input{slides/fragments-to-glif-2}
 
-\setlength\pdfpagewidth{10cm}%
-\setlength\pdfpageheight{9cm}%
-\setlength\textwidth{8cm}
-% \newgeometry{left=0.1cm,bottom=0.1cm}
-
 {
-    \enablepart{showjupyter}
+    \enablepart{sometimesnarrow}
+    \disablepart{showjupyter}
     \disablepart{showepistemicexample}
     \disablepart{mentionprovergen}
+    % \disablepart{showspa}
     \input{slides/glif-components}
 }
 
-% \input{slides/glif-example-tab-machine}
-% 
+\disablepart{aselpientro}
+\input{slides/glif-elpi-short}
+
+\input{slides/glif-inference-as-science}
+
+\input{slides/glif-example-epistemic-qa}
+
+\input{slides/glif-example-translation}
+
+\input{slides/glif-example-sage-short}
+
 % \input{slides/glif-example-translation}
 % 
 % 
@@ -142,6 +173,10 @@
 % \end{frame}
 
 \appendix
+
+\input{slides/glif-example-tab-machine}
+
+\input{slides/elpi-gen}
 
 \begin{frame}[allowframebreaks,t]
     \frametitle{References}

@@ -1,22 +1,22 @@
 % Used in slides/glif-components.tex
 % Has to be in separate file...
-\begin{minipage}[t]{0.35\textwidth}
+\begin{minipage}[t]{0.4\textwidth}
     \parbox[t][1em][t]{\textwidth}{\centering\bf GF}\par
     \begin{lstlisting}[language=GF,linewidth=\textwidth]
 cat
   NP; VP; S;
 fun
-  sentence :
+  make_S :
     NP -> VP -> S;
     \end{lstlisting}
 \end{minipage}
 \begin{minipage}[t]{0.1\textwidth}\vskip3em \centering\LARGE$\mapsto$\end{minipage}
-\begin{minipage}[t]{0.3\textwidth}
+\begin{minipage}[t]{0.35\textwidth}
     \parbox[t][1em][t]{\textwidth}{\centering\bf MMT}\par
     \begin{lstlisting}[language=MMT,linewidth=\textwidth]
 NP : type
 VP : type
 S  : type
-sentence :
+make_S :
   NP \raa VP \raa S \end{lstlisting}
 \end{minipage}

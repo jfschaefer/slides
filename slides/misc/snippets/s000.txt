@@ -1,5 +1,5 @@
-S        \mapsto o
-NP       \mapsto \iota
-VP       \mapsto \iota \raa o
-sentence \mapsto \lambdan.\lambdav.v n
-even     \mapsto even
+S      \mapsto o
+NP     \mapsto \iota
+VP     \mapsto \iota \raa o
+make_S \mapsto \lambdan.\lambdav.v n
+even   \mapsto even

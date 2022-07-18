@@ -3,20 +3,37 @@
 \provideenablepart{showjupyter}
 \provideenablepart{mentionprovergen}
 \providedisablepart{switchtomathexample}
+\providedisablepart{sometimesnarrow}
 
 \begin{frame}
     \frametitle{Components of GLIF: GF}
-    \enablepart{hlgf}
-    \includestandalone[width=\textwidth]{fig/glif-architecture}
+    \autowidth{
+        \enablepart{hlgf}
+        \includestandalone[width=\textwidth]{fig/glif-architecture}
+    }
 \end{frame}
+
+
+
+\ifpart{sometimesnarrow}{
+    \switchtonarrow
+    \begin{frame}[noframenumbering]
+        \frametitle{Components of GLIF: GF}
+        \autowidth{
+            \enablepart{hlgf}
+            \includestandalone[width=\textwidth]{fig/glif-architecture}
+        }
+    \end{frame}
+}{}
 
 \begin{frame}[fragile]
     \frametitle{Components of GLIF: Grammatical Framework \cite{GF:on}}
+    \autowidth{
     \begin{itemize}
         \item Specialized for developing natural language grammars
         \item Separates abstract and concrete syntax\par
-            \quad\lstinline[language=GF]|sentence : NP -> VP -> S;               --abstract|\par
-            \quad\lstinline[language=GF]|sentence np vp = np.s ++ vp.s!np.n;   --concrete|
+            \quad\lstinline[language=GF]|make_S : NP -> VP -> S;|\com{abstract}\par
+            \quad\lstinline[language=GF]|make_S np vp = np.s ++ vp.s!np.n;|\com{concrete}
         \item Abstract syntax based on LF
         \item Comes with large library \com{$\ge 36$ languages}
     \end{itemize}
@@ -29,7 +46,7 @@
             \node(ast) at (4,0) {
                         \color{logicfont!50!nlfont}
                         \resizebox{2.cm}{!}{\tikzset{edge from parent/.append style={very thick}}
-                            \Tree [ .\texttt{sentence} [ .\texttt{everyNP} \texttt{int} ] [ .\texttt{beVP} \texttt{even} ] ]
+                            \Tree [ .\texttt{make\_S} [ .\texttt{everyNP} \texttt{int} ] [ .\texttt{beVP} \texttt{even} ] ]
                         }
                     };
         }{
@@ -38,26 +55,30 @@
             \node(ast) at (4,0) {
                         \color{logicfont!50!nlfont}
                         \resizebox{2.cm}{!}{\tikzset{edge from parent/.append style={very thick}}
-                            \Tree [ .\texttt{sentence} \texttt{ahmed} \texttt{paint} ]
+                            \Tree [ .\texttt{make\_S} \texttt{ahmed} \texttt{paint} ]
                         }
                     };
         }
         \draw[<->, thick] (eng) to node[above,rotate=-9]{Eng. concr. syn.} (ast);
         \draw[<->, thick] (ger) to node[below,rotate=9]{Ger. concr. syn.} (ast);
     \end{tikzpicture}
+    }
 \end{frame}
 
 \begin{frame}
     \frametitle{Components of GLIF: MMT}
     \enablepart{hlmmt}
-    \includestandalone[width=\textwidth]{fig/glif-architecture}
+    \autowidth{
+        \includestandalone[width=\textwidth]{fig/glif-architecture}
+    }
 \end{frame}
 
 \begin{frame}[fragile]
     \frametitle{Components of GLIF: MMT}
     \lstset{frame=single}
+    \autowidth{
     \begin{itemize}   
-        \item Modular logic development and knowledge representation
+        \item Modular logic development and knowledge \ifpart{narrowslides}{repr.}{representation}
         \item Not specialized in one logical framework \com{we use LF}
         \item We will use MMT to:
         \begin{enumerate}
@@ -75,32 +96,40 @@
         \only<3>{\input{slides/misc/glif-components-logic}}
         \only<4>{\input{slides/misc/glif-components-semconstr}}
     \end{minipage}
+    }
 \end{frame}
 
 \begin{frame}[fragile]
     \frametitle{Example: Parsing + Semantics Construction}
+    \begin{autowidthenv}
     \ifpart{switchtomathexample}{\def\switchtomathexample{1}}{}  % hack (ifpart doesn't work well with lstinline)
     {\centering\str{\ifpart{switchtomathexample}{Every integer is even}{Ahmed and Berta paint}}\par}\vspace{1em}
     \hspace{0.49\textwidth}$\downarrow_{\text{parsing}}$\par\vspace{1em}
-    {\centering\color{logicfont!50!nlfont} \ifpart{switchtomathexample}{sentence (everyNP int) (beVP even)}{sentence (andNP ahmed berta) paint}\par}\vspace{1em}
+    {\centering\color{logicfont!50!nlfont} \ifpart{switchtomathexample}{sentence (everyNP int) (beVP even)}{make\_S (andNP ahmed berta) paint}\par}\vspace{1em}
     \hspace{0.49\textwidth}$\downarrow_{\text{semantics construction}}$\par\vspace{1em}
     {\centering\begin{adjustbox}{}\color{logicfont}\footnotesize\ifx\switchtomathexample\undefined
-        \lstinline[language=MMT]|(\lambdan.\lambdav.n v) ((\lambdaa.\lambdab.\lambdap.a p \wedge b p) (\lambdap.p ahmed) (\lambdap.p berta)) paint|\else
+        \lstinline[language=MMT,basicstyle=\scriptsize\ttfamily]|(\lambdan.\lambdav.n v) ((\lambdaa.\lambdab.\lambdap.a p \wedge b p) (\lambdap.p ahmed) (\lambdap.p berta)) paint|\else
                     \lstinline[language=MMT]|(\lambdan.\lambdav.n v) ((\lambdan.\lambdap.\forall\lambdax.n x \Rightarrow p x) int) ((\lambdaa.a) even)|
                 \fi
     \end{adjustbox}\par}\vspace{1em}
     \hspace{0.49\textwidth}$\downarrow_{\text{$\beta$-reduction}}$\par\vspace{1em}
 {\centering\color{logicfont}\small\begin{adjustbox}{}\ifx\switchtomathexample\undefined\lstinline[language=MMT]|paint ahmed \wedge paint berta|\else\lstinline[language=MMT]|\forall\lambdax.int x \Rightarrow even x|\fi\end{adjustbox}\par}
+    \end{autowidthenv}
 \end{frame}
+
+\ifpart{sometimesnarrow}{\switchtowide}{}
 
 \begin{frame}
     \frametitle{Components of GLIF: ELPI}
     \enablepart{hlelpi}
+    \autowidth{
     \includestandalone[width=\textwidth]{fig/glif-architecture}
+    }
 \end{frame}
 
 \begin{frame}[fragile]
     \frametitle{Components of GLIF: ELPI}
+    \autowidth{
     \begin{itemize}
         \item Implementation and extension of $\lambda$Prolog\com{$\approx$ Prolog + HOAS}
         \item MMT can generate logic signatures
@@ -108,7 +137,7 @@
             \item First experiments with prover generation
         }{}
         \item Generic inference/reasoning step after semantics construction
-        \item Goal: Use it for semantic/pragmatic analysis
+        \ifpart{showspa}{\item Goal: Use it for semantic/pragmatic analysis}{}
     \end{itemize}
     \lstset{basicstyle=\footnotesize\ttfamily}
 
@@ -129,6 +158,7 @@
 %             \end{lstlisting}
 %         \end{minipage}
 %     \end{minipage}
+    }
 \end{frame}
 
 \ifpart{showepistemicexample}{
@@ -138,6 +168,7 @@
 \ifpart{showspa}{
     \begin{frame}
         \frametitle{Semantic/Pragmatic Analysis}
+        \autowidth{
         {
             \centering
             \str{The trophy doesn't fit in the brown suitcase because it's too big.}~\cite{levesque2012winograd}\par
@@ -153,6 +184,7 @@
         \vspace{2em}
         $\leadsto$ semantics construction creates preliminary semantic representation(s)
         that get refined by the semantic/pragmatic analysis
+        }
     \end{frame}
 }{}
 

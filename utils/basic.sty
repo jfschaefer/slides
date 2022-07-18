@@ -52,3 +52,40 @@
 \newcommand\setshowlevel[1]{\def\utils@showlevel{#1}}
 \newcommand\provideshowlevel[1]{\providecommand\utils@showlevel{#1}}
 \newcommand\showlevel[3]{\ifnum\utils@showlevel<#1#2\else#3\fi}
+
+
+
+
+% EXPERIMENTAL: SUPPORT NARROW SLIDES
+\newcommand\switchtonarrow{%
+    \setlength\pdfpagewidth{10cm}%
+    \setlength\pdfpageheight{9cm}%
+    \setlength\textwidth{8cm}%
+    \enablepart{narrowslides}%
+    \setbeamertemplate{footline}{\hspace{9.2cm}\insertframenumber\,/\,\inserttotalframenumber}
+}
+\newcommand\switchtowide{%
+    \setlength\pdfpagewidth{16cm}%
+    \setlength\pdfpageheight{9cm}%
+    \setlength\textwidth{14cm}%
+    \disablepart{narrowslides}%
+    \setbeamertemplate{footline}{\hfill\insertframenumber\,/\,\inserttotalframenumber\quad\strut}
+}
+
+
+% auto width
+\providedisablepart{narrowslides}
+
+\newcommand\autowidth[1]{%
+  \begin{columns}
+    \column{\ifpart{narrowslides}{0.95\pdfpagewidth}{\textwidth}}
+    #1
+  \end{columns}
+}
+
+\newenvironment{autowidthenv}
+{\begin{columns}\column{\ifpart{narrowslides}{0.95\pdfpagewidth}{\textwidth}}}
+{\end{columns}}
+
+
+

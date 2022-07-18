@@ -1,6 +1,6 @@
 % Used in slides/glif-components.tex
 % Has to be in separate file...
-\begin{minipage}[t]{0.45\textwidth}
+\begin{minipage}[t]{0.49\textwidth}
     \parbox[t][1em][t]{\textwidth}{\centering\bf Logic Syntax}\par
     \begin{lstlisting}[language=MMT,linewidth=\textwidth]
 o : type //propositions
@@ -13,7 +13,7 @@ o : type //propositions
 \exists : (\iota \raa o) \raa o \end{lstlisting}
 \end{minipage}\hskip2em
 \begin{minipage}[t]{0.35\textwidth}
-    \parbox[t][1em][t]{\textwidth}{\centering\bf Discourse Domain Theory}\par
+    \parbox[t][1em][t]{\textwidth}{\centering\bf Discourse Domain\ifpart{narrowslide}{ Theory}{}}\par
     \lstset{language=MMT,linewidth=\textwidth,morecomment=[l]{//}}
 \ifpart{switchtomathexample}{
     \lstinputlisting{slides/misc/snippets/s005.txt}

@@ -1,18 +1,25 @@
+\provideenablepart{aselpientro}
+\def\ifelpi#1#2{\ifpart{aselpientro}{#1}{#2}}
+
 \begin{frame}
-    \frametitle{ELPI}
-    \begin{itemize}
-        \item Extension of $\lambda$Prolog\com{supports higher-order abstract syntax}
-        \item Generic inference/reasoning step after semantics construction
-        \item Goal: Use it for semantic/pragmatic analysis
-    \end{itemize}
+    \ifpart{aselpientro}{
+        \frametitle{ELPI}
+        \begin{itemize}
+            \item Extension of $\lambda$Prolog\com{supports higher-order abstract syntax}
+            \item Generic inference/reasoning step after semantics construction
+            \item Goal: Use it for semantic/pragmatic analysis
+        \end{itemize}
+    }{\frametitle{Example: Discard wrong readings in controlled natural language}}
 
     \begin{minipage}[t][4cm][t]{\textwidth}
-        \pause
-        \vspace{2em}
-        Example: Discard wrong readings in controlled natural language
+        \ifpart{aselpientro}{
+            \pause
+            \vspace{2em}
+            Example: Discard wrong readings in controlled natural language
 
-        \vspace{1em}
-        \only<2>{
+            \vspace{1em}
+        }{}
+        \only<\ifelpi2{1-4}>{
             \tikzset{every picture/.style={line width=0.7pt}}
             \begin{tikzpicture}[yscale=0.5]
                 \node(str0) at (-4,0) {\str{the ball has a mass of 5kg}};
@@ -21,20 +28,20 @@
                 \draw[-{Straight Barb[length=6.3,width=5.0]},gray] (str0) -- (ast0);
                 \draw[-{Straight Barb[length=6.3,width=5.0]},gray] (ast0) -- (log0);
             \end{tikzpicture}
+            \vspace{3em}
         }
-        \only<3>{\disablepart{crossout}}
-        \only<4>{\enablepart{crossout}}
+        \only<\ifelpi32>{\disablepart{crossout}}
+        \only<\ifelpi4{3-4}>{\enablepart{crossout}}
         \enablepart{switchtonmexample}
-        \onslide<3-4>{
+        \onslide<\ifelpi{3-4}{2-4}>{
             \includestandalone[width=\textwidth]{fig/cnl-simple-discard} 
         }
     \end{minipage}
 
-
-    \only<5>{
+    \only<\ifelpi54>{
         \begin{tikzpicture}[overlay,remember picture]
             \fill[gray!80,opacity=0.8] (current page.north west) rectangle (current page.south east);
-            \node at (current page.center) { \includegraphics[width=0.85\textwidth]{img/screenshot-glif-3.png} };
+            \node at (current page.center) { \includegraphics[width=0.95\textwidth]{img/screenshot-glif-3.png} };
         \end{tikzpicture}
     }
 \end{frame}
