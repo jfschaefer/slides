@@ -46,21 +46,21 @@ sage: g.cardinality()
 \begin{frame}[fragile]
     \frametitle{Example: Input Language for SageMath}
     \lstset{basicstyle=\small\ttfamily,commentstyle={\sffamily\color{nlfg}},morecomment=[l]{Let},morecomment=[l]{What},morecomment=[l]{\#}}
-    \begin{lstlisting}[columns=flexible]
+    \begin{lstlisting}[columns=fullflexible]
 > Let G be the alternating group on 5 symbols.
     \end{lstlisting}
     \vskip-1em
     \begin{lstlisting}[commentstyle=\color{blue!50!red!50!black}]
 # G = AlternatingGroup(5)
     \end{lstlisting}
-    \begin{lstlisting}[columns=flexible]
+    \begin{lstlisting}[columns=fullflexible]
 > Let |H| be a notation for the cardinality of H.
     \end{lstlisting}
     \vskip-1em
     \begin{lstlisting}[commentstyle=\color{blue!50!red!50!black}]
 # def bars(H): return H.cardinality()
     \end{lstlisting}
-    \begin{lstlisting}[columns=flexible]
+    \begin{lstlisting}[columns=fullflexible]
 > What is |G|?
     \end{lstlisting}
     \vskip-1em
@@ -68,14 +68,14 @@ sage: g.cardinality()
 # print(bars(G))
 60
     \end{lstlisting}
-    \begin{lstlisting}[columns=flexible]
+    \begin{lstlisting}[columns=fullflexible]
 > Let A_N be a notation for the alternating group on N symbols.
     \end{lstlisting}
     \vskip-1em
     \begin{lstlisting}[commentstyle=\color{blue!50!red!50!black}]
 # def A(N): return AlternatingGroup(N)
     \end{lstlisting}
-    \begin{lstlisting}[columns=flexible]
+    \begin{lstlisting}[columns=fullflexible]
 > What are the cardinalities of A_4 and A_5?
     \end{lstlisting}
     \vskip-1em

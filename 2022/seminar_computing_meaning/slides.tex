@@ -9,6 +9,7 @@
 \addbibresource{kwarcpubs.bib}
 \addbibresource{extpubs.bib}
 \addbibresource{extcrossrefs.bib}
+\addbibresource{bib.bib}
 \usepackage{appendixnumberbeamer}
 \usepackage{tikz}
 \usepackage{tikz-qtree}
@@ -128,6 +129,8 @@
 \disablepart{aselpientro}
 \input{slides/glif-elpi-short}
 
+\input{slides/glif-example-tab-machine}
+
 \input{slides/glif-inference-as-science}
 
 \input{slides/glif-example-epistemic-qa}
@@ -136,45 +139,28 @@
 
 \input{slides/glif-example-sage-short}
 
-% \input{slides/glif-example-translation}
-% 
-% 
-% \begin{frame}
-%     \frametitle{GLIF Summary}
-%     \includestandalone[width=\textwidth]{fig/glif-architecture}
-% \end{frame}
-% 
-% \begin{frame}
-%     \frametitle{Supporting the Semantic/Pragmatic Analysis}
-%     Observation:
-%     \begin{itemize}
-%         \item Parsing and semantics construction are based on specialized frameworks
-%         \item ELPI is a more general programming language
-%     \end{itemize}
-%     
-%     \vspace{1em}
-%     Can we do something more specialized?
-%     \begin{itemize}
-%         \item Not really -- there is no ``standard recipe'' for
-%             semantic/pragmatic analysis
-%         \item But: It usually involves inferential reasoning
-%     \end{itemize}
-% 
-%     \vspace{2em}
-%     \centering
-%     \bfseries Let's generate provers!\par
-% \end{frame}
-% 
-% \input{slides/elpi-gen}
-% 
-% \begin{frame}
-%     \frametitle{Conclusion: Prototyping NLU Pipelines}
-%     \includestandalone[width=\textwidth]{fig/glif-spec}
-% \end{frame}
+
+\begin{frame}
+    \frametitle{Summary}
+    \begin{itemize}
+        \item GLIF = GF + MMT + ELPI
+        \item Prototyping natural language semantics\com{(symbolic)}
+        \item We use it for teaching
+    \end{itemize}
+    
+    \vspace{2em}
+    \centering
+    \includestandalone[width=0.8\textwidth]{fig/glif-architecture}
+\end{frame}
 
 \appendix
 
-\input{slides/glif-example-tab-machine}
+\begin{frame}
+    \frametitle{Pipeline Specification}
+    \includestandalone[width=\textwidth]{fig/glif-spec}
+\end{frame}
+
+
 
 \input{slides/elpi-gen}
 

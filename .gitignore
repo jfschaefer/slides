@@ -13,3 +13,6 @@ slides-blx.bib
 *.pdf
 *.bcf
 *.run.xml
+
+*.swp
+*.ipynb_checkpoints
