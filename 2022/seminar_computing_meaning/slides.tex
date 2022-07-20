@@ -121,7 +121,7 @@
     \enablepart{sometimesnarrow}
     \disablepart{showjupyter}
     \disablepart{showepistemicexample}
-    \disablepart{mentionprovergen}
+    \enablepart{mentionprovergen}
     % \disablepart{showspa}
     \input{slides/glif-components}
 }
@@ -141,14 +141,27 @@
 
 
 \begin{frame}
-    \frametitle{Summary}
-    \begin{itemize}
-        \item GLIF = GF + MMT + ELPI
-        \item Prototyping natural language semantics\com{(symbolic)}
-        \item We use it for teaching
-    \end{itemize}
+    \frametitle{Conclusion}
+    \begin{minipage}[t]{0.5\textwidth}
+        \textbf{Summary:}
+        \begin{itemize}
+            \item GLIF = GF + MMT + ELPI
+            \item Prototyping natural language semantics%\com{(symbolic)}
+            \item We use it for teaching
+        \end{itemize}
+    \end{minipage}
+    \begin{minipage}[t]{0.49\textwidth}
+        \textbf{Examples:}
+        \begin{enumerate}
+            \item \str{a kinetic energy of 12mN}
+            \item \str{He loves her} (tableaux machine)
+            \item \str{John knows that Eve has a dog}
+            \item \str{Ahmed's cousin}
+            \item \str{What is the cardinality of G?}
+        \end{enumerate}
+    \end{minipage}
     
-    \vspace{2em}
+    \vspace{1em}
     \centering
     \includestandalone[width=0.8\textwidth]{fig/glif-architecture}
 \end{frame}
