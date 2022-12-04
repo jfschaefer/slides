@@ -4,6 +4,7 @@
 \provideenablepart{mentionprovergen}
 \providedisablepart{switchtomathexample}
 \providedisablepart{sometimesnarrow}
+\provideenablepart{intensionalexample}
 
 \begin{frame}
     \frametitle{Components of GLIF: GF}
@@ -117,13 +118,14 @@
     \end{autowidthenv}
 \end{frame}
 
+\ifpart{intensionalexample}{
 \begin{frame}
     \frametitle{Example: Student Project \cite{intensional-glif:github}}
     \autowidth{
         \centering
         \includegraphics[height=0.85\textheight]{img/glif-intensional.png}
     }
-\end{frame}
+\end{frame}}{}
 
 \ifpart{sometimesnarrow}{\switchtowide}{}
 

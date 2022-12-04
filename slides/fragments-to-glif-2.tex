@@ -7,9 +7,12 @@
 %     \begin{lstlisting}[mathescape,keywords=translate,keywordstyle=\bf,
 %                        morestring={[d]"}, stringstyle=\it,showstringspaces=false]
     \begin{center}
-\fbox{\parbox{0.7\textwidth}{{\ttfamily
-> \textbf{translate} {\color{nlfont}"Every student paints and is quiet."}\\
-\color{logicfont}$\forall x.s(x)\Rightarrow(p(x)\wedge q(x))$
+\fbox{\parbox{\textwidth}{{\ttfamily
+> \textbf{translate} {\small\color{nlfont}"Every student paints and is quiet."}\\
+{\color{logicfont}$\forall x.s(x)\Rightarrow(p(x)\wedge q(x))$}\\[1.5em]
+> \textbf{answer} {\small\color{nlfont}"Every student is quiet. John is a student. Is John quiet?"}\\
+{\color{logicfont}$\forall x.s(x)\Rightarrow q(x), s(j) \vdash^? q(j)$}\\
+\color{logicfont}yes
 }}}
     \end{center}
 

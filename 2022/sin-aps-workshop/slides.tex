@@ -1,0 +1,256 @@
+\documentclass[aspectratio=169]{beamer}
+\usepackage{standalone}
+
+\usepackage{stmaryrd}
+\usepackage{listings}
+\usepackage{bussproofs}
+
+\usepackage[hyperref=auto,style=alphabetic,backend=bibtex]{biblatex}
+\addbibresource{kwarcpubs.bib}
+\addbibresource{extpubs.bib}
+\addbibresource{extcrossrefs.bib}
+\addbibresource{bib.bib}
+\usepackage{appendixnumberbeamer}
+\usepackage{tikz}
+\usepackage{tikz-qtree}
+\usetikzlibrary{arrows.meta}
+\usetikzlibrary{mmt}
+\usetikzlibrary{docicon}
+
+\usetheme{Pittsburgh}
+% \setbeamertemplate{footline}[frame number]
+\setbeamertemplate{footline}{\hfill\insertframenumber\,/\,\inserttotalframenumber\quad\strut}
+\setbeamertemplate{navigation symbols}{}
+\usecolortheme{beaver}
+\setbeamertemplate{frametitle}[default][left]
+% \setbeamersize{text margin left=3em}
+
+\usepackage{utils/colors}
+\usepackage[forbeamer]{utils/basic}
+\usepackage{utils/operators}
+\usepackage{utils/mylstmisc}
+\usepackage{utils/lstmmt}
+
+\lstset{basicstyle=\ttfamily}
+\lstset{commentstyle=\itshape\color{commentfont}}
+
+\title{Language Research in the KWARC group}
+
+\author{Jan Frederik Schaefer}
+\institute{FAU Erlangen-N\"urnberg/KWARC}
+\date{\textbf{Workshop: Approaches to the Logic and Syntax of Mathematical Texts}\\Erlangen\\Dec. 6, 2022}
+
+\begin{document}
+\frame\titlepage
+
+
+\begin{frame}
+    \frametitle{Corpus work with arxiv at KWARC}
+    arxiv.org:
+    \begin{itemize}
+        \item Open-access pre-print server
+        \item $> 2,000,000$ scientific articles
+        \item Fields: physics, mathematics, computer science, ...
+        \item \LaTeX\ sources
+        \item $\leadsto$ a great corpus
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{Corpus work with arxiv at KWARC}
+    \textbf{Problem:}
+    \begin{tabular}[t]{r l}
+    {This:}& \str{The average is $\frac{A+B}2$.}\\[0.3cm]
+
+    {Could be written like this:}&
+    \begin{lstlisting}[language=TeX]
+The average is $\frac{A+B}{2}$.
+    \end{lstlisting}\\[0.3cm]
+
+    {Or like this:}&
+    \begin{lstlisting}[language=TeX]
+\def\avg#1#2{\ensuremath{\frac{#1+#2}2}}
+    \end{lstlisting}\\
+                          &
+    \begin{lstlisting}[language=TeX]
+% ...
+The average is \avg AB.
+    \end{lstlisting}\\
+    \end{tabular}
+
+    \pause
+    \vspace{2em}
+    \textbf{Solution:}
+    Convert to more managable format: HTML with MathML.
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{HTML, MathML}
+    \str{The average is $\frac{A+B}{2}$.}
+
+    \begin{lstlisting}[language=HTML]
+<p>The average is <math>...</math>.</p>
+    \end{lstlisting}
+
+    \vspace{2em}
+    \begin{tabular}{p{6cm} | p{6cm}}
+        \textbf{Presentation MathML} & \textbf{Content MathML} \\
+        \small
+        \begin{lstlisting}[language=HTML]
+<mfrac>
+    <mrow>
+        <mi>A</mi>
+        <mo>+</mo>
+        <mi>B</mi>
+    </mrow>
+    <mn>2</mn>
+</mfrac>
+        \end{lstlisting} & 
+        \small
+        \begin{lstlisting}[language=HTML]
+<apply>
+    <divide/>
+    <apply>
+        <plus/>
+        <ci>A</ci>
+        <ci>B</ci>
+    </apply>
+    <cn type="integer">2</cn>
+</apply>
+        \end{lstlisting}
+    \end{tabular}
+\end{frame}
+
+% \SI{1.5}{\kilo\gram}
+% <mrow><mn>1.5</mn><mtext>&nbsp;</mtext><mi>kg</mi></mrow>
+% <apply><csymbol cd="latexml">times</csymbol><cn type="float">1.5</cn><csymbol cd="latexml">kilogram</csymbol></apply>
+
+\begin{frame}[fragile]
+    \frametitle{ar5iv corpus}
+    \begin{itemize}
+        \item Use LaTeXML to convert arxiv to HTML+MathML\com{Done by Deyan Ginev}
+        \item $\leadsto$ ar5iv corpus\com{$\approx 2\cdot 10^6$ documents}
+        \item Goal: Extract semantic information and provide services\com{search, interactive documents, \ldots}
+    \end{itemize}
+
+    \vspace{1em}
+    \centering
+    \only<1>{
+        \includegraphics[scale=0.3]{img/unitsscreenshot}
+        \footnotesize \\ Screenshot from~\cite{odkd49}\par
+    }
+    \only<2>{
+        \vspace{2em}
+        \includegraphics[scale=0.3]{img/declscreenshot}
+        \footnotesize \\ Screenshot from~\cite{Schaefer:bsc16}\par
+    }
+\end{frame}
+
+
+\begin{frame}
+    \centering
+    \textit{---And Now for Something Completely Different---}
+    
+    \vspace{4em}
+
+    \begin{beamercolorbox}[sep=4pt,center]{part title}
+      \usebeamerfont{section title}
+        GLIF: A tool for prototyping natural language semantics
+      \par
+    \end{beamercolorbox}
+    \vspace{4em}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Natural Language Semantics (Symbolic)}
+    \textbf{For me:}\\
+    \hspace{1.5em}Translating natural language into a formal semantic representation (logic).
+
+    \vspace{0.5em}
+    \textbf{Example:}\\
+    \hspace{1.5em}\str{Every student paints and is quiet.} $\;\;\leadsto\;\;$ {\color{logicfont}$\forall x.s(x)\Rightarrow(p(x)\wedge q(x))$}
+    
+    \vspace{0.5em}
+    \textbf{Rule-based (no ML):}\\
+    \hspace{1.5em}Parsing $\;\;\leadsto\;\;$ semantics construction $\;\;\leadsto\;\;$ inference.
+
+    \vspace{1.0em}
+    \centering
+    \begin{tikzpicture}
+        \node (nbnd) at (1.2,0.7) {useless};
+        \node (bnd) at (3.5,0.7) {\begin{tabular}{c}also\\interesting\end{tabular}};
+        \node (bd) at (3.5,2.0) {AI-complete?};
+        \node (nbd) at (1.2,2.0) {\begin{tabular}{c}this\\work\end{tabular}};
+        \draw[->,very thick] (-0.3,0) -- (5,0);
+        \draw[->,very thick] (0,-0.3) -- (0,2.7);
+        \node at (4.0, -0.3) {\itshape breadth};
+        \node[rotate=90] at (-0.3,1.8) {\itshape depth};
+    \end{tikzpicture}
+\end{frame}
+
+\input{slides/fragments-to-glif-2}
+
+{
+    \enablepart{sometimesnarrow}
+    \disablepart{showjupyter}
+    \disablepart{showepistemicexample}
+    \enablepart{mentionprovergen}
+    \disablepart{showspa}
+    % \disablepart{intensionalexample}
+    \input{slides/glif-components}
+}
+
+\disablepart{aselpientro}
+\input{slides/glif-elpi-short}
+
+\input{slides/glif-example-epistemic-qa}
+
+% \input{slides/glif-inference-as-science}
+\input{slides/glif-example-tab-machine}
+
+% \input{slides/glif-example-translation}
+
+\input{slides/glif-example-sage-short}
+
+
+\begin{frame}
+    \frametitle{Conclusion}
+    \begin{minipage}[t]{0.5\textwidth}
+        \textbf{Summary:}
+        \begin{itemize}
+            \item GLIF = GF + MMT + ELPI
+            \item Prototyping natural language semantics%\com{(symbolic)}
+            \item We use it for teaching
+        \end{itemize}
+    \end{minipage}
+    \begin{minipage}[t]{0.49\textwidth}
+        \textbf{Examples:}
+        \begin{enumerate}
+            \item \str{a kinetic energy of 12mN}
+            \item \str{He loves her} (tableaux machine)
+            \item \str{John knows that Eve has a dog}
+            \item \str{What is the cardinality of G?}
+        \end{enumerate}
+    \end{minipage}
+    
+    \vspace{1em}
+    \centering
+    \includestandalone[width=0.8\textwidth]{fig/glif-architecture}
+\end{frame}
+
+\appendix
+
+\begin{frame}
+    \frametitle{Pipeline Specification}
+    \includestandalone[width=\textwidth]{fig/glif-spec}
+\end{frame}
+
+
+
+\begin{frame}[allowframebreaks,t]
+    \frametitle{References}
+    \printbibliography
+\end{frame}
+
+\end{document}
+
