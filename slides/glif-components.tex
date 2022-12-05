@@ -5,6 +5,7 @@
 \providedisablepart{switchtomathexample}
 \providedisablepart{sometimesnarrow}
 \provideenablepart{intensionalexample}
+\providedisablepart{forthelexample}
 
 \begin{frame}
     \frametitle{Components of GLIF: GF}
@@ -128,6 +129,14 @@
 \end{frame}}{}
 
 \ifpart{sometimesnarrow}{\switchtowide}{}
+
+\ifpart{forthelexample}{
+\begin{frame}
+    \frametitle{Example: ForTheL}
+    \autowidth{
+        \includegraphics[width=\textwidth]{img/screenshot-glif-forthel.png}
+    }
+\end{frame}}{}
 
 \begin{frame}
     \frametitle{Components of GLIF: ELPI}
