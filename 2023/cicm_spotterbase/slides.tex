@@ -50,7 +50,7 @@
 
 % custom nodes
 \tikzset{body/.style={fill=green!50}}
-\tikzset{target/.style={fill=blue!50}}
+\tikzset{target/.style={fill=blue!30}}
 \tikzset{annotation/.style={fill=red!50}}
 
 
@@ -64,18 +64,45 @@
 
 \begin{frame}
     \frametitle{Motivation: semantic services}
-    \begin{itemize}
-        \item Computable formulae
-        \item Screen readers
-        \item Active documents
-        \item Formula search
-    \end{itemize}
+    \centering
+    \begin{tikzpicture}
+    \node at (0, 0) {\includegraphics[width=0.8\textwidth]{extcorr_2107.02876.png}};
+    \onslide<2>{\node at (1.5, -1.5) {\includegraphics[width=0.3\textwidth]{bubble.png}};}
+    \onslide<3>{\node at (1.5, -2.1) {\includegraphics[width=0.5\textwidth]{compute.png}};}
+    \end{tikzpicture}
+%     \begin{itemize}
+%         \item Computable formulae
+%         \item Screen readers
+%         \item Active documents
+%         \item Formula search
+%     \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Motivation: semantic services}
+    Search for $1.5\,\text{eV}$:
+    \begin{enumerate}
+        \item $1.43 \pm 0.9\,\text{eV}$
+        \item $2.4 \cdot 10^{-19}\,J$
+    \end{enumerate}
+
+    \vspace{2em}
+    Search for $\sum_{k=-\infty}^\infty \text{exp}(-\pi k^2)$
+    \begin{enumerate}
+        \item $\sum_{n=-\infty}^\infty e^{-\pi n^2} = \ldots$
+    \end{enumerate}
 \end{frame}
 
 
 \begin{frame}
-    \frametitle{We need semantic annotations!}
-    % example picture with annotations
+    \frametitle{Motivation: semantic services}
+    \centering
+    \Large
+    For all those services\\
+    {\bfseries we need semantic annotations!}
+    \vspace{2em}\par
+    \pause
+    Authors don't provide them $\leadsto$ We have to infer them
 \end{frame}
 
 
@@ -155,38 +182,40 @@
         \node[urinode] (created) at (4.5, 1) {\textellipsis};
         \draw[normaledge] (anno) --node[fill=white,pos=0.6]{dcterms:created} (created);
 
-        \pause
-        \node (targ) at (-3, -1) {\textellipsis};
-        \draw[normaledge] (anno) --node[fill=white]{oa:hasTarget} (targ);
-        % \node[urinode] (targ) at (-3, -1) {ex:target1};
-        % \draw[normaledge] (anno) --node[fill=white]{oa:hasTarget} (targ);
-        % \node (targ1) at (-4,-1.5) {\textellipsis};
-        % \node (targ2) at (-2,-1.5) {\textellipsis};
-        % \draw[normaledge] (targ) -- (targ1);
-        % \draw[normaledge] (targ) -- (targ2);
+        \onslide<2-3>{
+            \node (targ) at (-3, -1) {\textellipsis};
+            \draw[normaledge] (anno) --node[fill=white]{oa:hasTarget} (targ);
+            % \node[urinode] (targ) at (-3, -1) {ex:target1};
+            % \draw[normaledge] (anno) --node[fill=white]{oa:hasTarget} (targ);
+            % \node (targ1) at (-4,-1.5) {\textellipsis};
+            % \node (targ2) at (-2,-1.5) {\textellipsis};
+            % \draw[normaledge] (targ) -- (targ1);
+            % \draw[normaledge] (targ) -- (targ2);
 
-        % \node[urinode] (body) at (3,-1) {ex:body1};
-        \node (body) at (3,-1) {\textellipsis};
-        \draw[normaledge] (anno) --node[fill=white]{oa:hasBody} (body);
+            % \node[urinode] (body) at (3,-1) {ex:body1};
+            \node (body) at (3,-1) {\textellipsis};
+            \draw[normaledge] (anno) --node[fill=white]{oa:hasBody} (body);
+        }
     \end{tikzpicture}
-    \pause
-    \vspace{2em}\par
-    \begin{columns}
-        \begin{column}{0.5\textwidth}
-            \centering
-            \includegraphics[width=\textwidth]{bipart_graph.png}
-        \end{column}
-        \begin{column}{0.5\textwidth}
-            \centering
-            \texttt{wd:Q174733}\\
-            (WikiData: bipartite graph)
-        \end{column}
-    \end{columns}
+    \onslide<3>{
+        \vspace{2em}\par
+        \begin{columns}
+            \begin{column}{0.5\textwidth}
+                \centering
+                \includegraphics[width=\textwidth]{bipart_graph.png}
+            \end{column}
+            \begin{column}{0.5\textwidth}
+                \centering
+                \texttt{wd:Q174733}\\
+                (WikiData: bipartite graph)
+            \end{column}
+        \end{columns}
+    }
 \end{frame}
 
 
 \begin{frame}
-    \frametitle{Example annotation bodies: simple annotation}
+    \frametitle{Example annotation bodies: simple body}
     \centering
     \includegraphics[width=0.8\textwidth]{bipart_graph.png}
     \par
@@ -238,39 +267,195 @@
 
 \begin{frame}
     \frametitle{Example annotation bodies: linked bodies}
+    \begin{tikzpicture}
+        \node (frag) at (0, 0) {\includegraphics[scale=0.3]{declwithocc.png}};
+        \pause
+        \node[urinode,annotation] (anno3) at (2, 3.2) {ex:anno3};
+        \node (target3) at (0, 1.2) {};
+        \draw[normaledge] (anno3) --node[fill=white]{oa:hasTarget} (target3);
+        \node[bnode,body] (body3) at (5, 1.7) {};
+        \draw[normaledge] (anno3) --node[fill=white]{oa:hasBody} (body3);
+        \node[typenode,body] (type3) at (7, 3.2) {do:IdDecl};
+        \draw[normaledge] (body3) --node[fill=white]{rdf:type} (type3);
+        \node[urinode,body] (quant) at (8, 0.3) {do:Univ};
+        \draw[normaledge] (body3) --node[fill=white]{do:quant} (quant);
 
+        \pause
+        \node[urinode,fill=yellow] (id) at (5, 0) {ex:id1};
+        \draw[normaledge] (body3) --node[fill=white]{do:id} (id);
+
+        \pause
+        \node[urinode,annotation] (anno4) at (2, -3.2) {ex:anno4};
+        \node (target4) at (-1.2, -1.2) {};
+        \draw[normaledge] (anno4) --node[fill=white]{oa:hasTarget} (target4);
+        \node[bnode,body] (body4) at (5, -1.7) {};
+        \draw[normaledge] (anno4) --node[fill=white]{oa:hasBody} (body4);
+        \node[typenode,body] (type4) at (7, -3.2) {do:IdOcc};
+        \draw[normaledge] (body4) --node[fill=white]{rdf:type} (type4);
+        \draw[normaledge] (body4) --node[fill=white]{do:id} (id);
+    \end{tikzpicture}
 \end{frame}
 
 
-\begin{frame}
+\begin{frame}[fragile]
     \frametitle{Annotation Targets}
+    % \lstinline[literate={≤}{$\le$}1]|<p>it follows that <math><mrow><msqrt><mi>x</mi></msqrt><mo>≤</mo><mn>1</mn></mrow></math>.</p>|
+%     \lstinline[literate={≤}{$\le$}1]|<p>It follows that <math><mrow><msqrt><mi>x</mi></msqrt><mo>≤</mo>...|
+%     \textit{``It follows that $\sqrt x \le 1$.''}
+%     \vspace{1em}\par
+
+    \footnotesize
+    \begin{tikzpicture}[xscale=-1]
+        % anno nodes
+        \node[urinode,annotation] (anno) at (0, 0) {ex:anno0};
+        % \node[typenode] (annotype) at (1, 1.5) {oa:Annotation};
+        % \node (creator) at (-3, 1.5) {...};
+        % % anno edges
+        % \draw[typeedge] (anno) --node[fill=white]{rdf:type} (annotype);
+        % \draw[normaledge] (anno) --node[fill=white]{dcterms:creator} (creator);
+
+
+        % body nodes
+        \node[bnode,body] (body) at (-2, -1.3) {\textellipsis};
+        % \node[typenode] (bodytype) at (-1.5, -3) {om:Measure};
+        % \node[bnode] (unit) at (-4, -4) {om:gramPerCubicmetre};
+        % \node[literal] (scalar) at (-4, 0.75) {1292.1};
+
+        % body edges
+        \draw[normaledge] (anno) --node[fill=white]{oa:hasBody} (body);
+        % \draw[typeedge] (body) --node[fill=white]{rdf:type} (bodytype);
+        % \draw[normaledge] (body) --node[fill=white]{om:hasNumericalValue} (scalar);
+        % \draw[normaledge] (body) --node[fill=white]{om:hasUnit} (unit);
+        % om:hasNumericalValue
+        % om:hasUnit
+
+        % target nodes
+        \node[urinode,target] (target) at (4, -1.5) {ex:target0};
+        \node[urinode,target] (src) at (5, 0) {ex:document.html};
+        \draw[normaledge] (anno) --node[fill=white]{oa:hasTarget} (target);
+        \draw[normaledge] (target) --node[fill=white]{oa:hasSource} (src);
+        \pause
+
+        \node[typenode,target] (pathseltype) at (7.2, -2.3) {sb:PathSelector};
+        \node[bnode,target] (pathsel) at (5.2, -3.75) {};
+        \node[literal,target] (pathselstart) at (2.5, -5.5) {``after-node(/html/.../math[3])''};
+        \node[literal,target] (pathselend) at (7.5, -5.5) {``char(/html/.../p[2], 819)''};
+
+        \draw[normaledge] (target) --node[fill=white]{oa:hasSelector} (pathsel);
+        \draw[normaledge] (pathsel) --node[fill=white]{sb:startPath} (pathselend);
+        \draw[normaledge] (pathsel) --node[fill=white]{sb:endPath} (pathselstart);
+        \draw[typeedge] (pathsel) --node[fill=white]{rdf:type} (pathseltype);
+        \pause
+
+        \node[typenode,target] (offseltype) at (0.5, -1.5) {sb:OffsetSelector};
+        \node[bnode,target] (offsel) at (1, -3) {};
+        \node[literal,target] (offselstart) at (2.3, -4.5) {1592};
+        \node[literal,target] (offselend) at (0, -4.5) {1605};
+        \draw[normaledge] (offsel) --node[fill=white]{oa:start} (offselstart);
+        \draw[normaledge] (offsel) --node[fill=white]{oa:end} (offselend);
+        \draw[normaledge] (target) --node[fill=white]{oa:hasSelector} (offsel);
+        \draw[typeedge] (offsel) --node[fill=white]{rdf:type} (offseltype);
+    \end{tikzpicture}
 \end{frame}
+
 
 
 \begin{frame}
     \frametitle{Prototype datasets and imported datasets}
+    \begin{itemize}
+        \item Imported datasets:
+            \begin{itemize}
+                \item Quantity expressions dataset~\cite{Rabenstein:msc17}
+                \item Formula grounding dataset~\cite{asakura-miyao-aizawa:2022:LREC}
+                \item Paragraph classification dataset~\cite{ginev-miller-2020-scientific}
+            \end{itemize}
+        \item Generated datasets (prototype spotters)
+            \begin{itemize}
+                \item Part-of-speech tags
+                \item References to math concepts
+                \item Variabel declarations
+            \end{itemize}
+        \item Stats from running last two spotters:
+            \begin{itemize}
+                \item 100\,000 documents
+                \item 50 million annotations
+                \item 800 million triples
+                \item loading into triple store: several hours
+            \end{itemize}
+    \end{itemize}
 \end{frame}
 
 
-\begin{frame}
+\begin{frame}[fragile]
     \frametitle{Querying}
+    {\centering\itshape
+    ``Papers about group theory that theorems mentioning rational numbers''
+    \par}
+    \footnotesize
+\begin{lstlisting}[language=SPARQL]
+# prefix declarations ommitted for conciseness
+SELECT DISTINCT ?paper WHERE {
+  # make sure that ?paper is about group theory
+  ?paper sb:isBasedOn/^oa:hasTarget/oa:hasBody/rdf:value arxivcat:math\.GR .
+  # find theorems in ?paper and look up their offsets
+  ?theorem_anno oa:hasBody/rdf:value sbp:Theorem .
+  ?theorem_anno oa:hasTarget [
+    oa:hasSource ?paper ;
+    oa:hasSelector [ a sb:OffsetSelector ; oa:start ?t_start ; oa:end ?t_end ; ]
+  ] .
+  # Same with mentions of rational numbers (offsets ?q_start, ?q_end)
+  ?q_anno oa:hasBody/rdf:value <http://www.wikidata.org/entity/Q1244890> .
+  ?q_anno oa:hasTarget [
+    oa:hasSource ?paper  ;
+    oa:hasSelector [ a sb:OffsetSelector ; oa:start ?q_start ; oa:end ?q_end ; ]
+  ] .
+  # make sure that mention is inside theorem
+  FILTER (?t_start < ?q_start && ?t_end > ?q_end)
+}
+\end{lstlisting}
+
 \end{frame}
 
 
+
 \begin{frame}
-    \frametitle{Adoption}
+    \frametitle{Selling points}
+    \begin{itemize}
+        \item Conversion to/from JSON\com{no need to learn RDF/SPARQL}
+        \item Ecosystem of tools:
+            \begin{itemize}
+                \item Tool for manual annotation
+                \item Pre-processing for NLP
+                \item More to come?
+            \end{itemize}
+        \item Datasets
+            \begin{itemize}
+                \item for evaluation
+                \item for comparison
+                \item for training
+                \item to build upon
+            \end{itemize}
+    \end{itemize}
     % Concern   ->   answer
     % No datasets exist - what do I get concretely?    ->   annotation tool
     % I don't know RDF/can't use it in my environment   ->   JSON-LD
     % But I need dataset XYZ in a different format   ->   conversion?
+    \begin{tikzpicture}[remember picture,overlay]
+        \node[xshift=-4.5cm,yshift=2cm] at (current page.south east) {\includegraphics[scale=0.35]{workflow_3.png}};
+    \end{tikzpicture}
 \end{frame}
 
 
 \begin{frame}
     \frametitle{Conclusion}
-\end{frame}
-
-\begin{frame}
+    An annotation standard for STEM documents
+    \begin{itemize}
+        \item based on semantic web technologies\com{RDF, SPARQL, Web Annotation Standard}
+        \item compatible with a wide range of annotation tasks
+        \item to create diverse, re-usable annotation datasets and benchmarks
+        \item to develop an ecosystem of tools around that standard
+        \item to ultimately enable the development of semantic services\com{active documents, formula search, \textellipsis}
+    \end{itemize}
 \end{frame}
 
 
