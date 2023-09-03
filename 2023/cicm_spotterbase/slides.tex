@@ -3,13 +3,15 @@
 
 \usepackage{stmaryrd}
 \usepackage{listings}
-\usepackage{bussproofs}
+\usepackage{fontawesome}
+\usepackage{bm}
 
 \usepackage[hyperref=auto,style=alphabetic,backend=bibtex]{biblatex}
 \addbibresource{kwarcpubs.bib}
 \addbibresource{extpubs.bib}
 \addbibresource{extcrossrefs.bib}
 \addbibresource{bib.bib}
+\addbibresource{examples.bib}
 \usepackage{appendixnumberbeamer}
 \usepackage{tikz}
 \usepackage{tikz-qtree}
@@ -34,6 +36,7 @@
 
 \lstset{basicstyle=\ttfamily}
 \lstset{commentstyle=\itshape\color{commentfont}}
+\def\examplecite#1{{\textit{\color{black!60!blue}\small Example from \cite{#1}}}}
 
 \title{Towards and Annotation Standard for STEM Documents \\\large Datasets, Benchmarks, and Spotters}
 
@@ -63,11 +66,39 @@
 
 
 \begin{frame}
+    \frametitle{Natural Language Processing and Mathematical Language}
+    \begin{itemize}
+        \item Natural language processing has progressed a lot over the last decades
+        \item STEM documents pose problems:
+            formulae, tables, \textellipsis\\
+            $\leadsto$ not really unicode strings
+        \item Why care?\\
+            $\leadsto$ Semantic services
+    \end{itemize}
+\end{frame}
+
+
+\begin{frame}
     \frametitle{Motivation: semantic services}
+    \faSearch\;\; $\bm{1.5\,\text{\bf eV}}$
+    \\[1em]
+        \quad\quad\faExternalLink\;\; $1.43 \pm 0.9\,\text{eV}$\\[1em]
+        \quad\quad\faExternalLink\;\; $2.4 \cdot 10^{-19}\,J$
+
+    \vspace{3em}
+    \faSearch\;\; $\bm{\sum_{k=-\infty}^\infty \text{\bf exp}(-\pi k^2)}$
+    \\[1em]
+        \quad\quad\faExternalLink\;\; $\sum_{n=-\infty}^\infty e^{-\pi n^2} = \ldots$
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Motivation: semantic services}
+    \hfill \examplecite{krisciunas2022including}\par
     \centering
     \begin{tikzpicture}
     \node at (0, 0) {\includegraphics[width=0.8\textwidth]{extcorr_2107.02876.png}};
-    \onslide<2>{\node at (1.5, -1.5) {\includegraphics[width=0.3\textwidth]{bubble.png}};}
+    \onslide<2>{\node at (1.6, -1.6) {\includegraphics[width=0.5\textwidth]{bubble.png}};}
     \onslide<3>{\node at (1.5, -2.1) {\includegraphics[width=0.5\textwidth]{compute.png}};}
     \end{tikzpicture}
 %     \begin{itemize}
@@ -76,21 +107,6 @@
 %         \item Active documents
 %         \item Formula search
 %     \end{itemize}
-\end{frame}
-
-\begin{frame}
-    \frametitle{Motivation: semantic services}
-    Search for $1.5\,\text{eV}$:
-    \begin{enumerate}
-        \item $1.43 \pm 0.9\,\text{eV}$
-        \item $2.4 \cdot 10^{-19}\,J$
-    \end{enumerate}
-
-    \vspace{2em}
-    Search for $\sum_{k=-\infty}^\infty \text{exp}(-\pi k^2)$
-    \begin{enumerate}
-        \item $\sum_{n=-\infty}^\infty e^{-\pi n^2} = \ldots$
-    \end{enumerate}
 \end{frame}
 
 
@@ -108,12 +124,31 @@
 
 \begin{frame}
     \frametitle{Accumulating semantic annotations with spotters}
-    \begin{itemize}
-        \item \textbf{Spotter:} specialized tool for finding a particular type of annotation
-        \item Examples: Identifier declarations, quantity expressions,
-            paragraph type (theorem/definition/\textellipsis), \textellipsis
-        \item Simple spotters, hybrid spotters, meta spotters
-    \end{itemize}
+    \centering
+    \textbf{Spotter:} specialized tool for finding a particular type of annotation
+    \vspace{2em}\par
+
+    \begin{tikzpicture}[db/.style={cylinder, shape border rotate=90, draw, aspect=0.3,scale=4},spotter/.style={draw}]
+        \node[db,thick] (db) at (0, 0) {};
+        \node[spotter] (s1) at (-3, 1) {\begin{tabular}cParagraph\\classification\\spotter\end{tabular}};
+        \node[spotter] (s2) at (3, 1.5) {\begin{tabular}cDeclaration\\spotter\end{tabular}};
+        \node[spotter] (s3) at (3, -1.5) {\begin{tabular}cMath concept\\spotter\end{tabular}};
+        \node[spotter] (s4) at (-3, -1.5) {\begin{tabular}cUnit\\spotter\end{tabular}};
+        \draw[->] (s1) -- (db);
+        \draw[->] (s2) -- (db);
+        \draw[->] (s3) -- (db);
+        \draw[->] (s4) -- (db);
+        \node (doc) at (0, -4.5) {\includegraphics[scale=0.25]{theorems_1311_5471.png}};
+        \draw[->,dashed] (db) -- (doc);
+        \node at (5, -4) {\examplecite{johst2013multicolor}};
+    \end{tikzpicture}
+
+%     \begin{itemize}
+%         \item \textbf{Spotter:} specialized tool for finding a particular type of annotation
+%         \item Examples: Identifier declarations, quantity expressions,
+%             paragraph type (theorem/definition/\textellipsis), \textellipsis
+%         \item Simple spotters, hybrid spotters, meta spotters
+%     \end{itemize}
     % pictures with annotations (simple spotter, hybrid spotter, meta spotter)
     % e.g. "concept references and quantities", "variable declarations", "conflict resolution var. occurrence vs unit"
 \end{frame}
@@ -203,6 +238,7 @@
             \begin{column}{0.5\textwidth}
                 \centering
                 \includegraphics[width=\textwidth]{bipart_graph.png}
+                \\\hfill\examplecite{johst2013multicolor}
             \end{column}
             \begin{column}{0.5\textwidth}
                 \centering
@@ -217,6 +253,7 @@
 \begin{frame}
     \frametitle{Example annotation bodies: simple body}
     \centering
+    \hfill\examplecite{johst2013multicolor}
     \includegraphics[width=0.8\textwidth]{bipart_graph.png}
     \par
     \begin{tikzpicture}
@@ -246,12 +283,13 @@
 \begin{frame}
     \frametitle{Example annotation bodies: complex body}
     \centering
-    \includegraphics[width=0.7\textwidth]{solarmass_2205_14126.png}
-    \par
+    \hfill\examplecite{Althaus_2022}\\
+    \includegraphics[width=0.65\textwidth]{solarmass_2205_14126.png}
+    \vspace{-0.5em}\par
     \begin{tikzpicture}
         \node[urinode,annotation] (anno) at (0, 2) {ex:anno2};
         \node[bnode,body] (body) at (0, 0) {};
-        \node (target) at (0, 4) {};
+        \node (target) at (3, 4) {};
         \draw[normaledge] (anno) --node[fill=white]{oa:hasBody} (bipart_graph);
         \draw[normaledge] (anno) --node[fill=white]{oa:hasTarget} (target);
         \node[typenode,body] (measure) at (-4, 1.7) {om:Measure};
@@ -268,7 +306,7 @@
 \begin{frame}
     \frametitle{Example annotation bodies: linked bodies}
     \begin{tikzpicture}
-        \node (frag) at (0, 0) {\includegraphics[scale=0.3]{declwithocc.png}};
+        \node (frag) at (0, 0) {\begin{tabular}l\examplecite{johst2013multicolor}\\\includegraphics[scale=0.3]{declwithocc.png}\end{tabular}};
         \pause
         \node[urinode,annotation] (anno3) at (2, 3.2) {ex:anno3};
         \node (target3) at (0, 1.2) {};
@@ -369,11 +407,11 @@
                 \item Formula grounding dataset~\cite{asakura-miyao-aizawa:2022:LREC}
                 \item Paragraph classification dataset~\cite{ginev-miller-2020-scientific}
             \end{itemize}
-        \item Generated datasets (prototype spotters)
+        \item Generated datasets (prototype spotters)\com{https://github.com/jfschaefer/spotters}
             \begin{itemize}
                 \item Part-of-speech tags
                 \item References to math concepts
-                \item Variabel declarations
+                \item Variable declarations
             \end{itemize}
         \item Stats from running last two spotters:
             \begin{itemize}
@@ -389,7 +427,9 @@
 \begin{frame}[fragile]
     \frametitle{Querying}
     {\centering\itshape
-    ``Papers about group theory that theorems mentioning rational numbers''
+        \colorbox{yellow}{
+    ``Papers about group theory that have theorems mentioning rational numbers''
+}
     \par}
     \footnotesize
 \begin{lstlisting}[language=SPARQL]
@@ -435,6 +475,7 @@ SELECT DISTINCT ?paper WHERE {
                 \item for training
                 \item to build upon
             \end{itemize}
+        \item Public SPARQL endpoint
     \end{itemize}
     % Concern   ->   answer
     % No datasets exist - what do I get concretely?    ->   annotation tool

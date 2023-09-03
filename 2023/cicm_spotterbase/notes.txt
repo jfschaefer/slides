@@ -1,0 +1,12 @@
+Intro:
+
+    1. NLP successful for general language, but not for STEM (formulas, tables, ... are not simple unicode strings)
+    2. Why should we care? Semantic services. Imagine engineer, search for things, find paper on solar panel - What does that mean?
+    3. need semantic annotations (as lots of bubbles on the paper)
+
+
+
+"targets feels annoyingly complex, but this is exactly what we need", show example as overlay!
+
+extra slide: we had a public end point
+
