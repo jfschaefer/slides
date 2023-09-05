@@ -1,0 +1,51 @@
+[
+ {
+  "type": "TagSet",
+  "id": "sbxp:para",
+  "belongsTo_Rev": [
+   "sbxp:definition",
+   "sbxp:proof",
+   "sbxp:theorem"
+  ],
+  "label": "ParaClassification"
+ },
+ {
+  "type": "Tag",
+  "id": "sbxp:theorem",
+  "belongsTo": "sbxp:para",
+  "label": "Theorem"
+ },
+ {
+  "type": "Tag",
+  "id": "sbxp:proof",
+  "belongsTo": "sbxp:para",
+  "label": "Proof"
+ },
+ {
+  "type": "Tag",
+  "id": "sbxp:definition",
+  "belongsTo": "sbxp:para",
+  "label": "Definition"
+ },
+ {
+  "type": "TagSet",
+  "id": "sbxd:quant",
+  "belongsTo_Rev": [
+   "sbxd:universal",
+   "sbxd:existential"
+  ],
+  "label": "Qunatification"
+ },
+ {
+  "type": "Tag",
+  "id": "sbxd:universal",
+  "belongsTo": "sbxd:quant",
+  "label": "Universally Quantified"
+ },
+ {
+  "type": "Tag",
+  "id": "sbxd:existential",
+  "belongsTo": "sbxd:quant",
+  "label": "Existentially Quantified"
+ }
+]

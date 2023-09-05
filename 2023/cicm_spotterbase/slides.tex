@@ -64,62 +64,7 @@
 \begin{document}
 \frame\titlepage
 
-
-\begin{frame}
-    \frametitle{Natural Language Processing and Mathematical Language}
-    \begin{itemize}
-        \item Natural language processing has progressed a lot over the last decades
-        \item STEM documents pose problems:
-            formulae, tables, \textellipsis\\
-            $\leadsto$ not really unicode strings
-        \item Why care?\\
-            $\leadsto$ Semantic services
-    \end{itemize}
-\end{frame}
-
-
-\begin{frame}
-    \frametitle{Motivation: semantic services}
-    \faSearch\;\; $\bm{1.5\,\text{\bf eV}}$
-    \\[1em]
-        \quad\quad\faExternalLink\;\; $1.43 \pm 0.9\,\text{eV}$\\[1em]
-        \quad\quad\faExternalLink\;\; $2.4 \cdot 10^{-19}\,J$
-
-    \vspace{3em}
-    \faSearch\;\; $\bm{\sum_{k=-\infty}^\infty \text{\bf exp}(-\pi k^2)}$
-    \\[1em]
-        \quad\quad\faExternalLink\;\; $\sum_{n=-\infty}^\infty e^{-\pi n^2} = \ldots$
-\end{frame}
-
-
-\begin{frame}
-    \frametitle{Motivation: semantic services}
-    \hfill \examplecite{krisciunas2022including}\par
-    \centering
-    \begin{tikzpicture}
-    \node at (0, 0) {\includegraphics[width=0.8\textwidth]{extcorr_2107.02876.png}};
-    \onslide<2>{\node at (1.6, -1.6) {\includegraphics[width=0.5\textwidth]{bubble.png}};}
-    \onslide<3>{\node at (1.5, -2.1) {\includegraphics[width=0.5\textwidth]{compute.png}};}
-    \end{tikzpicture}
-%     \begin{itemize}
-%         \item Computable formulae
-%         \item Screen readers
-%         \item Active documents
-%         \item Formula search
-%     \end{itemize}
-\end{frame}
-
-
-\begin{frame}
-    \frametitle{Motivation: semantic services}
-    \centering
-    \Large
-    For all those services\\
-    {\bfseries we need semantic annotations!}
-    \vspace{2em}\par
-    \pause
-    Authors don't provide them $\leadsto$ We have to infer them
-\end{frame}
+\input{intro.tex}
 
 
 \begin{frame}
@@ -139,8 +84,11 @@
         \draw[->] (s3) -- (db);
         \draw[->] (s4) -- (db);
         \node (doc) at (0, -4.5) {\includegraphics[scale=0.25]{theorems_1311_5471.png}};
-        \draw[->,dashed] (db) -- (doc);
         \node at (5, -4) {\examplecite{johst2013multicolor}};
+        % \node[draw] (doc) at (0, -3) {\bf Fixed/frozen corpus};
+        \draw[->,dashed] (db) -- (doc);
+        \pause
+        \node[draw,fill=yellow!70,opacity=0.9] at (0, -3) {\bf Fixed/frozen corpus};
     \end{tikzpicture}
 
 %     \begin{itemize}
@@ -159,8 +107,8 @@
     \begin{enumerate}
         \item Getting a corpus:\com{Working with PDF is difficult}
             \begin{itemize}
-                \item arXMLiv/ar5iv dataset\com{convert \texttt{.tex} to \texttt{.html}}
-                \item SIGMathLing\com{NDA-cooperative to work around licensing issues}
+                \item arXMLiv/ar5iv dataset~\cite{SML:arXMLiv:2020}\com{convert \texttt{.tex} to \texttt{.html}}
+                \item SIGMathLing~\cite{SIGMathLing:on}\com{NDA-cooperative to work around licensing issues}
             \end{itemize}
         \item Re-inventing the wheel:
             \begin{itemize}
@@ -182,7 +130,7 @@
     \begin{itemize}
         \item Supports development of re-usable tools, datasets and benchmarks
         \item Uses RDF (Resource Description Framework)\com{$\exists$ databases, query language (SPARQL), serialization formats}
-        \item Based on W3C Web Annotation Standard
+        \item Based on W3C Web Annotation Recommendations
     \end{itemize}
     % based on RDF, Web Annotation Standard, ...
     \pause
@@ -248,7 +196,6 @@
         \end{columns}
     }
 \end{frame}
-
 
 \begin{frame}
     \frametitle{Example annotation bodies: simple body}
@@ -342,6 +289,7 @@
 %     \textit{``It follows that $\sqrt x \le 1$.''}
 %     \vspace{1em}\par
 
+    \centering
     \footnotesize
     \begin{tikzpicture}[xscale=-1]
         % anno nodes
@@ -372,27 +320,39 @@
         \node[urinode,target] (src) at (5, 0) {ex:document.html};
         \draw[normaledge] (anno) --node[fill=white]{oa:hasTarget} (target);
         \draw[normaledge] (target) --node[fill=white]{oa:hasSource} (src);
-        \pause
 
-        \node[typenode,target] (pathseltype) at (7.2, -2.3) {sb:PathSelector};
-        \node[bnode,target] (pathsel) at (5.2, -3.75) {};
-        \node[literal,target] (pathselstart) at (2.5, -5.5) {``after-node(/html/.../math[3])''};
-        \node[literal,target] (pathselend) at (7.5, -5.5) {``char(/html/.../p[2], 819)''};
+        \onslide<2-4>{
+            \node[typenode,target] (pathseltype) at (7.2, -2.3) {sb:PathSelector};
+            \node[bnode,target] (pathsel) at (5.2, -3.75) {};
+            \node[literal,target] (pathselstart) at (2.5, -5.5) {``after-node(/html/.../math[3])''};
+            \node[literal,target] (pathselend) at (7.5, -5.5) {``char(/html/.../p[2], 819)''};
 
-        \draw[normaledge] (target) --node[fill=white]{oa:hasSelector} (pathsel);
-        \draw[normaledge] (pathsel) --node[fill=white]{sb:startPath} (pathselend);
-        \draw[normaledge] (pathsel) --node[fill=white]{sb:endPath} (pathselstart);
-        \draw[typeedge] (pathsel) --node[fill=white]{rdf:type} (pathseltype);
-        \pause
+            \draw[normaledge] (target) --node[fill=white]{oa:hasSelector} (pathsel);
+            \draw[normaledge] (pathsel) --node[fill=white]{sb:startPath} (pathselend);
+            \draw[normaledge] (pathsel) --node[fill=white]{sb:endPath} (pathselstart);
+            \draw[typeedge] (pathsel) --node[fill=white]{rdf:type} (pathseltype);
+        }
 
-        \node[typenode,target] (offseltype) at (0.5, -1.5) {sb:OffsetSelector};
-        \node[bnode,target] (offsel) at (1, -3) {};
-        \node[literal,target] (offselstart) at (2.3, -4.5) {1592};
-        \node[literal,target] (offselend) at (0, -4.5) {1605};
-        \draw[normaledge] (offsel) --node[fill=white]{oa:start} (offselstart);
-        \draw[normaledge] (offsel) --node[fill=white]{oa:end} (offselend);
-        \draw[normaledge] (target) --node[fill=white]{oa:hasSelector} (offsel);
-        \draw[typeedge] (offsel) --node[fill=white]{rdf:type} (offseltype);
+        \onslide<3>{
+            \node[draw,fill=yellow!70, fill opacity=0.9, inner sep=0.5cm] at (2.0, -3) {
+                    \large
+                    \begin{tabular}l
+                        \lstinline[literate={≤}{$\times$}1]|<p>The integer solutions of|\\
+                        \lstinline[literate={≤}{$\times$}1]|<math><mrow><msqrt><mi>x</mi></msqrt><mo>≤</mo>...|
+                    \end{tabular}
+            };
+        }
+
+        \onslide<4>{
+            \node[typenode,target] (offseltype) at (0.5, -1.5) {sb:OffsetSelector};
+            \node[bnode,target] (offsel) at (1, -3) {};
+            \node[literal,target] (offselstart) at (2.3, -4.5) {1592};
+            \node[literal,target] (offselend) at (0, -4.5) {1605};
+            \draw[normaledge] (offsel) --node[fill=white]{oa:start} (offselstart);
+            \draw[normaledge] (offsel) --node[fill=white]{oa:end} (offselend);
+            \draw[normaledge] (target) --node[fill=white]{oa:hasSelector} (offsel);
+            \draw[typeedge] (offsel) --node[fill=white]{rdf:type} (offseltype);
+        }
     \end{tikzpicture}
 \end{frame}
 
@@ -464,7 +424,7 @@ SELECT DISTINCT ?paper WHERE {
         \item Conversion to/from JSON\com{no need to learn RDF/SPARQL}
         \item Ecosystem of tools:
             \begin{itemize}
-                \item Tool for manual annotation
+                \item Tool for manual annotation\com{MathUI workshop at 2:00 pm today}
                 \item Pre-processing for NLP
                 \item More to come?
             \end{itemize}
@@ -499,6 +459,7 @@ SELECT DISTINCT ?paper WHERE {
     \end{itemize}
 \end{frame}
 
+\appendix   % stop page number count
 
 \begin{frame}[allowframebreaks,t]
     \frametitle{References}

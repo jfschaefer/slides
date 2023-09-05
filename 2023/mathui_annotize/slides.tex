@@ -1,0 +1,101 @@
+\documentclass[aspectratio=169]{beamer}
+\usepackage{standalone}
+
+\usepackage{stmaryrd}
+\usepackage{listings}
+\usepackage{fontawesome}
+\usepackage{bm}
+
+\def\examplecite#1{{\textit{\color{black!60!blue}\small Example from \cite{#1}}}}
+
+
+\usepackage[hyperref=auto,style=alphabetic,backend=bibtex]{biblatex}
+\addbibresource{kwarcpubs.bib}
+\addbibresource{extpubs.bib}
+\addbibresource{extcrossrefs.bib}
+\addbibresource{bib.bib}
+\usepackage{appendixnumberbeamer}
+\usepackage{tikz}
+\usepackage{tikz-qtree}
+\usetikzlibrary{arrows.meta}
+\usetikzlibrary{shapes}
+\usetikzlibrary{mmt}
+\usetikzlibrary{docicon}
+
+\usetheme{Pittsburgh}
+% \setbeamertemplate{footline}[frame number]
+\setbeamertemplate{footline}{\hfill\insertframenumber\,/\,\inserttotalframenumber\quad\strut}
+\setbeamertemplate{navigation symbols}{}
+\usecolortheme{beaver}
+\setbeamertemplate{frametitle}[default][left]
+% \setbeamersize{text margin left=3em}
+
+\usepackage{utils/colors}
+\usepackage[forbeamer]{utils/basic}
+\usepackage{utils/operators}
+\usepackage{utils/mylstmisc}
+\usepackage{utils/lstmmt}
+
+\lstset{basicstyle=\ttfamily}
+\lstset{commentstyle=\itshape\color{commentfont}}
+
+\title{AnnoTize: A Flexible Annotation Tool for Documents with Mathematical Formulae}
+
+
+% rdf nodes
+\tikzset{urinode/.style={draw, ellipse, minimum width=1.3cm, minimum height=0.6cm}}
+\tikzset{typenode/.style={draw}}
+\tikzset{bnode/.style={draw, ellipse, minimum width=1.0cm, minimum height=0.6cm}}
+\tikzset{literal/.style={draw, rounded corners=0.1cm}}
+
+% rdf edges
+\tikzset{normaledge/.style={-Latex}}
+\tikzset{typeedge/.style={arrows={-Latex[open]}}}
+
+% custom nodes
+\tikzset{body/.style={fill=green!50}}
+\tikzset{target/.style={fill=blue!30}}
+\tikzset{annotation/.style={fill=red!50}}
+
+
+\author{Lukas Panzer \and \textbf{Jan Frederik Schaefer}}
+\institute{FAU Erlangen-N\"urnberg/KWARC}
+\date{\textbf{MathUI Workshop}\\Cambridge, UK\\September 7, 2023}
+
+\begin{document}
+\frame\titlepage
+
+\input{../cicm_spotterbase/intro.tex}
+
+
+\begin{frame}
+    \frametitle{AnnoTize}
+    {
+        \centering
+        \textbf{We will need manual annotations}
+        \\\com{for evaluation and possibly training}
+        \vspace{2em}\par
+        Formulae prevent us from using the standard tools
+        \\\com{no reasonable plaintext representation}
+        \vspace{2em}\par
+        $\leadsto$ We present \textbf{AnnoTize}, a flexible annotation tool for math documents\\\com{\url{https://github.com/rezakul/AnnoTize}}
+    }
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Challenge: Formulae}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{}
+\end{frame}
+
+
+\begin{frame}[allowframebreaks,t]
+    \frametitle{References}
+    \printbibliography
+\end{frame}
+
+\end{document}

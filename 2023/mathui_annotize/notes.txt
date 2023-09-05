@@ -1,0 +1,11 @@
+https://ar5iv.labs.arxiv.org/html/1201.6656
+
+
+para class: start with proof of 3.2
+
+decls: start with 3.7
+    in 3.6, mark ξ₁,...,ξ_R with flag and TODO
+
+in 4.1: √x for adj.
+
+discont. range:  "dilations ... of such an interval"
