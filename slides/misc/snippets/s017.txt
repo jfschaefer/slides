@@ -1,0 +1,9 @@
+\vdash : o \raa type
+
+s1 : \vdash p(a)\wedgep(b)
+
+conjEr : {A:o} \raa {B:o} \raa \vdashA\wedgeB \raa \vdashB
+
+s2 : \vdash p(b)
+   = conjEr p(a) p(b) s1
+

@@ -1,0 +1,251 @@
+\documentclass[aspectratio=169]{beamer}
+\usepackage{standalone}
+
+\usepackage{stmaryrd}
+\usepackage{listings}
+\usepackage{bussproofs}
+
+\usepackage[hyperref=auto,style=alphabetic,backend=bibtex]{biblatex}
+\addbibresource{kwarcpubs.bib}
+\addbibresource{extpubs.bib}
+\addbibresource{extcrossrefs.bib}
+\addbibresource{bib.bib}
+\usepackage{appendixnumberbeamer}
+\usepackage{tikz}
+\usepackage{tikz-qtree}
+\usetikzlibrary{arrows.meta}
+\usetikzlibrary{mmt}
+\usetikzlibrary{docicon}
+
+\usetheme{Pittsburgh}
+% \setbeamertemplate{footline}[frame number]
+\setbeamertemplate{footline}{\hfill\insertframenumber\,/\,\inserttotalframenumber\quad\strut}
+\setbeamertemplate{navigation symbols}{}
+\usecolortheme{beaver}
+\setbeamertemplate{frametitle}[default][left]
+% \setbeamersize{text margin left=3em}
+
+\usepackage{utils/colors}
+\usepackage[forbeamer]{utils/basic}
+\usepackage{utils/operators}
+\usepackage{utils/mylstmisc}
+\usepackage{utils/lstmmt}
+
+\lstset{basicstyle=\ttfamily}
+\lstset{commentstyle=\itshape\color{commentfont}}
+
+\title{GLIF: A Framework for Prototyping Symbolic Natural Language Understanding}
+
+\author{Jan Frederik Schaefer}
+\institute{FAU Erlangen-N\"urnberg}
+\date{\textbf{Prospects of Formal Mathematics -- Bridging between informal and formal}\\Hausdorff Research Institute for Mathematics\\Bonn\\July 9, 2024}
+
+\begin{document}
+
+\frame\titlepage
+
+
+
+
+\input{slides/fragments-to-glif-2}
+
+{
+    \enablepart{sometimesnarrow}
+    \disablepart{showjupyter}
+    \disablepart{showepistemicexample}
+    \enablepart{mentionprovergen}
+    \disablepart{showspa}
+    \enablepart{sageexample}
+    % \enablepart{forthelexample}
+    \disablepart{intensionalexample}
+    \disablepart{introduceelpi}
+    \input{slides/glif-components}
+}
+
+\input{slides/glif-inference-as-science}
+
+\begin{frame}[fragile]
+    \frametitle{Natural deduction in MMT: \textit{``Judgments as types''}}
+
+    \begin{minipage}{0.6\textwidth}
+        \lstinputlisting[language=MMT]{slides/misc/snippets/s017.txt}
+    \end{minipage}
+%     \begin{minipage}{0.3\textwidth}
+%         \centering
+%         \begin{prooftree}
+%             \AxiomC{$A \wedge B$}
+%             \RightLabel{\lstinline|andEr|}
+%             \UnaryInfC{$B$}
+%         \end{prooftree}
+%     \end{minipage}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{$\llbracket\text{\str{Ahmed and Berta paint}}\rrbracket \vdash_{\mathcal{ND}} \llbracket\text{\str{Berta paints}}\rrbracket$}
+    \centering
+    \begin{tikzpicture}[xscale=1.5]
+        \node[draw] (logic) at (0,0) {
+            \begin{tabular}l
+                Logic\\\hline
+                \texttt{o, $\neg$, $\wedge$, \ldots}\\
+                \texttt{$\vdash$, conjEr, \ldots}\\
+                \texttt{a:$\upiota$, b:$\upiota$, p:$\upiota\to$o, \ldots}
+            \end{tabular}
+        };
+        \node[draw] (s1) at (-3,-3) {
+            \begin{tabular}l
+                Premise\\\hline
+                \texttt{x : $\vdash$ p(a)$\wedge$p(b)}
+            \end{tabular}
+        };
+        \node[draw] (s2) at (3,-3) {
+            \begin{tabular}l
+                Conclusion\\\hline
+                \texttt{y : $\vdash$ p(b)}
+            \end{tabular}
+        };
+        \draw[meta] (logic) -- (s1);
+        \draw[meta] (logic) -- (s2);
+        \onslide<2->{
+            \draw[view] (s2) --node[below=0.2cm,draw]{\texttt{y $\mapsto$ conjEr \textcolor{gray}{p(a) p(b)} x}} (s1);
+        }
+    \end{tikzpicture}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{\large$\llbracket\text{\str{Ahmed paints}}\rrbracket, \llbracket\text{\str{Berta knows Ahmed}}\rrbracket \not\vdash_{\mathcal{ND}} \llbracket\text{\str{Berta knows everyone who paints}}\rrbracket$}
+    \centering
+    \begin{tikzpicture}[xscale=1.5]
+        \node[draw] (logic) at (0,-0.5) {
+            \begin{tabular}l
+                Logic\\\hline
+                \ldots
+            \end{tabular}
+        };
+        \node[draw] (s1) at (-3,-2) {
+            \begin{tabular}l
+                Premise\\\hline
+                \texttt{x : $\vdash$ p(a)}\\
+                \texttt{x' : $\vdash$ k(b,a)}
+            \end{tabular}
+        };
+        \node[draw] (s2) at (3,-2) {
+            \begin{tabular}l
+                Negated Conclusion\\\hline
+                \texttt{y : $\vdash$ $\neg$$\forall$e.p(e)$\Rightarrow$k(b,e)}
+            \end{tabular}
+        };
+        \draw[meta] (logic) -- (s1);
+        \draw[meta] (logic) -- (s2);
+        \onslide<2->{
+            \node[draw] (m) at (0, -5) {
+                \begin{tabular}l
+                    Counter-model\\\hline
+                    \texttt{c : $\upiota$}\\
+                    \texttt{m1 : $\vdash$ p(a)}\\
+                    \texttt{m2 : $\vdash$ p(c)}\\
+                    \texttt{m3 : $\vdash$ k(b,a)}\\
+                    \texttt{m4 : $\vdash$ $\neg$k(b,c)}
+                \end{tabular}
+            };
+            \draw[view] (s1) --node[left=0.2cm,yshift=-0.5cm,draw]{\begin{tabular}l
+                \texttt{x $\mapsto$ m1}\\
+                \texttt{x' $\mapsto$ m3}
+            \end{tabular}} (m);
+            \draw[view] (s2) --node[right=0.2cm,yshift=-0.2cm,draw]{\texttt{y $\mapsto$ \ldots}} (m);
+        }
+    \end{tikzpicture}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Mini summary}
+    \begin{itemize}
+        \item Parsing with GF
+        \item Logic syntax in MMT\com{``Bring your own logic''}
+        \item Semantics construction in MMT
+        \item (Manual) inference in MMT
+    \end{itemize}
+\end{frame}
+
+\input{slides/glif-component-elpi}
+\disablepart{aselpientro}
+\input{slides/glif-elpi-short}
+
+\begin{frame}
+    \frametitle{Example: ForTheL}
+    \autowidth{
+        \includegraphics[width=\textwidth]{img/screenshot-glif-forthel.png}
+    }
+\end{frame}
+
+\begin{frame}
+    \frametitle{Example: ``pairwise disjoint''}
+    \newcommand\ds{\text{disjoint}}
+    \str{$A$, $B$ and $C$ are pairwise disjoint}\\
+    {\color{logicfont} $\ds(A,B) \wedge \ds(A,C) \wedge \ds(B,C)$}
+    \vspace{1em}
+
+    \begin{itemize}
+        \item \textbf{Approach 1}\\Semantics construction with lots of $\lambda$s:\com{difficult!}
+            {\hspace{2em}\color{logicfont} $\ds(A,B) \wedge \ds(A,C) \wedge \top \wedge \ds(B,C) \wedge \top \wedge \top\wedge\top$}\\
+                Simplify with ELPI:\\
+            {\hspace{2em}\color{logicfont} $\ds(A,B) \wedge \ds(A,C) \wedge \ds(B,C)$}
+        \pause
+        \item \textbf{Approach 2}\\Semantics construction creates preliminary expression:\\
+            {\hspace{2em}\color{logicfont}\ttfamily relNT disjoint (cons A (cons B (cons C nil))) }\\
+                Convert with ELPI:\com{easier}
+            {\hspace{2em}\color{logicfont} $\ds(A,B) \wedge \ds(A,C) \wedge \ds(B,C)$}
+    \end{itemize}
+\end{frame}
+
+\input{slides/glif-example-epistemic-qa}
+
+
+\begin{frame}
+    \frametitle{Conclusion}
+    \begin{minipage}[t]{0.5\textwidth}
+        \textbf{Summary:}
+        \begin{itemize}
+            \item GLIF = GF + MMT + ELPI
+            \item Prototyping natural language understanding %\com{(symbolic)}
+            \item We use it for teaching
+        \end{itemize}
+    \end{minipage}
+    \begin{minipage}[t]{0.49\textwidth}
+        \textbf{Examples:}
+        \begin{enumerate}
+            \item \str{What is the cardinality of G?}
+            \item \str{a kinetic energy of 12mN}
+            \item \str{$A$, $B$ and $C$ are pairwise disjoint}
+            % \item \str{He loves her} (tableaux machine)
+            \item \str{John knows that Eve has a dog}
+            % \item \str{Ahmed's cousin}
+        \end{enumerate}
+    \end{minipage}
+    
+    \vspace{1em}
+    \centering
+    \includestandalone[width=0.8\textwidth]{fig/glif-architecture}
+\end{frame}
+
+\appendix
+
+
+\begin{frame}
+    \frametitle{Pipeline Specification}
+    \includestandalone[width=\textwidth]{fig/glif-spec}
+\end{frame}
+
+
+\input{slides/glif-example-tab-machine}
+
+\input{slides/glif-example-translation}
+
+\input{slides/elpi-gen}
+
+\begin{frame}[allowframebreaks,t]
+    \frametitle{References}
+    \printbibliography
+\end{frame}
+
+\end{document}

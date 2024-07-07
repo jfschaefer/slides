@@ -1,0 +1,41 @@
+\begin{frame}
+    \frametitle{Components of GLIF: ELPI}
+    \enablepart{hlelpi}
+    \autowidth{
+    \includestandalone[width=\textwidth]{fig/glif-architecture}
+    }
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{Components of GLIF: ELPI}
+    \autowidth{
+    \begin{itemize}
+        \item Implementation and extension of $\lambda$Prolog\com{$\approx$ Prolog + HOAS}
+        \item MMT can generate logic signatures
+        \ifpart{mentionprovergen}{
+            \item First experiments with prover generation
+        }{}
+        \item Generic inference/reasoning step after semantics construction
+        \ifpart{showspa}{\item Goal: Use it for semantic/pragmatic analysis}{}
+    \end{itemize}
+    \lstset{basicstyle=\footnotesize\ttfamily}
+
+    \vspace{1em}
+    \centering
+    \input{slides/misc/glif-components-elpi-sig}
+    \par
+%     \begin{minipage}[t]{\textwidth}
+%         \centering
+%         \begin{minipage}[t]{0.5\textwidth}
+%             \begin{lstlisting}[language=ELPI,frame=single]
+% kind o type.
+% type not o -> o.
+% type and o -> o -> o.
+% 
+% kind i type.
+% type forall (i -> o) -> o.
+%             \end{lstlisting}
+%         \end{minipage}
+%     \end{minipage}
+    }
+\end{frame}
