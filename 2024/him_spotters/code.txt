@@ -1,0 +1,1 @@
+<div><p>A !\colorbox{green}{<span class="definiendum">}!<em>multiset</em>!\colorbox{green}{</span>}! over a set <math><mi>X</mi></math> is ...</math>.</p></div>
