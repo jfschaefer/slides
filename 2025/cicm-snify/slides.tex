@@ -91,6 +91,15 @@
 \end{frame}
 
 \begin{frame}
+    \frametitle{This is a problem}
+    \begin{itemize}
+        \item $\ge 5\,400$ concepts in domain model
+        \item thousands of slides and problems $\leadsto$ tens of thousands of annotations
+        \item manual annotation very difficult for novices
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
     \frametitle{Introducing snify}
     Simple tool for sTeX bulk annotation:
     \begin{itemize}
@@ -123,10 +132,12 @@
     \pause
     \par\vspace{1em}
     \begin{columns}
+        \column{0.1\textwidth}
+        \ 
         \column{0.3\textwidth}
     \textbf{Using a stemmer to manage inflection:}
         \column{0.6\textwidth}
-    \begin{tikzpicture}
+        \begin{tikzpicture}
         \node (a) at (0, 0) {termin};
         \node (b) at ( 2.5, -1) {terminal};
         \node (c) at ( 2.5,  1) {terminals};
@@ -137,7 +148,6 @@
         \draw[-Stealth,thick] (d) to[sloped] node[above] {stem} (a);
         \draw[-Stealth,thick] (e) to[sloped] node[above] {stem} (a);
     \end{tikzpicture}
-    \hfill
     \end{columns}
 \end{frame}
 
@@ -154,18 +164,51 @@
 
 \begin{frame}
     \frametitle{Productivity Features}
+    \begin{itemize}
+        \item Undo/Redo
+        \item Edit in editor
+        \item Select other annotation
+        \item Permanently skip word in document/everywhere
+        \item Explain why a symbol is suggested/how it is imported
+        \item Focus mode
+    \end{itemize}
+
+    \textbf{Overall impact of snify:}
+    \begin{itemize}
+        \item Productivity gain over sTeX IDE: $3\times$ -- $13\times$
+        \item Used by most sTeX annotators
+        \item Has been used for ca. 10\,000 annotations
+    \end{itemize}
 \end{frame}
 
-\begin{frame}
-    \frametitle{Impact}
-\end{frame}
 
 \begin{frame}
     \frametitle{Semantic Authoring}
+    \begin{tabular}{r l l l}
+        & \textbf{Informal Authoring} & \textbf{Semantic Authoring} & \textbf{Formal Authoring} \\[0.3em]
+        Example & informal \LaTeX & sTeX & computer code \\[0.3em]
+        Reuse & limited & more desirable \& possible & all the time \\[0.3em]
+        Tools & spell/grammar checker & ? & IDE (refactoring, \textellipsis) \\[0.3em]
+    \end{tabular}
+
+    \pause
+    \vspace{1.5em}
+    \textbf{Semantic authoring tool support:}
+    \begin{itemize}
+        \item spell/grammar checking \com{like informal authoring}
+        \item IDE functionality (e.g.\ refactoring symbol names) \com{like formal authoring}
+        \item need tools that combine both aspects \com{like snify}
+    \end{itemize}
 \end{frame}
 
 \begin{frame}
-    \frametitle{Other Authoring Support}
+    \frametitle{Other Desirable Semantic Authoring Support for sTeX}
+    \begin{itemize}
+        \item Formula annotation \com{Existing work by ...}
+        \item Annotation of metadata \com{problem objectives, \textellipsis}
+        \item Definiendum annotation to fill catalog when importing existing materials \com{prototype exists}
+        \item Stub generation for gaps in domain model
+    \end{itemize}
 \end{frame}
 
 \begin{frame}
