@@ -251,8 +251,8 @@
 
     Snify helps detect e.g.:
     \begin{itemize}
-        \item Gaps in the domain model
         \item Duplicate symbols
+        \item Gaps in the domain model
         \item Unnecessary dependencies
     \end{itemize}
 
@@ -266,9 +266,9 @@
         & \textbf{Informal Authoring} & \textbf{Semantic Authoring} & \textbf{Formal Authoring} \\[0.3em]
         Example & informal \LaTeX & sTeX & computer code \\[0.3em]
         \pause
-        Dom. model & in head/literature & glossary & libraries \\[0.3em]
-        \pause
         People & mathematicians & we & formalizers \\[0.3em]
+        \pause
+        Dom. model & in head/literature & glossary & libraries \\[0.3em]
         \pause
         Reuse & limited & more desirable \& possible & all the time \\[0.3em]
         \pause
@@ -290,6 +290,7 @@
     \frametitle{Design Space of Semantic Authoring}
     \def\h#1{\only<1>{#1}\only<2>{\colorbox{yellow!50!red!70}{#1}}}
     % \def\h#1{#1}
+    There are multiple dimensions to consider:
     \begin{itemize}
         \item \h{Text} vs formulae vs metadata\com{or combination?}
         \item \h{Incremental} vs wholistic
@@ -316,7 +317,7 @@
         \item Snify case study
             \begin{itemize}
                 \item Maintains verbalization catalog
-                \item Uses simple symbolic techniques
+                \item Uses simple symbolic techniques\com{no need for LLMs}
                 \item Is very effective\com{already exists for Word}
             \end{itemize}
     \end{itemize}
