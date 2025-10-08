@@ -53,7 +53,7 @@
 
 
 \begin{frame}
-    \frametitle{ALeA Ecosystem}
+    \frametitle{AL{\small E}A Ecosystem}
     \begin{columns}
         \column{0.4\textwidth}
         An adaptive learning assistant that
@@ -83,14 +83,15 @@
 %     \end{lstlisting}
     \def\h#1{\colorbox{yellow!50!red!70}{#1}}
     \begin{lstlisting}
-    <*\only<2->{\h{\textbackslash usemodule[courses/FAU/AI/course]\{search/slides?id-search\}}}*>
-    <*\only<3->{\h{\textbackslash usemodule[courses/FAU/AI/course]\{game-play/slides?minimax-algo\}}}*>
-    \textbf{Note:} <*\only<2->{\h{\textbackslash sr\{depth limit\}\{}}*>Depth-limited<*\only<2->{\h{\}}}*> <*\only<3->{\h{\textbackslash sn\{}}*>minimax<*\only<3->{\h{\}}}*>
+    <*\only<3->{\h{\textbackslash usemodule[courses/FAU/AI/course]\{search/slides?id-search\}}}*>
+    <*\only<4->{\h{\textbackslash usemodule[courses/FAU/AI/course]\{game-play/slides?minimax-algo\}}}*>
+
+    \textbf{Note:} <*\only<2->{\h{\textbackslash sr\{depth limit\}\{}}*>Depth-limited<*\only<2->{\h{\}}}*> <*\only<4->{\h{\textbackslash sn\{}}*>minimax<*\only<4->{\h{\}}}*>
     requires an evaluation for every cut-off state $s$.
     If $s$ is terminal, we use its utility, and otherwise an estimate.
     \end{lstlisting}
 
-    \onslide<4->{
+    \onslide<5->{
         \noindent\rule{\textwidth}{0.8pt}
         \vspace{0.5em}
         \textbf{This is difficult}
@@ -100,16 +101,10 @@
             \item many annotations needed for a lecture\com{estimate: 10\,000}
         \end{itemize}
     }
-    \onslide<5>{
+    \onslide<6>{
         \vspace{0.5em}
         \textbf{Obvious idea: Have tool support $\bm\leadsto$ Snify (\textbackslash sn-ify)}
     }
-\end{frame}
-
-\begin{frame}
-    \frametitle{Number of Annotations}
-    \centering
-    \includegraphics{annocounts.pdf}
 \end{frame}
 
 \begin{frame}[fragile]
@@ -119,6 +114,7 @@
     \begin{lstlisting}
     \usemodule[courses/FAU/AI/course]{search/slides?id-search}
     \usemodule[courses/FAU/AI/course]{game-play/slides?minimax-algo}
+
     \textbf{Note:} <*{\h{\textbackslash sr\{depth limit\}\{Depth-limited\}}}*> <*{\h{\textbackslash sn\{minimax\}}}*>
     requires an evaluation for every cut-off state $s$.
     If $s$ is terminal, we use its utility, and otherwise an estimate.
@@ -129,12 +125,16 @@
     \begin{itemize}
         \item Collect symbol verbalizations from annotations
         \item Also for other languages (\textbackslash sr\{depth limit\}\{tiefenbeschr\"ankt\})
-        \item Use stemmer to deal with inflections:
-            \begin{itemize}
-                \item ``limit'' $\mapsto$ ``limit''
-                \item ``limits'' $\mapsto$ ``limit''
-                \item ``limited'' $\mapsto$ ``limit''
-            \end{itemize}
+        \item Use stemmer to deal with inflections:\\[0.5em]
+            $
+                    \left.
+                \text{\begin{tabular}l ``limit'' \\ ``limits'' \\ ``limited''\end{tabular}}\!\!\!
+                    \right\} \mapsto \text{``limit''}$
+            % \begin{itemize}
+            %     \item ``limit'' $\mapsto$ ``limit''
+            %     \item ``limits'' $\mapsto$ ``limit''
+            %     \item ``limited'' $\mapsto$ ``limit''
+            % \end{itemize}
     \end{itemize}
     
 \end{frame}
@@ -145,8 +145,8 @@
     % Simple tool for sTeX bulk annotation:
     {\centering\it\large Source-based, incremental, interactive, fine-grained annotation workflow\par\vspace{1.5em}}
     \begin{itemize}
-        \item Iterates over source files
-        \item Suggests annotations to user\com{
+        \item Iterate over source files
+        \item Suggest annotations to user\com{
             select annotation instead of remembering and entering it
             }
         \item Inspired by traditional spell-checkers (e.g. ispell/aspell/...)
@@ -225,6 +225,13 @@
 \end{frame}
 
 \begin{frame}
+    \frametitle{Number of Annotations}
+    \centering
+    \includegraphics{annocounts.pdf}
+\end{frame}
+
+
+\begin{frame}
     \frametitle{Evaluation}
     \textbf{Effect:}
     \begin{itemize}
@@ -255,7 +262,10 @@
         \item Gaps in the domain model
         \item Unnecessary dependencies
     \end{itemize}
-
+    \pause
+    \noindent\rule{\textwidth}{0.8pt}
+    \par\vspace{1em}
+    \includegraphics[scale=0.2]{candidates.png}
     % TODO: screenshots
 \end{frame}
 
@@ -293,7 +303,7 @@
     There are multiple dimensions to consider:
     \begin{itemize}
         \item \h{Text} vs formulae vs metadata\com{or combination?}
-        \item \h{Incremental} vs wholistic
+        \item \h{Incremental} vs holistic
         \item During writing vs \h{afterwards}
     \end{itemize}
     \vspace{1em}
@@ -321,11 +331,16 @@
                 \item Is very effective\com{already exists for Word}
             \end{itemize}
     \end{itemize}
+    \centering
+    \vspace{1em}\par
+    \includegraphics[scale=0.15]{screenshot.png}
 \end{frame}
 
-\begin{frame}[allowframebreaks,t]
-    \frametitle{References}
-    \printbibliography
-\end{frame}
+\appendix
+
+% \begin{frame}[allowframebreaks,t]
+%     \frametitle{References}
+%     \printbibliography
+% \end{frame}
 
 \end{document}
