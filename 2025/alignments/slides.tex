@@ -63,19 +63,22 @@
     \frametitle{Introduction}
     \renewcommand\arraystretch{1.2}%\setlength\minrowclearance{2.4pt}
     \begin{itemize}
-        \item Alignments make math data FAIR \com{Findable, Accessible, Interoperable, Reusable}
-        \item Example: % nat in text / wikidata / ontomathpro
-            \begin{tabular}l
-                \texttt{http://ontomathpro.org/omp2\#E2119} (``Natural number'')\\
+        \item Alignments support FAIR math data \com{Findable, Accessible, Interoperable, Reusable}
+            \pause
+        \item Example alignments: % nat in text / wikidata / ontomathpro
+            \quad\begin{tabular}l
+                % \texttt{http://ontomathpro.org/omp2\#E2119} (``Natural number'')\\
+                \texttt{omp2:E2119} (``Natural number'')\\
                     \hline
                     \hline
-                ``Let $n$ be a \texthl{natural number}.''\\
-                    \hline
-                    \hline
-                    \pause
-                \texttt{wd:Q21199} (``natural number'')\\
+                \texttt{wd:Q21199} (natural numbers, possibly including 0)\\
+                \pause
                 \texttt{wd:Q28920044} (positive integers, i.e.\ natural numbers excluding 0)\\
                 \texttt{wd:Q28920052} (non-negative integers, i.e.\ natural numbers including 0)\\
+                    \hline
+                    \hline
+                \pause
+                ``Let $n$ be a \texthl{natural number}.''\\
             \end{tabular}
             \pause
         \item Will need human aligners
@@ -86,64 +89,82 @@
 
 \begin{frame}
     \frametitle{Proposed Workflow}
+    {\centering
     \begin{tikzpicture}
         \node[draw,rectangle] (show) at (0, 2) {Show concept (reference) + alignment candidates};
         \node[trapezium left angle=60, trapezium right angle=-60,trapezium,draw] (command) at (0, 1) {User command};
         \node[draw,rectangle] (create) at (-1, -1) {Create alignment};
         \draw[-Stealth,thick] (command) to[in=100,out=210] (create);
         \draw[-Stealth,thick] (command) to[in=50,out=260] (create);
-        \node at (-1.65, 0) {\itshape\footnotesize\begin{tabular}rSelect\;\ \\alignment\quad\ \\candidate\quad\;\ \end{tabular}};
-        \node at (0.5, 0) {\itshape\footnotesize\begin{tabular}l\quad Enter other\\\;\;alignment\\target\end{tabular}};
+        \node at (-1.7, 0) {\itshape\footnotesize\begin{tabular}rSelect\;\,\ \\alignment\quad\ \\candidate\quad\;\ \end{tabular}};
+        \node at (0.6, 0) {\itshape\footnotesize\begin{tabular}l\quad Enter other\\\;\;alignment\\target\end{tabular}};
         \node[draw,rectangle] (next) at (0, -2) {Go to next concept (reference)};
         \draw[-Stealth,thick] (show) -- (command);
         \draw[-Stealth,thick] (create) -- (next);
         \draw[-Stealth,thick] (command) to[out=0,in=40] (next.north east);
-        \node at (2.9, 0) {\itshape\footnotesize Skip};
+        \node at (3.1, 0) {\itshape\footnotesize Skip};
         \draw[-Stealth,thick] (next) to[out=180,in=225] (show.south west);
     \end{tikzpicture}
+    \par}
 
-    \pause
     \noindent\rule{\textwidth}{0.8pt}
+    \begin{columns}
+        \begin{column}{0.5\textwidth}
     % {\centering ``Let $n$ be a \texthl{natural number}.''\par}
-    \texttt{http://ontomathpro.org/omp2\#E2119} \\
-    \begin{itemize}
-        \item \texttt{[0] wd:Q21199}
-        \item \texttt{[1] wd:Q28920044}
-        \item \texttt{[2] wd:Q28920052}
-    \end{itemize}
+    % \texttt{http://ontomathpro.org/omp2\#E2119} \\
+    \texttt{omp2:E2119} \\
+    \begin{enumerate}
+        \item \texttt{wd:Q21199}
+        \item \texttt{wd:Q28920044}
+        \item \texttt{wd:Q28920052}
+    \end{enumerate}
+        \end{column}
+        \begin{column}{0.4\textwidth}
     \pause
-    \noindent\rule{\textwidth}{0.8pt}
     \begin{itemize}
-        \item How select candidates?
         \item More information needs to be displayed!
+        \item How do select candidates?
     \end{itemize}
     \textbf{$\bm\leadsto$ Solution: Concept Glossary}
+        \end{column}
+    \end{columns}
 \end{frame}
 
 
 \begin{frame}[fragile]
     \frametitle{Concept Glossary}
-    Have an entry for each concept with
+    Have for each potential alignment target:
     \begin{itemize}
         \item an identifier\com{for referencing/making the alignment}
         \item a (human-readable) description\com{so the user knows what the concept is}
         \item a set of verbalizations\com{for linking}
     \end{itemize}
     \pause
-    \vspace{0.5em}\par
     \noindent\rule{\textwidth}{0.8pt}
-    \vspace{0.5em}\par
-    \textbf{For aligning}\\
-    \quad\texttt{http://ontomathpro.org/omp2\#E2119}: 
-    \texthl{``Natural number''} (en), ``{\cyr Натуральное число}'' (ru)\\
-    \textbf{suggest e.g.}\\
-    \quad\texttt{https://www.wikidata.org/wiki/Q28920044}\\
+    \\[0.3em]
+    \begin{minipage}{1.1\textwidth}
+    \textbf{Suggest}\\
+    % \quad\texttt{https://www.wikidata.org/wiki/Q28920044}\\
+    \quad\texttt{wd:Q28920044}\\
     \quad``\textit{positive integer} (integer greater than zero; natural number explicitly excluding zero)``\\
-    \quad``positive integer'' (en), ``integer greater than zero'' (en), \texthl{``natural number''} (en), \textellipsis
+    \quad``positive integer'' (en), ``integer greater than zero'' (en), \texthl{``natural number''} (en), \textellipsis\\[0.3em]
+    \textbf{When aligning}\\
+    % \quad\texttt{http://ontomathpro.org/omp2\#E2119}:
+    \quad\texttt{omp2:E2119}:
+        \texthl{``Natural number''} (en), ``{\cyr Натуральное число}'' (ru)\\[-0.5em]
+    \end{minipage}
+    \noindent\rule{\textwidth}{0.8pt}
+    Find candidates via
+    \begin{itemize}
+        \item exact verbalization matches
+        \item verbalization matches modulo capitalization/stemming
+        \item something else\com{e.g. embeddings}
+    \end{itemize}
 \end{frame}
 
 \begin{frame}
     \frametitle{Harvesters and Frontends}
+    {\centering
     \begin{tikzpicture}[xscale=3, yscale=0.7]
         \node[circle,draw,minimum size=0.5cm] (h1) at (-1, 1.5) {};
         \node[circle,draw,minimum size=0.5cm] (h2) at (-1, 0.5) {};
@@ -164,10 +185,11 @@
         \draw[-Stealth] (catalog) -- (f3);
     \end{tikzpicture}
     \vspace{2em}\par
+    }
     \begin{itemize}
         \item Different frontends depending on what we align
         \item Glossary as interface to harvesters
-        \item $\leadsto$ harvesters and frontends can be implemented independently and combined freely\com{kind of}
+        \item Harvesters and frontends can be implemented independently and combined freely\com{kind of}
     \end{itemize}
 \end{frame}
 
@@ -181,7 +203,7 @@
 
 \begin{frame}[fragile]
     \frametitle{A WikiData Harvester}
-    {\centering Simple SPARQL query to get math concepts\com{18600 concepts}\vspace{2em}\par}
+    {\centering Simple SPARQL query to get math concepts\com{18600 concepts}\vspace{1em}\par}
     \begin{lstlisting}[language=SPARQL]
 SELECT DISTINCT ?item WHERE {
     { ?item wdt:P6104 wd:Q8487137 .
@@ -191,6 +213,15 @@ SELECT DISTINCT ?item WHERE {
     } UNION {VALUES ?item { wd:Q204 wd:Q199 wd:Q200 }}. 
   }
     \end{lstlisting}
+    \vspace{1em}\par
+    Examples:
+    \begin{itemize}
+        \item ``Nonlinear autoregressive exogenous model''
+        \item ``line-cylinder intersection''
+        \item ``spectral norm''
+        \item ``Shannon's expansion''
+        \item ``Napoleon-Feuerbach cubic''
+    \end{itemize}
 \end{frame}
 
 \begin{frame}
@@ -202,15 +233,18 @@ SELECT DISTINCT ?item WHERE {
     \textbf{WikiData has some notations $\to$ add them to glossary}
     \vspace{1em}\par
     \begin{itemize}
-        \item identifier: \texttt{https://www.wikidata.org/wiki/Q167}
-        \item description: ``constant ratio of the circumference of a circle to its diameter''
-        \item verbalizations: \verb.\pi. (\LaTeX), $\pi$ (Unicode), ``pi'' (en), ``Archimedes' constant'' (en), \textellipsis
+        % \item identifier: \texttt{https://www.wikidata.org/wiki/Q167}
+        \item Identifier: \texttt{wd:Q167}
+        \item Description: ``constant ratio of the circumference of a circle to its diameter''
+        \item Verbalizations: \verb.\pi. (\LaTeX), $\pi$ (Unicode), ``pi'' (en), ``Archimedes' constant'' (en), \textellipsis
     \end{itemize}
     \vspace{1em}\par
     \pause
     \begin{itemize}
         \item Can annotate \LaTeX\ formulae
-        \item Can annotate HTML documents (text/MathML formulae)
+        \item Can annotate HTML documents (text/MathML formulae)\com{need HTML interface}
+        \item Limitation: Few notations in WikiData
+        \item Limitation: Can only annotate (some) operators/constants, but not their arguments
     \end{itemize}
 \end{frame}
 
@@ -219,7 +253,9 @@ SELECT DISTINCT ?item WHERE {
 \end{frame}
 
 \begin{frame}
-    \frametitle{Sketch: Aligning OntoMathPro}
+    \frametitle{Quick Prototype: Aligning OntoMathPro}
+    \centering
+    \includegraphics[width=\textwidth]{screenshot.png}
 \end{frame}
 
 \begin{frame}[fragile]
@@ -239,14 +275,23 @@ SELECT DISTINCT ?item WHERE {
 
 \begin{frame}
     \frametitle{Conclusion}
-\end{frame}
+    \begin{itemize}
+        \item A simple workflow for efficient alignment
+        \item Separation of harvester and frontend; glossary as interface
+        \item Prototype implementation building on Snify:
+            \begin{itemize}
+                \item Can align \LaTeX/HTML, both text and formulae, with WikiData
+                \item Can align OntoMathProV2 with WikiData
+                \item Only a proof-of-concept, still needs some work
+            \end{itemize}
+        \item Where should the alignments be stored?
+        \item Maybe there are other simple ways to help humans align efficiently?
+    \end{itemize}
 
-\appendix
-\begin{frame}[allowframebreaks,t]
-    \frametitle{References}
-    \printbibliography
+    \vspace{2em}
+    \centering
+    \textcolor{blue}{\url{https://github.com/slatex/stextools}}, \texttt{snify2} branch
 \end{frame}
-
 
 
 \end{document}
